@@ -1,0 +1,38 @@
+name: nostr_core
+description: Complete Nostr protocol implementation for Flutter with NIP-44 encryption
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # Nostr Development Kit - most complete library
+  ndk: ^0.5.1
+  
+  # Cryptography (ndk uses these internally, match versions)
+  bip340: ^0.3.0  # Schnorr signatures - match ndk requirement
+  pointycastle: ^4.0.0  # Match ndk requirement
+  crypto: ^3.0.3
+  cryptography: ^2.7.0  # For Web platform support
+  convert: ^3.1.1
+  hex: ^0.2.0
+  bech32: ^0.2.2
+  
+  # WebSocket
+  web_socket_channel: ^3.0.1
+  
+  # Utilities
+  equatable: ^2.0.5
+  meta: ^1.11.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  test: ^1.25.2
+  mockito: ^5.4.4
+  build_runner: ^2.4.8
+  flutter_lints: ^4.0.0

@@ -1,0 +1,96 @@
+name: zapd
+repository: https://github.com/yourusername/zapd
+
+packages:
+  - apps/**
+  - packages/**
+
+command:
+  version:
+    linkToCommits: true
+    workspaceChangelog: true
+
+  bootstrap:
+    runPubGetInParallel: true
+    runPubGetOffline: false
+
+scripts:
+  analyze:
+    run: flutter analyze
+    description: Run Dart static analysis on all packages
+    packageFilters:
+      flutter: true
+
+  test:
+    run: flutter test
+    description: Run tests for all packages
+    packageFilters:
+      flutter: true
+      dirExists: test
+
+  format:
+    run: dart format .
+    description: Format all Dart files
+
+  clean:
+    run: flutter clean
+    description: Clean all packages
+    packageFilters:
+      flutter: true
+
+  get:
+    run: flutter pub get
+    description: Get dependencies for all packages
+    packageFilters:
+      flutter: true
+
+  upgrade:
+    run: flutter pub upgrade
+    description: Upgrade dependencies for all packages
+    packageFilters:
+      flutter: true
+
+  run:merchant:
+    run: cd apps/merchant && flutter run -d chrome --web-port=8080
+    description: Run merchant web app
+    packageFilters:
+      scope: merchant
+
+  run:rider:
+    run: flutter run
+    description: Run rider mobile app
+    packageFilters:
+      scope: rider
+
+  run:customer:
+    run: flutter run
+    description: Run customer mobile app
+    packageFilters:
+      scope: customer
+
+  build:web:
+    run: flutter build web
+    description: Build web apps
+    packageFilters:
+      flutter: true
+      scope: 
+        - merchant
+        - customer
+
+  build:apk:
+    run: flutter build apk
+    description: Build Android APKs
+    packageFilters:
+      flutter: true
+      scope:
+        - rider
+        - customer
+
+  build:ios:
+    run: flutter build ios
+    description: Build iOS apps
+    packageFilters:
+      flutter: true
+      scope:
+        - rider
+        - customer

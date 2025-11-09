@@ -1,0 +1,6 @@
+# melos_managed_dependency_overrides: nostr_core,zapd_models
+dependency_overrides:
+  nostr_core:
+    path: ../../packages/nostr_core
+  zapd_models:
+    path: ../../packages/zapd_models

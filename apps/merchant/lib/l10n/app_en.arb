@@ -1,0 +1,327 @@
+{
+  "@@locale": "en",
+  "appTitle": "ZapD Merchant",
+  "@appTitle": {
+    "description": "Application title"
+  },
+  
+  "welcomeTitle": "ZapD Merchant",
+  "@welcomeTitle": {
+    "description": "Welcome page title"
+  },
+  
+  "welcomeSubtitle": "Decentralized Food Delivery",
+  "@welcomeSubtitle": {
+    "description": "Welcome page subtitle"
+  },
+  
+  "poweredByNostr": "Powered by Nostr Protocol",
+  "@poweredByNostr": {
+    "description": "Nostr protocol badge"
+  },
+  
+  "nostrDescription": "Your identity is secured by cryptographic keys. No passwords, no central servers.",
+  "@nostrDescription": {
+    "description": "Nostr protocol description"
+  },
+  
+  "newToZapD": "New to ZapD?",
+  "@newToZapD": {
+    "description": "New user section title"
+  },
+  
+  "createNewAccount": "Create New Account",
+  "@createNewAccount": {
+    "description": "Create account button"
+  },
+  
+  "alreadyHaveKey": "Already have a Nostr key?",
+  "@alreadyHaveKey": {
+    "description": "Existing user section title"
+  },
+  
+  "signIn": "Sign In",
+  "@signIn": {
+    "description": "Sign in button"
+  },
+  
+  "termsAgreement": "By continuing, you agree to our Terms of Service",
+  "@termsAgreement": {
+    "description": "Terms agreement text"
+  },
+  
+  "generateKeyTitle": "Generate Your Nostr Key",
+  "@generateKeyTitle": {
+    "description": "Generate key page title"
+  },
+  
+  "generateKeyDescription": "Your Nostr key is your identity on the decentralized network. Keep it safe and never share it with anyone.",
+  "@generateKeyDescription": {
+    "description": "Generate key description"
+  },
+  
+  "generateNewKey": "Generate New Key",
+  "@generateNewKey": {
+    "description": "Generate button"
+  },
+  
+  "generating": "Generating...",
+  "@generating": {
+    "description": "Generating state"
+  },
+  
+  "keyGeneratedSuccess": "Key Generated Successfully!",
+  "@keyGeneratedSuccess": {
+    "description": "Success message"
+  },
+  
+  "privateKey": "Private Key",
+  "@privateKey": {
+    "description": "Private key label"
+  },
+  
+  "privateKeySecret": "Private Key (Keep Secret!)",
+  "@privateKeySecret": {
+    "description": "Private key with warning"
+  },
+  
+  "publicKey": "Public Key",
+  "@publicKey": {
+    "description": "Public key label"
+  },
+  
+  "publicKeySafeToShare": "Public Key (Safe to Share)",
+  "@publicKeySafeToShare": {
+    "description": "Public key with note"
+  },
+  
+  "copy": "Copy",
+  "@copy": {
+    "description": "Copy button"
+  },
+  
+  "copied": "Copied to clipboard",
+  "@copied": {
+    "description": "Copied message"
+  },
+  
+  "importantSaveKey": "Important: Save Your Private Key",
+  "@importantSaveKey": {
+    "description": "Warning title"
+  },
+  
+  "saveKeyInstructions": "• Write it down on paper\n• Store it in a password manager\n• NEVER share it with anyone\n• Loss of key = Loss of account",
+  "@saveKeyInstructions": {
+    "description": "Key saving instructions"
+  },
+  
+  "saveAndContinue": "Save and Continue",
+  "@saveAndContinue": {
+    "description": "Save button"
+  },
+  
+  "saved": "Saved!",
+  "@saved": {
+    "description": "Saved state"
+  },
+  
+  "generateDifferentKey": "Generate Different Key",
+  "@generateDifferentKey": {
+    "description": "Regenerate button"
+  },
+  
+  "welcomeBack": "Welcome Back!",
+  "@welcomeBack": {
+    "description": "Login page title"
+  },
+  
+  "chooseSignInMethod": "Choose your preferred sign-in method",
+  "@chooseSignInMethod": {
+    "description": "Login page subtitle"
+  },
+  
+  "privateKeyOrNsec": "Private Key / nsec",
+  "@privateKeyOrNsec": {
+    "description": "Private key method title"
+  },
+  
+  "privateKeyDescription": "Direct key input (not recommended for daily use)",
+  "@privateKeyDescription": {
+    "description": "Private key method description"
+  },
+  
+  "nostrExtension": "Nostr Extension (NIP-07)",
+  "@nostrExtension": {
+    "description": "Extension method title"
+  },
+  
+  "nostrExtensionDescription": "Use browser extension for secure signing",
+  "@nostrExtensionDescription": {
+    "description": "Extension method description"
+  },
+  
+  "nostrConnect": "Nostr Connect (NIP-46)",
+  "@nostrConnect": {
+    "description": "Nostr Connect method title"
+  },
+  
+  "nostrConnectDescription": "Remote signer or hardware wallet",
+  "@nostrConnectDescription": {
+    "description": "Nostr Connect method description"
+  },
+  
+  "secure": "SECURE",
+  "@secure": {
+    "description": "Secure badge"
+  },
+  
+  "notRecommended": "Not Recommended for Regular Use",
+  "@notRecommended": {
+    "description": "Not recommended warning"
+  },
+  
+  "enterPrivateKey": "Enter your 64-character hex key or nsec1...",
+  "@enterPrivateKey": {
+    "description": "Private key input hint"
+  },
+  
+  "signingIn": "Signing In...",
+  "@signingIn": {
+    "description": "Signing in state"
+  },
+  
+  "connectWithExtension": "Connect with Nostr Extension",
+  "@connectWithExtension": {
+    "description": "Extension connect title"
+  },
+  
+  "extensionDescription": "This will use your browser extension (NIP-07) for secure key management.",
+  "@extensionDescription": {
+    "description": "Extension description"
+  },
+  
+  "supportedExtensions": "Supported Extensions:",
+  "@supportedExtensions": {
+    "description": "Extensions list title"
+  },
+  
+  "connectExtension": "Connect Extension",
+  "@connectExtension": {
+    "description": "Connect extension button"
+  },
+  
+  "connecting": "Connecting...",
+  "@connecting": {
+    "description": "Connecting state"
+  },
+  
+  "connectWithNostrConnect": "Connect with Nostr Connect",
+  "@connectWithNostrConnect": {
+    "description": "Nostr Connect title"
+  },
+  
+  "nostrConnectFullDescription": "Use a remote signer or hardware wallet (NIP-46) for maximum security.",
+  "@nostrConnectFullDescription": {
+    "description": "Nostr Connect full description"
+  },
+  
+  "bunkerUrl": "Bunker URL",
+  "@bunkerUrl": {
+    "description": "Bunker URL label"
+  },
+  
+  "bunkerUrlHint": "bunker://pubkey...",
+  "@bunkerUrlHint": {
+    "description": "Bunker URL hint"
+  },
+  
+  "connect": "Connect",
+  "@connect": {
+    "description": "Connect button"
+  },
+  
+  "dashboard": "Dashboard",
+  "@dashboard": {
+    "description": "Dashboard title"
+  },
+  
+  "logout": "Logout",
+  "@logout": {
+    "description": "Logout button"
+  },
+  
+  "show": "Show",
+  "@show": {
+    "description": "Show button"
+  },
+  
+  "hide": "Hide",
+  "@hide": {
+    "description": "Hide button"
+  },
+  
+  "noExtensionFound": "No Nostr extension found!\n\nPlease install one of these extensions:\n• nos2x\n• Alby\n• Flamingo",
+  "@noExtensionFound": {
+    "description": "No extension error message"
+  },
+  
+  "extensionConnected": "Extension connected successfully!",
+  "@extensionConnected": {
+    "description": "Extension success message"
+  },
+  
+  "or": "OR",
+  "@or": {
+    "description": "OR divider text"
+  },
+  
+  "errorSavingKey": "Error saving key",
+  "@errorSavingKey": {
+    "description": "Error saving key message"
+  },
+  
+  "errorInvalidNsec": "Invalid nsec format",
+  "@errorInvalidNsec": {
+    "description": "Invalid nsec error"
+  },
+  
+  "errorPrivateKeyLength": "Private key must be 64 characters (hex) or start with nsec1",
+  "@errorPrivateKeyLength": {
+    "description": "Private key length error"
+  },
+  
+  "errorEnterPrivateKey": "Please enter your private key",
+  "@errorEnterPrivateKey": {
+    "description": "Empty private key error"
+  },
+  
+  "errorLoginFailed": "Failed to login",
+  "@errorLoginFailed": {
+    "description": "Login failed error"
+  },
+  
+  "errorConnectFailed": "Failed to connect",
+  "@errorConnectFailed": {
+    "description": "Connection failed error"
+  },
+  
+  "errorEnterBunkerUrl": "Please enter a Nostr Connect URL",
+  "@errorEnterBunkerUrl": {
+    "description": "Empty bunker URL error"
+  },
+  
+  "nostrConnectComingSoon": "Nostr Connect (NIP-46) coming soon!\n\nThis will support remote signers and hardware wallets.",
+  "@nostrConnectComingSoon": {
+    "description": "Nostr Connect not yet implemented message"
+  },
+  
+  "errorInvalidBunkerUrl": "Invalid bunker URL format.\nExpected: bunker://pubkey?relay=wss://...",
+  "@errorInvalidBunkerUrl": {
+    "description": "Invalid bunker URL error"
+  },
+  
+  "nostrConnectConnected": "Connected to Nostr Connect!",
+  "@nostrConnectConnected": {
+    "description": "Nostr Connect success message"
+  }
+}

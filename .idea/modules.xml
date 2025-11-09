@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/apps/customer/melos_customer.iml" filepath="$PROJECT_DIR$/apps/customer/melos_customer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apps/merchant/melos_merchant.iml" filepath="$PROJECT_DIR$/apps/merchant/melos_merchant.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages/nostr_core/melos_nostr_core.iml" filepath="$PROJECT_DIR$/packages/nostr_core/melos_nostr_core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apps/rider/melos_rider.iml" filepath="$PROJECT_DIR$/apps/rider/melos_rider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages/zapd_models/melos_zapd_models.iml" filepath="$PROJECT_DIR$/packages/zapd_models/melos_zapd_models.iml" />
+      <module fileurl="file://$PROJECT_DIR$/melos_zapd.iml" filepath="$PROJECT_DIR$/melos_zapd.iml" />
+    </modules>
+  </component>
+</project>
