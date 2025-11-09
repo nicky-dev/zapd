@@ -1,0 +1,54 @@
+# Melos specific
+.melos/
+pubspec_overrides.yaml
+
+# Dart/Flutter specific
+.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+.idea/
+.vscode/
+build/
+coverage/
+doc/api/
+ios/Flutter/Generated.xcconfig
+ios/Flutter/AppFrameworkInfo.plist
+ios/Flutter/Flutter.podspec
+ios/Pods/
+android/.gradle/
+android/app/build/
+android/build/
+android/gradle/
+android/local.properties
+android/key.properties
+android/captures/
+android/cmake/
+android/fastlane/
+android/gradlew
+android/gradlew.bat
+android/out/
+android/profile/
+android/release/
+android/signing_config.json
+android/secrets.properties
+android/test_output/
+android/tmp/
+
+# macOS/OS specific
+.DS_Store
+.history/
+.tool-version
+
+# IDE/Editor Specific
+*.iml
+*.iws
+*.ipr
+.vscode/
+.idea/
+
+# General
+*.log
+*.tmp
+*.bak
+*.swp
