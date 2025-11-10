@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../l10n/app_localizations.dart';
 import '../models/product.dart';
 import '../../stalls/models/stall.dart';
 
@@ -133,13 +134,13 @@ class ProductCard extends StatelessWidget {
                 TextButton.icon(
                   onPressed: onEdit,
                   icon: const Icon(Icons.edit, size: 18),
-                  label: const Text('Edit'),
+                  label: Text(AppLocalizations.of(context)!.edit),
                 ),
                 const SizedBox(width: 8),
                 TextButton.icon(
                   onPressed: onDelete,
                   icon: const Icon(Icons.delete, size: 18),
-                  label: const Text('Delete'),
+                  label: Text(AppLocalizations.of(context)!.delete),
                   style: TextButton.styleFrom(
                     foregroundColor: Colors.red,
                   ),

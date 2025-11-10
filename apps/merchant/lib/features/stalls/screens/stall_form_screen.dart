@@ -367,7 +367,7 @@ class _StallFormScreenState extends ConsumerState<StallFormScreen> {
             OutlinedButton.icon(
               onPressed: _addShippingZone,
               icon: const Icon(Icons.add),
-              label: const Text('Add Shipping Zone'),
+              label: Text(AppLocalizations.of(context)!.addShippingZone),
             ),
             const SizedBox(height: 24),
 
@@ -376,8 +376,8 @@ class _StallFormScreenState extends ConsumerState<StallFormScreen> {
             const SizedBox(height: 12),
             
             SwitchListTile(
-              title: const Text('Accepts Orders'),
-              subtitle: const Text('Allow customers to place orders'),
+              title: Text(AppLocalizations.of(context)!.acceptsOrders),
+              subtitle: Text(AppLocalizations.of(context)!.acceptsOrdersDescription),
               value: _acceptsOrders,
               onChanged: (value) {
                 setState(() {
@@ -527,11 +527,11 @@ class _ShippingZoneDialogState extends State<_ShippingZoneDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: const Text('Cancel'),
+          child: Text(AppLocalizations.of(context)!.cancel),
         ),
         FilledButton(
           onPressed: _save,
-          child: const Text('Save'),
+          child: Text(AppLocalizations.of(context)!.save),
         ),
       ],
     );

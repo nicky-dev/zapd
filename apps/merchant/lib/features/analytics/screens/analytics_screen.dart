@@ -94,12 +94,12 @@ class AnalyticsScreen extends ConsumerWidget {
     return Row(
       children: [
         Expanded(
-          child: _SummaryCard(
-            title: l10n.totalRevenue,
-            value: '฿${analytics.totalRevenue.toStringAsFixed(2)}',
-            icon: Icons.attach_money,
-            color: Colors.green,
-          ),
+            child: _SummaryCard(
+              title: l10n.totalRevenue,
+              value: '${l10n.currencySymbol}${analytics.totalRevenue.toStringAsFixed(2)}',
+              icon: Icons.attach_money,
+              color: Colors.green,
+            ),
         ),
         const SizedBox(width: 12),
         Expanded(
@@ -182,7 +182,7 @@ class AnalyticsScreen extends ConsumerWidget {
                         reservedSize: 50,
                         getTitlesWidget: (value, meta) {
                           return Text(
-                            '฿${value.toInt()}',
+                            '${l10n.currencySymbol}${value.toInt()}',
                             style: const TextStyle(fontSize: 10),
                           );
                         },

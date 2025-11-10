@@ -80,6 +80,10 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final width = MediaQuery.of(context).size.width;
+    final horizontalPadding = width < 600 ? 16.0 : 48.0;
+    final isNarrow = width < 600;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('${l10n.orderDetails} #${widget.order.id.substring(0, 8)}'),
@@ -129,13 +133,13 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
         onRefresh: _loadOrderDetails,
         child: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildStatusSection(),
+              _buildStatusSection(l10n),
               const SizedBox(height: 24),
-              _buildDetailsSection(),
+              _buildDetailsSection(l10n, isNarrow),
               const SizedBox(height: 24),
               _buildActionsSection(),
             ],
@@ -145,7 +149,7 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
     );
   }
 
-  Widget _buildStatusSection() {
+  Widget _buildStatusSection(AppLocalizations l10n) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -189,31 +193,31 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
               ],
             ),
             const Divider(height: 24),
-            _buildInfoRow('Order ID', '#${widget.order.id.substring(0, 8)}...'),
-            _buildInfoRow('Created', _formatDateTime(widget.order.createdAt)),
+            _buildInfoRow(l10n.orderId, '#${widget.order.id.substring(0, 8)}...'),
+            _buildInfoRow(l10n.createdAt, _formatDateTime(widget.order.createdAt)),
             if (widget.order.updatedAt != null)
-              _buildInfoRow('Updated', _formatDateTime(widget.order.updatedAt!)),
+              _buildInfoRow(l10n.updatedLabel, _formatDateTime(widget.order.updatedAt!)),
             if (widget.order.estimatedReady != null)
-              _buildInfoRow('Estimated Ready', _formatDateTime(widget.order.estimatedReady!)),
+              _buildInfoRow(l10n.estimatedReadyLabel, _formatDateTime(widget.order.estimatedReady!)),
             if (widget.order.stallName != null)
-              _buildInfoRow('Stall', widget.order.stallName!),
+              _buildInfoRow(l10n.stallName, widget.order.stallName!),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildDetailsSection() {
+  Widget _buildDetailsSection(AppLocalizations l10n, bool isNarrow) {
     if (_isLoadingDetails) {
-      return const Card(
+      return Card(
         child: Padding(
-          padding: EdgeInsets.all(32),
+          padding: const EdgeInsets.all(32),
           child: Center(
-            child: Column(
+                child: Column(
               children: [
-                CircularProgressIndicator(),
-                SizedBox(height: 16),
-                Text('Decrypting order details...'),
+                const CircularProgressIndicator(),
+                const SizedBox(height: 16),
+                Text(l10n.decryptingOrderDetails),
               ],
             ),
           ),
@@ -237,7 +241,7 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: _loadOrderDetails,
-                child: const Text('Retry'),
+                child: Text(l10n.retry),
               ),
             ],
           ),
@@ -253,11 +257,11 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
             children: [
               Icon(Icons.lock_outline, size: 48, color: Colors.grey[400]),
               const SizedBox(height: 8),
-              const Text('Order details are encrypted'),
+              Text(l10n.orderDetailsEncrypted),
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: _loadOrderDetails,
-                child: const Text('Decrypt Details'),
+                child: Text(l10n.decryptDetails),
               ),
             ],
           ),
@@ -278,21 +282,21 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Customer Information',
+                  l10n.customerInformation ?? l10n.customer,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                 ),
                 const Divider(height: 16),
                 if (details.name != null)
-                  _buildInfoRow('Name', details.name!),
-                _buildInfoRow('Nostr Pubkey', details.contact.nostr.substring(0, 16) + '...'),
+                  _buildInfoRow(l10n.nameLabel, details.name!),
+                _buildInfoRow(l10n.nostrPubkeyLabel, details.contact.nostr.substring(0, 16) + '...'),
                 if (details.contact.phone != null)
-                  _buildInfoRow('Phone', details.contact.phone!),
+                  _buildInfoRow(l10n.phoneLabel, details.contact.phone!),
                 if (details.contact.email != null)
-                  _buildInfoRow('Email', details.contact.email!),
+                  _buildInfoRow(l10n.emailLabel, details.contact.email!),
                 if (details.address != null)
-                  _buildInfoRow('Address', details.address!),
+                  _buildInfoRow(l10n.addressLabel, details.address!),
                 if (details.message != null && details.message!.isNotEmpty) ...[
                   const SizedBox(height: 8),
                   Container(
@@ -309,7 +313,7 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
                             Icon(Icons.message, size: 16, color: Colors.blue[700]),
                             const SizedBox(width: 4),
                             Text(
-                              'Message:',
+                              l10n.messageLabel,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.blue[700],
@@ -336,7 +340,7 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Order Items',
+                  l10n.orderItems,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -345,14 +349,14 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
                 ...details.items.map((item) => _buildOrderItem(item)),
                 const Divider(height: 16),
                 if (details.subtotal != null)
-                  _buildPriceRow('Subtotal', details.subtotal!),
+                  _buildPriceRow(l10n.subtotal, details.subtotal!),
                 if (details.shippingCost != null)
-                  _buildPriceRow('Shipping', details.shippingCost!),
+                  _buildPriceRow(l10n.shipping, details.shippingCost!),
                 if (details.discount != null && details.discount! > 0)
-                  _buildPriceRow('Discount', -details.discount!, isDiscount: true),
+                  _buildPriceRow(l10n.discount, -details.discount!, isDiscount: true),
                 if (details.total != null) ...[
                   const Divider(height: 16),
-                  _buildPriceRow('Total', details.total!, isBold: true),
+                  _buildPriceRow(l10n.totalLabel, details.total!, isBold: true),
                 ],
               ],
             ),
@@ -368,16 +372,16 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Payment Information',
+                    l10n.paymentDetails,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                   ),
                   const Divider(height: 16),
                   if (details.paymentHash != null)
-                    _buildInfoRow('Payment Hash', details.paymentHash!.substring(0, 16) + '...'),
+                    _buildInfoRow(l10n.paymentHashLabel, details.paymentHash!.substring(0, 16) + '...'),
                   if (details.paymentPreimage != null)
-                    _buildInfoRow('Payment Proof', details.paymentPreimage!.substring(0, 16) + '...'),
+                    _buildInfoRow(l10n.paymentProofLabel, details.paymentPreimage!.substring(0, 16) + '...'),
                 ],
               ),
             ),
@@ -472,7 +476,7 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Update Order Status',
+              AppLocalizations.of(context)!.updateOrderStatus,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -532,19 +536,21 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
   }
 
   Future<void> _updateOrderStatus(OrderStatus newStatus) async {
+    final l10n = AppLocalizations.of(context)!;
+
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Update Order Status'),
-        content: Text('Change order status to "${newStatus.displayName}"?'),
+        title: Text(l10n.updateOrderStatus),
+        content: Text('${l10n.confirm}? ${newStatus.displayName}'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: Text(l10n.cancel),
           ),
           ElevatedButton(
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Confirm'),
+            child: Text(l10n.confirm),
           ),
         ],
       ),
@@ -559,7 +565,7 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
       if (privateKey == null) {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Authentication required')),
+            SnackBar(content: Text(l10n.authenticationRequired)),
           );
         }
         return;
@@ -568,7 +574,7 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
       // Show loading
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Updating order status...')),
+          SnackBar(content: Text(l10n.updatingOrderStatus)),
         );
       }
 
@@ -580,14 +586,14 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Order status updated to ${newStatus.displayName}')),
+          SnackBar(content: Text(l10n.orderStatusUpdated(newStatus.displayName))),
         );
         Navigator.pop(context); // Return to previous screen
       }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to update status: $e')),
+          SnackBar(content: Text(l10n.failedToUpdateStatus(e.toString()))),
         );
       }
     }
@@ -595,15 +601,17 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
 
   void _copyOrderId() {
     Clipboard.setData(ClipboardData(text: widget.order.id));
+    final l10n = AppLocalizations.of(context)!;
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Order ID copied to clipboard')),
+      SnackBar(content: Text(l10n.copiedToClipboard(l10n.orderId))),
     );
   }
 
   void _copyCustomerPubkey() {
     Clipboard.setData(ClipboardData(text: widget.order.customerPubkey));
+    final l10n = AppLocalizations.of(context)!;
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Customer pubkey copied to clipboard')),
+      SnackBar(content: Text(l10n.copiedToClipboard(l10n.nostrPubkeyLabel))),
     );
   }
 }

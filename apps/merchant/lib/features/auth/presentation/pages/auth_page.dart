@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nostr_core/nostr_core.dart';
+import '../../../../l10n/app_localizations.dart';
 
 import '../providers/auth_provider.dart';
 
@@ -34,8 +35,8 @@ class _AuthPageState extends ConsumerState<AuthPage> {
       
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('New key pair generated successfully!'),
+          SnackBar(
+            content: Text(AppLocalizations.of(context)!.keyGeneratedSuccess),
             backgroundColor: Colors.green,
           ),
         );
@@ -50,14 +51,14 @@ class _AuthPageState extends ConsumerState<AuthPage> {
     
     if (privateKey.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter a private key')),
+        SnackBar(content: Text(AppLocalizations.of(context)!.pleaseEnterPrivateKey)),
       );
       return;
     }
 
     if (privateKey.length != 64) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Private key must be 64 characters')),
+        SnackBar(content: Text(AppLocalizations.of(context)!.errorPrivateKeyLength)),
       );
       return;
     }
@@ -94,7 +95,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                 
                 // Title
                 Text(
-                  'ZapD Merchant',
+                  AppLocalizations.of(context)!.appTitle,
                   style: theme.textTheme.headlineLarge?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -102,7 +103,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Decentralized Food Delivery',
+                  AppLocalizations.of(context)!.welcomeSubtitle,
                   style: theme.textTheme.bodyLarge?.copyWith(
                     color: theme.colorScheme.onSurface.withOpacity(0.6),
                   ),
@@ -126,7 +127,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                             ),
                             const SizedBox(width: 8),
                             Text(
-                              'Nostr Authentication',
+                              AppLocalizations.of(context)!.nostrAuthentication,
                               style: theme.textTheme.titleMedium?.copyWith(
                                 fontWeight: FontWeight.bold,
                               ),
@@ -155,7 +156,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                           child: CircularProgressIndicator(strokeWidth: 2),
                         )
                       : const Icon(Icons.add_circle_outline),
-                  label: Text(_isGenerating ? 'Generating...' : 'Generate New Key'),
+                  label: Text(_isGenerating ? AppLocalizations.of(context)!.generating : AppLocalizations.of(context)!.generateNewKey),
                   style: FilledButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16),
                   ),
@@ -169,7 +170,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Text(
-                        'OR',
+                        AppLocalizations.of(context)!.or,
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: theme.colorScheme.onSurface.withOpacity(0.6),
                         ),
@@ -208,7 +209,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                 FilledButton.icon(
                   onPressed: _importKey,
                   icon: const Icon(Icons.login),
-                  label: const Text('Import & Continue'),
+                    label: Text(AppLocalizations.of(context)!.importAndContinue),
                   style: FilledButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16),
                   ),

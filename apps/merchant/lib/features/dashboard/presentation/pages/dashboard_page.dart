@@ -10,6 +10,7 @@ import '../../../orders/providers/order_provider.dart';
 import '../../../settings/screens/settings_screen.dart';
 import '../../../notifications/widgets/notification_bell.dart';
 import '../../../analytics/screens/analytics_screen.dart';
+import '../../../receipts/screens/receipts_screen.dart';
 
 class DashboardPage extends ConsumerWidget {
   const DashboardPage({super.key});
@@ -20,6 +21,9 @@ class DashboardPage extends ConsumerWidget {
     final authState = ref.watch(authProvider);
     final pendingOrders = ref.watch(pendingOrdersProvider);
     final activeOrders = ref.watch(activeOrdersProvider);
+    final width = MediaQuery.of(context).size.width;
+    final horizontalPadding = width < 600 ? 16.0 : 48.0;
+    final isNarrow = width < 600;
 
     return Scaffold(
       appBar: AppBar(
@@ -27,6 +31,11 @@ class DashboardPage extends ConsumerWidget {
         actions: [
           const LanguageSwitcher(),
           const NotificationBell(),
+          IconButton(
+            icon: const Icon(Icons.receipt_long),
+            tooltip: 'Receipts',
+            onPressed: () => _navigateToReceipts(context),
+          ),
           IconButton(
             icon: const Icon(Icons.settings),
             tooltip: l10n.settings,
@@ -46,7 +55,7 @@ class DashboardPage extends ConsumerWidget {
       ),
       body: authState.when(
         data: (state) => SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -65,29 +74,47 @@ class DashboardPage extends ConsumerWidget {
               const SizedBox(height: 24),
 
               // Quick stats
-              Row(
-                children: [
-                  Expanded(
-                    child: _StatCard(
-                      icon: Icons.pending_actions,
-                      label: l10n.pendingOrders,
-                      value: pendingOrders.length.toString(),
-                      color: Colors.orange,
-                      onTap: () => _navigateToOrders(context, OrderFilter.pending),
+              if (isNarrow) ...[
+                _StatCard(
+                  icon: Icons.pending_actions,
+                  label: l10n.pendingOrders,
+                  value: pendingOrders.length.toString(),
+                  color: Colors.orange,
+                  onTap: () => _navigateToOrders(context, OrderFilter.pending),
+                ),
+                const SizedBox(height: 12),
+                _StatCard(
+                  icon: Icons.restaurant,
+                  label: l10n.activeOrders,
+                  value: activeOrders.length.toString(),
+                  color: Colors.blue,
+                  onTap: () => _navigateToOrders(context, OrderFilter.active),
+                ),
+              ] else ...[
+                Row(
+                  children: [
+                    Expanded(
+                      child: _StatCard(
+                        icon: Icons.pending_actions,
+                        label: l10n.pendingOrders,
+                        value: pendingOrders.length.toString(),
+                        color: Colors.orange,
+                        onTap: () => _navigateToOrders(context, OrderFilter.pending),
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: _StatCard(
-                      icon: Icons.restaurant,
-                      label: l10n.activeOrders,
-                      value: activeOrders.length.toString(),
-                      color: Colors.blue,
-                      onTap: () => _navigateToOrders(context, OrderFilter.active),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: _StatCard(
+                        icon: Icons.restaurant,
+                        label: l10n.activeOrders,
+                        value: activeOrders.length.toString(),
+                        color: Colors.blue,
+                        onTap: () => _navigateToOrders(context, OrderFilter.active),
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
+              ],
               const SizedBox(height: 32),
 
               // Main menu
@@ -116,7 +143,7 @@ class DashboardPage extends ConsumerWidget {
               _MenuCard(
                 icon: Icons.analytics,
                 title: l10n.analytics,
-                subtitle: 'View sales and performance metrics',
+                subtitle: l10n.analyticsSubtitle,
                 color: Colors.blue,
                 onTap: () => _navigateToAnalytics(context),
               ),
@@ -147,14 +174,14 @@ class DashboardPage extends ConsumerWidget {
                             ),
                             const SizedBox(width: 8),
                             Text(
-                              'Account Information',
+                              l10n.accountInformation,
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                           ],
                         ),
                         const Divider(height: 24),
                         Text(
-                          'Public Key:',
+                          '${l10n.publicKey}:',
                           style: Theme.of(context).textTheme.labelSmall,
                         ),
                         const SizedBox(height: 4),
@@ -218,6 +245,15 @@ class DashboardPage extends ConsumerWidget {
       context,
       MaterialPageRoute(
         builder: (context) => const AnalyticsScreen(),
+      ),
+    );
+  }
+
+  void _navigateToReceipts(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ReceiptsScreen(),
       ),
     );
   }

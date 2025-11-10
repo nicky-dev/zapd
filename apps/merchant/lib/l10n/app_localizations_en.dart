@@ -12,6 +12,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appTitle => 'ZapD Merchant';
 
   @override
+  String get changeLanguage => 'Change language';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get thai => 'ไทย';
+
+  @override
   String get welcomeTitle => 'ZapD Merchant';
 
   @override
@@ -23,6 +32,9 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get nostrDescription =>
       'Your identity is secured by cryptographic keys. No passwords, no central servers.';
+
+  @override
+  String get acceptsOrdersDescription => 'Allow customers to place orders';
 
   @override
   String get newToZapD => 'New to ZapD?';
@@ -73,6 +85,56 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get copied => 'Copied to clipboard';
+
+  @override
+  String get comingSoon => 'Coming soon...';
+
+  @override
+  String get stallDuplicatedSuccess => 'Stall duplicated successfully';
+
+  @override
+  String get stallDeleted => 'Stall deleted';
+
+  @override
+  String get deleteStallTitle => 'Delete Stall';
+
+  @override
+  String deleteStallConfirm(Object stallName) {
+    return 'Are you sure you want to delete \"$stallName\"?';
+  }
+
+  @override
+  String get open => 'Open';
+
+  @override
+  String get closed => 'Closed';
+
+  @override
+  String get edit => 'Edit';
+
+  @override
+  String get duplicate => 'Duplicate';
+
+  @override
+  String get products => 'Products';
+
+  @override
+  String get importAndContinue => 'Import & Continue';
+
+  @override
+  String get pleaseEnterPrivateKey => 'Please enter a private key';
+
+  @override
+  String get analyticsSubtitle => 'View sales and performance metrics';
+
+  @override
+  String get accountInformation => 'Account Information';
+
+  @override
+  String get nostrAuthentication => 'Nostr Authentication';
+
+  @override
+  String get shop => 'Shop';
 
   @override
   String get importantSaveKey => 'Important: Save Your Private Key';
@@ -247,6 +309,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get copiedInvoice => 'Invoice copied to clipboard';
+
+  @override
+  String get merchantNotAuthenticated => 'Merchant not authenticated';
+
+  @override
+  String get orderTotalNotAvailable => 'Order total not available';
+
+  @override
+  String get lightningLabel => '⚡ Lightning';
 
   @override
   String get paymentId => 'Payment ID';
@@ -534,9 +605,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get refresh => 'Refresh';
 
   @override
-  String get products => 'Products';
-
-  @override
   String get noProductsYet => 'No products yet';
 
   @override
@@ -642,6 +710,70 @@ class AppLocalizationsEn extends AppLocalizations {
   String get orderDetails => 'Order Details';
 
   @override
+  String get orderLabel => 'Order';
+
+  @override
+  String get unknownStall => 'Unknown Stall';
+
+  @override
+  String get readyPrefix => 'Ready:';
+
+  @override
+  String get reject => 'Reject';
+
+  @override
+  String get accept => 'Accept';
+
+  @override
+  String get startPreparing => 'Start Preparing';
+
+  @override
+  String get markAsReady => 'Mark as Ready';
+
+  @override
+  String get assignRider => 'Assign Rider';
+
+  @override
+  String get privateKeyNotAvailable => 'Private key not available';
+
+  @override
+  String get orderAccepted => 'Order accepted';
+
+  @override
+  String get orderRejected => 'Order rejected';
+
+  @override
+  String get orderBeingPrepared => 'Order is being prepared';
+
+  @override
+  String get orderReadyForPickup => 'Order is ready for pickup';
+
+  @override
+  String get rejectOrderTitle => 'Reject Order';
+
+  @override
+  String get rejectOrderConfirm =>
+      'Are you sure you want to reject this order?';
+
+  @override
+  String get riderAssignmentComingSoon => 'Rider assignment - Coming soon...';
+
+  @override
+  String get decryptingOrderDetails => 'Decrypting order details...';
+
+  @override
+  String get decryptDetails => 'Decrypt Details';
+
+  @override
+  String get orderDetailsEncrypted => 'Order details are encrypted';
+
+  @override
+  String get customerInformation => 'Customer Information';
+
+  @override
+  String get updateOrderStatus => 'Update Order Status';
+
+  @override
   String get copyOrderId => 'Copy Order ID';
 
   @override
@@ -669,6 +801,72 @@ class AppLocalizationsEn extends AppLocalizations {
   String get none => 'None';
 
   @override
+  String get nameLabel => 'Name';
+
+  @override
+  String get nostrPubkeyLabel => 'Nostr Pubkey';
+
+  @override
+  String get phoneLabel => 'Phone';
+
+  @override
+  String get emailLabel => 'Email';
+
+  @override
+  String get addressLabel => 'Address';
+
+  @override
+  String get messageLabel => 'Message:';
+
+  @override
+  String get subtotal => 'Subtotal';
+
+  @override
+  String get shipping => 'Shipping';
+
+  @override
+  String get discount => 'Discount';
+
+  @override
+  String get totalLabel => 'Total';
+
+  @override
+  String get paymentHashLabel => 'Payment Hash';
+
+  @override
+  String get paymentProofLabel => 'Payment Proof';
+
+  @override
+  String get updatedLabel => 'Updated';
+
+  @override
+  String get estimatedReadyLabel => 'Estimated Ready';
+
+  @override
+  String get updatingOrderStatus => 'Updating order status...';
+
+  @override
+  String orderStatusUpdated(Object status) {
+    return 'Order status updated to $status';
+  }
+
+  @override
+  String failedToUpdateStatus(Object error) {
+    return 'Failed to update status: $error';
+  }
+
+  @override
+  String get actionCannotBeUndone => 'This action cannot be undone.';
+
+  @override
+  String notificationOrderTapped(Object orderId) {
+    return 'Order $orderId';
+  }
+
+  @override
+  String get currencySymbol => '฿';
+
+  @override
   String get actions => 'Actions';
 
   @override
@@ -694,4 +892,36 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get failedToDecryptOrderDetails => 'Failed to decrypt order details';
+
+  @override
+  String get receiptsTitle => 'Receipts';
+
+  @override
+  String get receiptsView => 'View';
+
+  @override
+  String get receiptsCopyId => 'Copy ID';
+
+  @override
+  String get receiptsAmountPrefix => 'Amount:';
+
+  @override
+  String receiptDetailTitle(Object id) {
+    return 'Receipt: $id';
+  }
+
+  @override
+  String get receiptLabelTitle => 'Title';
+
+  @override
+  String get receiptLabelDate => 'Date';
+
+  @override
+  String get receiptLabelAmount => 'Amount';
+
+  @override
+  String get receiptLabelItems => 'Items';
+
+  @override
+  String get receiptCopied => 'Receipt id copied to clipboard';
 }

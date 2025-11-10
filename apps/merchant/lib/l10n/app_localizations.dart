@@ -104,6 +104,24 @@ abstract class AppLocalizations {
   /// **'ZapD Merchant'**
   String get appTitle;
 
+  /// Tooltip/label for language switcher
+  ///
+  /// In en, this message translates to:
+  /// **'Change language'**
+  String get changeLanguage;
+
+  /// English language name
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english;
+
+  /// Thai language name
+  ///
+  /// In en, this message translates to:
+  /// **'ไทย'**
+  String get thai;
+
   /// Welcome page title
   ///
   /// In en, this message translates to:
@@ -127,6 +145,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your identity is secured by cryptographic keys. No passwords, no central servers.'**
   String get nostrDescription;
+
+  /// Subtitle explaining accepts orders
+  ///
+  /// In en, this message translates to:
+  /// **'Allow customers to place orders'**
+  String get acceptsOrdersDescription;
 
   /// New user section title
   ///
@@ -223,6 +247,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Copied to clipboard'**
   String get copied;
+
+  /// Generic coming soon label
+  ///
+  /// In en, this message translates to:
+  /// **'Coming soon...'**
+  String get comingSoon;
+
+  /// Snackbar when stall duplication succeeds
+  ///
+  /// In en, this message translates to:
+  /// **'Stall duplicated successfully'**
+  String get stallDuplicatedSuccess;
+
+  /// Snackbar when stall deletion succeeds
+  ///
+  /// In en, this message translates to:
+  /// **'Stall deleted'**
+  String get stallDeleted;
+
+  /// Dialog title for deleting a stall
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Stall'**
+  String get deleteStallTitle;
+
+  /// Confirmation message when deleting a stall
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete \"{stallName}\"?'**
+  String deleteStallConfirm(Object stallName);
+
+  /// Stall is open
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get open;
+
+  /// Stall is closed
+  ///
+  /// In en, this message translates to:
+  /// **'Closed'**
+  String get closed;
+
+  /// Edit label
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
+
+  /// Duplicate label
+  ///
+  /// In en, this message translates to:
+  /// **'Duplicate'**
+  String get duplicate;
+
+  /// Products label
+  ///
+  /// In en, this message translates to:
+  /// **'Products'**
+  String get products;
+
+  /// Import key button
+  ///
+  /// In en, this message translates to:
+  /// **'Import & Continue'**
+  String get importAndContinue;
+
+  /// Prompt to enter private key
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a private key'**
+  String get pleaseEnterPrivateKey;
+
+  /// Subtitle for analytics menu card
+  ///
+  /// In en, this message translates to:
+  /// **'View sales and performance metrics'**
+  String get analyticsSubtitle;
+
+  /// Account info card title
+  ///
+  /// In en, this message translates to:
+  /// **'Account Information'**
+  String get accountInformation;
+
+  /// Nostr auth card title
+  ///
+  /// In en, this message translates to:
+  /// **'Nostr Authentication'**
+  String get nostrAuthentication;
+
+  /// Fallback stall type label
+  ///
+  /// In en, this message translates to:
+  /// **'Shop'**
+  String get shop;
 
   /// Warning title
   ///
@@ -553,6 +673,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Invoice copied to clipboard'**
   String get copiedInvoice;
+
+  /// Snackbar shown when merchant is not authenticated
+  ///
+  /// In en, this message translates to:
+  /// **'Merchant not authenticated'**
+  String get merchantNotAuthenticated;
+
+  /// Snackbar shown when an order's total cannot be calculated
+  ///
+  /// In en, this message translates to:
+  /// **'Order total not available'**
+  String get orderTotalNotAvailable;
+
+  /// Label for Lightning payment method
+  ///
+  /// In en, this message translates to:
+  /// **'⚡ Lightning'**
+  String get lightningLabel;
 
   /// Payment ID label
   ///
@@ -1094,12 +1232,6 @@ abstract class AppLocalizations {
   /// **'Refresh'**
   String get refresh;
 
-  /// Products label
-  ///
-  /// In en, this message translates to:
-  /// **'Products'**
-  String get products;
-
   /// No products message
   ///
   /// In en, this message translates to:
@@ -1310,6 +1442,132 @@ abstract class AppLocalizations {
   /// **'Order Details'**
   String get orderDetails;
 
+  /// Label used before order id, e.g. 'Order #123'
+  ///
+  /// In en, this message translates to:
+  /// **'Order'**
+  String get orderLabel;
+
+  /// Fallback stall name when none provided
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown Stall'**
+  String get unknownStall;
+
+  /// Prefix for ready time label
+  ///
+  /// In en, this message translates to:
+  /// **'Ready:'**
+  String get readyPrefix;
+
+  /// Reject button label
+  ///
+  /// In en, this message translates to:
+  /// **'Reject'**
+  String get reject;
+
+  /// Accept button label
+  ///
+  /// In en, this message translates to:
+  /// **'Accept'**
+  String get accept;
+
+  /// Start preparing button label
+  ///
+  /// In en, this message translates to:
+  /// **'Start Preparing'**
+  String get startPreparing;
+
+  /// Mark order as ready button label
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as Ready'**
+  String get markAsReady;
+
+  /// Assign rider button label
+  ///
+  /// In en, this message translates to:
+  /// **'Assign Rider'**
+  String get assignRider;
+
+  /// Shown when private key is missing
+  ///
+  /// In en, this message translates to:
+  /// **'Private key not available'**
+  String get privateKeyNotAvailable;
+
+  /// Snackbar after accepting order
+  ///
+  /// In en, this message translates to:
+  /// **'Order accepted'**
+  String get orderAccepted;
+
+  /// Snackbar after rejecting order
+  ///
+  /// In en, this message translates to:
+  /// **'Order rejected'**
+  String get orderRejected;
+
+  /// Snackbar when order moved to preparing
+  ///
+  /// In en, this message translates to:
+  /// **'Order is being prepared'**
+  String get orderBeingPrepared;
+
+  /// Snackbar when order is ready
+  ///
+  /// In en, this message translates to:
+  /// **'Order is ready for pickup'**
+  String get orderReadyForPickup;
+
+  /// Dialog title when rejecting an order
+  ///
+  /// In en, this message translates to:
+  /// **'Reject Order'**
+  String get rejectOrderTitle;
+
+  /// Dialog confirm text for rejecting an order
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to reject this order?'**
+  String get rejectOrderConfirm;
+
+  /// Temporary message when rider assignment not implemented
+  ///
+  /// In en, this message translates to:
+  /// **'Rider assignment - Coming soon...'**
+  String get riderAssignmentComingSoon;
+
+  /// Shown while order details are being decrypted
+  ///
+  /// In en, this message translates to:
+  /// **'Decrypting order details...'**
+  String get decryptingOrderDetails;
+
+  /// Button to attempt decryption of order details
+  ///
+  /// In en, this message translates to:
+  /// **'Decrypt Details'**
+  String get decryptDetails;
+
+  /// Shown when order details are encrypted and not available
+  ///
+  /// In en, this message translates to:
+  /// **'Order details are encrypted'**
+  String get orderDetailsEncrypted;
+
+  /// Customer information section title
+  ///
+  /// In en, this message translates to:
+  /// **'Customer Information'**
+  String get customerInformation;
+
+  /// Header for update order status section
+  ///
+  /// In en, this message translates to:
+  /// **'Update Order Status'**
+  String get updateOrderStatus;
+
   /// Copy order ID action
   ///
   /// In en, this message translates to:
@@ -1364,6 +1622,126 @@ abstract class AppLocalizations {
   /// **'None'**
   String get none;
 
+  /// Customer name label
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get nameLabel;
+
+  /// Nostr pubkey label
+  ///
+  /// In en, this message translates to:
+  /// **'Nostr Pubkey'**
+  String get nostrPubkeyLabel;
+
+  /// Phone label
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get phoneLabel;
+
+  /// Email label
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get emailLabel;
+
+  /// Address label
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get addressLabel;
+
+  /// Label for customer message field
+  ///
+  /// In en, this message translates to:
+  /// **'Message:'**
+  String get messageLabel;
+
+  /// Subtotal label
+  ///
+  /// In en, this message translates to:
+  /// **'Subtotal'**
+  String get subtotal;
+
+  /// Shipping cost label
+  ///
+  /// In en, this message translates to:
+  /// **'Shipping'**
+  String get shipping;
+
+  /// Discount label
+  ///
+  /// In en, this message translates to:
+  /// **'Discount'**
+  String get discount;
+
+  /// Total label
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get totalLabel;
+
+  /// Payment hash label
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Hash'**
+  String get paymentHashLabel;
+
+  /// Payment proof / preimage label
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Proof'**
+  String get paymentProofLabel;
+
+  /// Updated at label
+  ///
+  /// In en, this message translates to:
+  /// **'Updated'**
+  String get updatedLabel;
+
+  /// Estimated ready time label
+  ///
+  /// In en, this message translates to:
+  /// **'Estimated Ready'**
+  String get estimatedReadyLabel;
+
+  /// Shown while updating order status
+  ///
+  /// In en, this message translates to:
+  /// **'Updating order status...'**
+  String get updatingOrderStatus;
+
+  /// Snackbar when order status updated
+  ///
+  /// In en, this message translates to:
+  /// **'Order status updated to {status}'**
+  String orderStatusUpdated(Object status);
+
+  /// Snackbar when status update fails
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to update status: {error}'**
+  String failedToUpdateStatus(Object error);
+
+  /// Dialog text warning that an action cannot be undone
+  ///
+  /// In en, this message translates to:
+  /// **'This action cannot be undone.'**
+  String get actionCannotBeUndone;
+
+  /// Short message shown when tapping a notification referencing an order
+  ///
+  /// In en, this message translates to:
+  /// **'Order {orderId}'**
+  String notificationOrderTapped(Object orderId);
+
+  /// Currency symbol used in the app
+  ///
+  /// In en, this message translates to:
+  /// **'฿'**
+  String get currencySymbol;
+
   /// Actions label
   ///
   /// In en, this message translates to:
@@ -1417,6 +1795,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Failed to decrypt order details'**
   String get failedToDecryptOrderDetails;
+
+  /// Receipts screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Receipts'**
+  String get receiptsTitle;
+
+  /// View button label on receipts
+  ///
+  /// In en, this message translates to:
+  /// **'View'**
+  String get receiptsView;
+
+  /// Copy receipt id button label
+  ///
+  /// In en, this message translates to:
+  /// **'Copy ID'**
+  String get receiptsCopyId;
+
+  /// Prefix before amount value on receipts
+  ///
+  /// In en, this message translates to:
+  /// **'Amount:'**
+  String get receiptsAmountPrefix;
+
+  /// Dialog title for receipt detail
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt: {id}'**
+  String receiptDetailTitle(Object id);
+
+  /// Label for receipt title in detail dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get receiptLabelTitle;
+
+  /// Label for receipt date in detail dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get receiptLabelDate;
+
+  /// Label for receipt amount in detail dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get receiptLabelAmount;
+
+  /// Label for receipt items in detail dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Items'**
+  String get receiptLabelItems;
+
+  /// Snackbar message when receipt id copied
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt id copied to clipboard'**
+  String get receiptCopied;
 }
 
 class _AppLocalizationsDelegate

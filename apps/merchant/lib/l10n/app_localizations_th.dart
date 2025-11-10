@@ -12,6 +12,15 @@ class AppLocalizationsTh extends AppLocalizations {
   String get appTitle => 'ZapD ร้านค้า';
 
   @override
+  String get changeLanguage => 'เปลี่ยนภาษา';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get thai => 'ไทย';
+
+  @override
   String get welcomeTitle => 'ZapD ร้านค้า';
 
   @override
@@ -23,6 +32,9 @@ class AppLocalizationsTh extends AppLocalizations {
   @override
   String get nostrDescription =>
       'ข้อมูลของคุณปลอดภัยด้วยกุญแจเข้ารหัส ไม่มีรหัสผ่าน ไม่มีเซิร์ฟเวอร์กลาง';
+
+  @override
+  String get acceptsOrdersDescription => 'อนุญาตให้ลูกค้าสั่งซื้อสินค้า';
 
   @override
   String get newToZapD => 'เพิ่งมาใช้ ZapD?';
@@ -73,6 +85,56 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get copied => 'คัดลอกแล้ว';
+
+  @override
+  String get comingSoon => 'เร็วๆ นี้...';
+
+  @override
+  String get stallDuplicatedSuccess => 'คัดลอกแผงขายสำเร็จ';
+
+  @override
+  String get stallDeleted => 'ลบแผงขายเรียบร้อยแล้ว';
+
+  @override
+  String get deleteStallTitle => 'ลบแผงขาย';
+
+  @override
+  String deleteStallConfirm(Object stallName) {
+    return 'คุณแน่ใจหรือว่าต้องการลบ \"$stallName\"?';
+  }
+
+  @override
+  String get open => 'เปิด';
+
+  @override
+  String get closed => 'ปิด';
+
+  @override
+  String get edit => 'แก้ไข';
+
+  @override
+  String get duplicate => 'คัดลอก';
+
+  @override
+  String get products => 'สินค้า';
+
+  @override
+  String get importAndContinue => 'นำเข้า & ดำเนินการต่อ';
+
+  @override
+  String get pleaseEnterPrivateKey => 'กรุณากรอกกุญแจส่วนตัว';
+
+  @override
+  String get analyticsSubtitle => 'ดูยอดขายและตัวชี้วัดการทำงาน';
+
+  @override
+  String get accountInformation => 'ข้อมูลบัญชี';
+
+  @override
+  String get nostrAuthentication => 'การยืนยันด้วย Nostr';
+
+  @override
+  String get shop => 'ร้านค้า';
 
   @override
   String get importantSaveKey => 'สำคัญ: เก็บกุญแจส่วนตัวของคุณ';
@@ -247,6 +309,15 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get copiedInvoice => 'คัดลอกใบแจ้งหนี้แล้ว';
+
+  @override
+  String get merchantNotAuthenticated => 'ร้านค้ายังไม่ได้เข้าสู่ระบบ';
+
+  @override
+  String get orderTotalNotAvailable => 'ยอดคำสั่งซื้อไม่พร้อมใช้งาน';
+
+  @override
+  String get lightningLabel => '⚡ Lightning';
 
   @override
   String get paymentId => 'รหัสการชำระเงิน';
@@ -533,9 +604,6 @@ class AppLocalizationsTh extends AppLocalizations {
   String get refresh => 'รีเฟรช';
 
   @override
-  String get products => 'สินค้า';
-
-  @override
   String get noProductsYet => 'ยังไม่มีสินค้า';
 
   @override
@@ -641,6 +709,70 @@ class AppLocalizationsTh extends AppLocalizations {
   String get orderDetails => 'รายละเอียดคำสั่งซื้อ';
 
   @override
+  String get orderLabel => 'คำสั่งซื้อ';
+
+  @override
+  String get unknownStall => 'ไม่มีชื่อร้าน';
+
+  @override
+  String get readyPrefix => 'พร้อม:';
+
+  @override
+  String get reject => 'ปฏิเสธ';
+
+  @override
+  String get accept => 'รับคำสั่งซื้อ';
+
+  @override
+  String get startPreparing => 'เริ่มเตรียมอาหาร';
+
+  @override
+  String get markAsReady => 'มารับสินค้าได้แล้ว';
+
+  @override
+  String get assignRider => 'มอบหมายผู้ส่ง';
+
+  @override
+  String get privateKeyNotAvailable => 'กุญแจส่วนตัวไม่พร้อมใช้งาน';
+
+  @override
+  String get orderAccepted => 'ยอมรับคำสั่งซื้อแล้ว';
+
+  @override
+  String get orderRejected => 'ปฏิเสธคำสั่งซื้อแล้ว';
+
+  @override
+  String get orderBeingPrepared => 'กำลังเตรียมคำสั่งซื้อ';
+
+  @override
+  String get orderReadyForPickup => 'คำสั่งซื้อพร้อมสำหรับรับสินค้าแล้ว';
+
+  @override
+  String get rejectOrderTitle => 'ปฏิเสธคำสั่งซื้อ';
+
+  @override
+  String get rejectOrderConfirm =>
+      'คุณแน่ใจหรือไม่ว่าต้องการปฏิเสธคำสั่งซื้อนี้?';
+
+  @override
+  String get riderAssignmentComingSoon => 'การมอบหมายผู้ส่ง - มาในเร็วๆ นี้...';
+
+  @override
+  String get decryptingOrderDetails => 'กำลังถอดรหัสรายละเอียดคำสั่งซื้อ...';
+
+  @override
+  String get decryptDetails => 'ถอดรหัสรายละเอียด';
+
+  @override
+  String get orderDetailsEncrypted => 'รายละเอียดคำสั่งซื้อถูกเข้ารหัส';
+
+  @override
+  String get customerInformation => 'ข้อมูลลูกค้า';
+
+  @override
+  String get updateOrderStatus => 'อัปเดตสถานะคำสั่งซื้อ';
+
+  @override
   String get copyOrderId => 'คัดลอก Order ID';
 
   @override
@@ -666,6 +798,72 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get none => 'ไม่มี';
+
+  @override
+  String get nameLabel => 'ชื่อ';
+
+  @override
+  String get nostrPubkeyLabel => 'คีย์สาธารณะ Nostr';
+
+  @override
+  String get phoneLabel => 'โทรศัพท์';
+
+  @override
+  String get emailLabel => 'อีเมล';
+
+  @override
+  String get addressLabel => 'ที่อยู่';
+
+  @override
+  String get messageLabel => 'ข้อความ:';
+
+  @override
+  String get subtotal => 'รวมย่อย';
+
+  @override
+  String get shipping => 'ค่าจัดส่ง';
+
+  @override
+  String get discount => 'ส่วนลด';
+
+  @override
+  String get totalLabel => 'รวมทั้งหมด';
+
+  @override
+  String get paymentHashLabel => 'รหัสการชำระเงิน (Hash)';
+
+  @override
+  String get paymentProofLabel => 'หลักฐานการชำระเงิน';
+
+  @override
+  String get updatedLabel => 'อัปเดต';
+
+  @override
+  String get estimatedReadyLabel => 'คาดว่าจะพร้อม';
+
+  @override
+  String get updatingOrderStatus => 'กำลังอัปเดตสถานะคำสั่งซื้อ...';
+
+  @override
+  String orderStatusUpdated(Object status) {
+    return 'สถานะคำสั่งซื้อเปลี่ยนเป็น $status';
+  }
+
+  @override
+  String failedToUpdateStatus(Object error) {
+    return 'ไม่สามารถอัปเดตสถานะ: $error';
+  }
+
+  @override
+  String get actionCannotBeUndone => 'การกระทำนี้ไม่สามารถย้อนกลับได้';
+
+  @override
+  String notificationOrderTapped(Object orderId) {
+    return 'คำสั่งซื้อ $orderId';
+  }
+
+  @override
+  String get currencySymbol => '฿';
 
   @override
   String get actions => 'การดำเนินการ';
@@ -694,4 +892,36 @@ class AppLocalizationsTh extends AppLocalizations {
   @override
   String get failedToDecryptOrderDetails =>
       'ถอดรหัสรายละเอียดคำสั่งซื้อไม่สำเร็จ';
+
+  @override
+  String get receiptsTitle => 'ใบเสร็จ';
+
+  @override
+  String get receiptsView => 'ดู';
+
+  @override
+  String get receiptsCopyId => 'คัดลอกรหัส';
+
+  @override
+  String get receiptsAmountPrefix => 'จำนวน:';
+
+  @override
+  String receiptDetailTitle(Object id) {
+    return 'ใบเสร็จ: $id';
+  }
+
+  @override
+  String get receiptLabelTitle => 'หัวข้อ';
+
+  @override
+  String get receiptLabelDate => 'วันที่';
+
+  @override
+  String get receiptLabelAmount => 'จำนวน';
+
+  @override
+  String get receiptLabelItems => 'รายการ';
+
+  @override
+  String get receiptCopied => 'คัดลอกรหัสใบเสร็จแล้ว';
 }

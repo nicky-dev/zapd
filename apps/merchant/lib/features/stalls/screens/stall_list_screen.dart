@@ -14,6 +14,8 @@ class StallListScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
     final stallsAsync = ref.watch(stallNotifierProvider);
+    final width = MediaQuery.of(context).size.width;
+    final horizontalPadding = width < 600 ? 16.0 : 48.0;
 
     return Scaffold(
       appBar: AppBar(
@@ -57,7 +59,7 @@ class StallListScreen extends ConsumerWidget {
           }
 
           return ListView.builder(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 16),
             itemCount: stalls.length,
             itemBuilder: (context, index) {
               return StallCard(stall: stalls[index]);
@@ -85,6 +87,7 @@ class StallListScreen extends ConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _showCreateStallDialog(context, ref),
+        tooltip: l10n.newStall,
         icon: const Icon(Icons.add),
         label: Text(l10n.newStall),
       ),

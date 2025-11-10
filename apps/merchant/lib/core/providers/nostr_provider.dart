@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nostr_core/nostr_core.dart';
 import '../../features/auth/presentation/providers/auth_provider.dart';
@@ -11,16 +12,29 @@ const defaultRelays = [
 ];
 
 /// Provider for NostrClient instance
+
 final nostrClientProvider = Provider<NostrClient>((ref) {
   final client = NostrClient();
 
-  // Add default relays
-  for (final relayUrl in defaultRelays) {
-    client.addRelay(Relay(url: relayUrl));
-  }
+  // Allow disabling relay connections at compile/run time to aid local dev
+  // and crash isolation. Set via: `--dart-define=DISABLE_RELAY=true` when
+  // running (or CI) to skip adding/connect.
+  const disableRelays = bool.fromEnvironment('DISABLE_RELAY', defaultValue: false);
 
-  // Auto-connect
-  client.connect();
+  if (!disableRelays) {
+    // Add default relays
+    for (final relayUrl in defaultRelays) {
+      client.addRelay(Relay(url: relayUrl));
+    }
+
+    // Auto-connect
+    client.connect();
+  } else {
+    if (kDebugMode) {
+      // Use debugPrint to avoid analyzer 'avoid_print' lint in debug builds.
+      debugPrint('[nostr] Relay connections are disabled (DISABLE_RELAY=true)');
+    }
+  }
 
   // Cleanup on dispose
   ref.onDispose(() {

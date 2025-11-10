@@ -1,6 +1,18 @@
 {
   "@@locale": "th",
   "appTitle": "ZapD ร้านค้า",
+  "changeLanguage": "เปลี่ยนภาษา",
+  "@changeLanguage": {
+    "description": "Tooltip/label for language switcher"
+  },
+  "english": "English",
+  "@english": {
+    "description": "English language name"
+  },
+  "thai": "ไทย",
+  "@thai": {
+    "description": "Thai language name"
+  },
   "welcomeTitle": "ZapD ร้านค้า",
   "welcomeSubtitle": "บริการจัดส่งอาหารแบบกระจายศูนย์",
   "poweredByNostr": "ขับเคลื่อนด้วย Nostr Protocol",
@@ -76,6 +88,21 @@
   "lightningInvoice": "ใบแจ้งหนี้ Lightning",
   "tapToCopy": "แตะเพื่อคัดลอก",
   "copiedInvoice": "คัดลอกใบแจ้งหนี้แล้ว",
+  
+  "merchantNotAuthenticated": "ร้านค้ายังไม่ได้เข้าสู่ระบบ",
+  "@merchantNotAuthenticated": {
+    "description": "Snackbar shown when merchant is not authenticated (Thai)"
+  },
+
+  "orderTotalNotAvailable": "ยอดคำสั่งซื้อไม่พร้อมใช้งาน",
+  "@orderTotalNotAvailable": {
+    "description": "Snackbar shown when an order's total cannot be calculated (Thai)"
+  },
+
+  "lightningLabel": "⚡ Lightning",
+  "@lightningLabel": {
+    "description": "Label for Lightning payment method (Thai)"
+  },
   "paymentId": "รหัสการชำระเงิน",
   "orderId": "รหัสคำสั่งซื้อ",
   "paymentMethod": "วิธีการชำระเงิน",
@@ -207,7 +234,86 @@
   "stallCreatedSuccessfully": "สร้างร้านค้าสำเร็จ",
   "stallUpdatedSuccessfully": "อัปเดตร้านค้าสำเร็จ",
   "pleaseAddShippingZone": "กรุณาเพิ่มโซนการจัดส่งอย่างน้อย 1 โซน",
+  "acceptsOrdersDescription": "อนุญาตให้ลูกค้าสั่งซื้อสินค้า",
+  "@acceptsOrdersDescription": { "description": "Subtitle explaining accepts orders (Thai)" },
   "orderDetails": "รายละเอียดคำสั่งซื้อ",
+  "orderLabel": "คำสั่งซื้อ",
+  "@orderLabel": {
+    "description": "Label used before order id, e.g. 'Order #123' (Thai)"
+  },
+
+  "unknownStall": "ไม่มีชื่อร้าน",
+  "@unknownStall": {
+    "description": "Fallback stall name when none provided (Thai)"
+  },
+
+  "readyPrefix": "พร้อม:",
+  "@readyPrefix": {
+    "description": "Prefix for ready time label (Thai)"
+  },
+
+  "reject": "ปฏิเสธ",
+  "@reject": { "description": "Reject button label (Thai)" },
+
+  "accept": "รับคำสั่งซื้อ",
+  "@accept": { "description": "Accept button label (Thai)" },
+
+  "startPreparing": "เริ่มเตรียมอาหาร",
+  "@startPreparing": { "description": "Start preparing button label (Thai)" },
+
+  "markAsReady": "มารับสินค้าได้แล้ว",
+  "@markAsReady": { "description": "Mark order as ready button label (Thai)" },
+
+  "assignRider": "มอบหมายผู้ส่ง",
+  "@assignRider": { "description": "Assign rider button label (Thai)" },
+
+  "privateKeyNotAvailable": "กุญแจส่วนตัวไม่พร้อมใช้งาน",
+  "@privateKeyNotAvailable": { "description": "Shown when private key is missing (Thai)" },
+
+  "orderAccepted": "ยอมรับคำสั่งซื้อแล้ว",
+  "@orderAccepted": { "description": "Snackbar after accepting order (Thai)" },
+
+  "orderRejected": "ปฏิเสธคำสั่งซื้อแล้ว",
+  "@orderRejected": { "description": "Snackbar after rejecting order (Thai)" },
+
+  "orderBeingPrepared": "กำลังเตรียมคำสั่งซื้อ",
+  "@orderBeingPrepared": { "description": "Snackbar when order moved to preparing (Thai)" },
+
+  "orderReadyForPickup": "คำสั่งซื้อพร้อมสำหรับรับสินค้าแล้ว",
+  "@orderReadyForPickup": { "description": "Snackbar when order is ready (Thai)" },
+
+  "rejectOrderTitle": "ปฏิเสธคำสั่งซื้อ",
+  "@rejectOrderTitle": { "description": "Dialog title when rejecting an order (Thai)" },
+
+  "rejectOrderConfirm": "คุณแน่ใจหรือไม่ว่าต้องการปฏิเสธคำสั่งซื้อนี้?",
+  "@rejectOrderConfirm": { "description": "Dialog confirm text for rejecting an order (Thai)" },
+
+  "riderAssignmentComingSoon": "การมอบหมายผู้ส่ง - มาในเร็วๆ นี้...",
+  "@riderAssignmentComingSoon": { "description": "Temporary message when rider assignment not implemented (Thai)" },
+  "decryptingOrderDetails": "กำลังถอดรหัสรายละเอียดคำสั่งซื้อ...",
+  "@decryptingOrderDetails": {
+    "description": "Shown while order details are being decrypted (Thai)"
+  },
+
+  "decryptDetails": "ถอดรหัสรายละเอียด",
+  "@decryptDetails": {
+    "description": "Button to attempt decryption of order details (Thai)"
+  },
+
+  "orderDetailsEncrypted": "รายละเอียดคำสั่งซื้อถูกเข้ารหัส",
+  "@orderDetailsEncrypted": {
+    "description": "Shown when order details are encrypted and not available (Thai)"
+  },
+
+  "customerInformation": "ข้อมูลลูกค้า",
+  "@customerInformation": {
+    "description": "Customer information section title (Thai)"
+  },
+
+  "updateOrderStatus": "อัปเดตสถานะคำสั่งซื้อ",
+  "@updateOrderStatus": {
+    "description": "Header for update order status section (Thai)"
+  },
   "copyOrderId": "คัดลอก Order ID",
   "copyCustomerPubkey": "คัดลอก Customer Pubkey",
   "status": "สถานะ",
@@ -225,5 +331,156 @@
   "cancelOrder": "ยกเลิกคำสั่งซื้อ",
   "loading": "กำลังโหลด...",
   "authenticationRequired": "ต้องเข้าสู่ระบบ",
-  "failedToDecryptOrderDetails": "ถอดรหัสรายละเอียดคำสั่งซื้อไม่สำเร็จ"
+  "failedToDecryptOrderDetails": "ถอดรหัสรายละเอียดคำสั่งซื้อไม่สำเร็จ",
+
+  "nameLabel": "ชื่อ",
+  "@nameLabel": { "description": "Customer name label (Thai)" },
+
+  "nostrPubkeyLabel": "คีย์สาธารณะ Nostr",
+  "@nostrPubkeyLabel": { "description": "Nostr pubkey label (Thai)" },
+
+  "phoneLabel": "โทรศัพท์",
+  "@phoneLabel": { "description": "Phone label (Thai)" },
+
+  "emailLabel": "อีเมล",
+  "@emailLabel": { "description": "Email label (Thai)" },
+
+  "addressLabel": "ที่อยู่",
+  "@addressLabel": { "description": "Address label (Thai)" },
+
+  "messageLabel": "ข้อความ:",
+  "@messageLabel": { "description": "Label for customer message field (Thai)" },
+
+  "subtotal": "รวมย่อย",
+  "@subtotal": { "description": "Subtotal label (Thai)" },
+
+  "shipping": "ค่าจัดส่ง",
+  "@shipping": { "description": "Shipping cost label (Thai)" },
+
+  "discount": "ส่วนลด",
+  "@discount": { "description": "Discount label (Thai)" },
+
+  "totalLabel": "รวมทั้งหมด",
+  "@totalLabel": { "description": "Total label (Thai)" },
+
+  "paymentHashLabel": "รหัสการชำระเงิน (Hash)",
+  "@paymentHashLabel": { "description": "Payment hash label (Thai)" },
+
+  "paymentProofLabel": "หลักฐานการชำระเงิน",
+  "@paymentProofLabel": { "description": "Payment proof / preimage label (Thai)" },
+
+  "updatedLabel": "อัปเดต",
+  "@updatedLabel": { "description": "Updated at label (Thai)" },
+
+  "estimatedReadyLabel": "คาดว่าจะพร้อม",
+  "@estimatedReadyLabel": { "description": "Estimated ready time label (Thai)" },
+
+  "updatingOrderStatus": "กำลังอัปเดตสถานะคำสั่งซื้อ...",
+  "@updatingOrderStatus": { "description": "Shown while updating order status (Thai)" },
+
+  "orderStatusUpdated": "สถานะคำสั่งซื้อเปลี่ยนเป็น {status}",
+  "@orderStatusUpdated": { "description": "Snackbar when order status updated (Thai)", "placeholders": { "status": {} } },
+
+  "failedToUpdateStatus": "ไม่สามารถอัปเดตสถานะ: {error}",
+  "@failedToUpdateStatus": { "description": "Snackbar when status update fails (Thai)", "placeholders": { "error": {} } },
+
+  "actionCannotBeUndone": "การกระทำนี้ไม่สามารถย้อนกลับได้",
+  "@actionCannotBeUndone": {
+    "description": "Dialog text warning that an action cannot be undone (Thai)"
+  },
+
+  "notificationOrderTapped": "คำสั่งซื้อ {orderId}",
+  "@notificationOrderTapped": {
+    "description": "Short message shown when tapping a notification referencing an order (Thai)",
+    "placeholders": {
+      "orderId": {}
+    }
+  },
+
+  "currencySymbol": "฿",
+  "@currencySymbol": {
+    "description": "Currency symbol used in the app (Thai)"
+  }
+
+  ,"comingSoon": "เร็วๆ นี้...",
+  "@comingSoon": { "description": "Generic coming soon label (Thai)" },
+
+  "stallDuplicatedSuccess": "คัดลอกแผงขายสำเร็จ",
+  "@stallDuplicatedSuccess": { "description": "Snackbar when stall duplication succeeds (Thai)" },
+
+  "stallDeleted": "ลบแผงขายเรียบร้อยแล้ว",
+  "@stallDeleted": { "description": "Snackbar when stall deletion succeeds (Thai)" },
+
+  "deleteStallTitle": "ลบแผงขาย",
+  "@deleteStallTitle": { "description": "Dialog title for deleting a stall (Thai)" },
+
+  "deleteStallConfirm": "คุณแน่ใจหรือว่าต้องการลบ \"{stallName}\"?",
+  "@deleteStallConfirm": {
+    "description": "Confirmation message when deleting a stall (Thai)",
+    "placeholders": { "stallName": {} }
+  },
+
+  "open": "เปิด",
+  "@open": { "description": "Stall is open (Thai)" },
+
+  "closed": "ปิด",
+  "@closed": { "description": "Stall is closed (Thai)" },
+
+  "edit": "แก้ไข",
+  "@edit": { "description": "Edit label (Thai)" },
+
+  "duplicate": "คัดลอก",
+  "@duplicate": { "description": "Duplicate label (Thai)" },
+
+  "products": "สินค้า",
+  "@products": { "description": "Products label (Thai)" },
+
+  "importAndContinue": "นำเข้า & ดำเนินการต่อ",
+  "@importAndContinue": { "description": "Import key button (Thai)" },
+
+  "pleaseEnterPrivateKey": "กรุณากรอกกุญแจส่วนตัว",
+  "@pleaseEnterPrivateKey": { "description": "Prompt to enter private key (Thai)" },
+
+  "analyticsSubtitle": "ดูยอดขายและตัวชี้วัดการทำงาน",
+  "@analyticsSubtitle": { "description": "Subtitle for analytics menu card (Thai)" },
+
+  "accountInformation": "ข้อมูลบัญชี",
+  "@accountInformation": { "description": "Account info card title (Thai)" },
+  "nostrAuthentication": "การยืนยันด้วย Nostr",
+  "@nostrAuthentication": { "description": "Nostr auth card title (Thai)" },
+  "shop": "ร้านค้า",
+  "@shop": { "description": "Fallback stall type label (Thai)" }
+
+  ,"receiptsTitle": "ใบเสร็จ",
+  "@receiptsTitle": { "description": "Receipts screen title (Thai)" },
+
+  "receiptsView": "ดู",
+  "@receiptsView": { "description": "View button label on receipts (Thai)" },
+
+  "receiptsCopyId": "คัดลอกรหัส",
+  "@receiptsCopyId": { "description": "Copy receipt id button label (Thai)" },
+
+  "receiptsAmountPrefix": "จำนวน:",
+  "@receiptsAmountPrefix": { "description": "Prefix before amount value on receipts (Thai)" },
+
+  "receiptDetailTitle": "ใบเสร็จ: {id}",
+  "@receiptDetailTitle": {
+    "description": "Dialog title for receipt detail (Thai)",
+    "placeholders": { "id": {} }
+  },
+
+  "receiptLabelTitle": "หัวข้อ",
+  "@receiptLabelTitle": { "description": "Label for receipt title in detail dialog (Thai)" },
+
+  "receiptLabelDate": "วันที่",
+  "@receiptLabelDate": { "description": "Label for receipt date in detail dialog (Thai)" },
+
+  "receiptLabelAmount": "จำนวน",
+  "@receiptLabelAmount": { "description": "Label for receipt amount in detail dialog (Thai)" },
+
+  "receiptLabelItems": "รายการ",
+  "@receiptLabelItems": { "description": "Label for receipt items in detail dialog (Thai)" },
+
+  "receiptCopied": "คัดลอกรหัสใบเสร็จแล้ว",
+  "@receiptCopied": { "description": "Snackbar message when receipt id copied (Thai)" }
 }

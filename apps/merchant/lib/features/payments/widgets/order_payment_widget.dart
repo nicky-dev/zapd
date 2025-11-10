@@ -145,7 +145,7 @@ class OrderPaymentWidget extends ConsumerWidget {
         _buildInfoRow(
           context,
           l10n.paymentMethod,
-          payment.method == PaymentMethod.lightning ? '⚡ Lightning' : payment.method.name,
+          payment.method == PaymentMethod.lightning ? l10n.lightningLabel : payment.method.name,
         ),
         const SizedBox(height: 12),
         _buildInfoRow(
@@ -234,9 +234,10 @@ class OrderPaymentWidget extends ConsumerWidget {
     final merchantPubkey = authState.value?.publicKey;
     
     if (merchantPubkey == null) {
+      final l10n = AppLocalizations.of(context)!;
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Merchant not authenticated')),
+          SnackBar(content: Text(l10n.merchantNotAuthenticated)),
         );
       }
       return;
@@ -247,9 +248,10 @@ class OrderPaymentWidget extends ConsumerWidget {
     final totalAmount = order.details?.total?.toDouble() ?? 0.0;
     
     if (totalAmount <= 0) {
+      final l10n = AppLocalizations.of(context)!;
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Order total not available')),
+          SnackBar(content: Text(l10n.orderTotalNotAvailable)),
         );
       }
       return;

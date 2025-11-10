@@ -4,6 +4,7 @@ import '../models/order.dart';
 import '../models/order_status.dart';
 import '../providers/order_provider.dart';
 import '../../../core/providers/nostr_provider.dart';
+import '../../../l10n/app_localizations.dart';
 import '../screens/order_detail_screen.dart';
 
 class OrderCard extends ConsumerWidget {
@@ -40,7 +41,7 @@ class OrderCard extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Order #${order.id.substring(0, 8)}',
+                          '${AppLocalizations.of(context)!.orderLabel} #${order.id.substring(0, 8)}',
                           style: Theme.of(context).textTheme.titleMedium?.copyWith(
                                 fontWeight: FontWeight.w600,
                               ),
@@ -65,10 +66,13 @@ class OrderCard extends ConsumerWidget {
                 children: [
                   Icon(Icons.store, size: 16, color: Colors.grey[600]),
                   const SizedBox(width: 4),
-                  Text(
-                    order.stallName?.isNotEmpty == true ? order.stallName! : 'Unknown Stall',
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
+                  Expanded(
+                    child: Text(
+                      order.stallName?.isNotEmpty == true ? order.stallName! : AppLocalizations.of(context)!.unknownStall,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ],
@@ -81,9 +85,12 @@ class OrderCard extends ConsumerWidget {
                   children: [
                     Icon(Icons.access_time, size: 16, color: Colors.grey[600]),
                     const SizedBox(width: 4),
-                    Text(
-                      'Ready: ${_formatDateTime(order.estimatedReady!)}',
-                      style: Theme.of(context).textTheme.bodySmall,
+                    Expanded(
+                      child: Text(
+                        '${AppLocalizations.of(context)!.readyPrefix} ${_formatDateTime(order.estimatedReady!)}',
+                        style: Theme.of(context).textTheme.bodySmall,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ],
                 ),
@@ -111,7 +118,7 @@ class OrderCard extends ConsumerWidget {
               child: OutlinedButton.icon(
                 onPressed: () => _rejectOrder(context, ref),
                 icon: const Icon(Icons.close, size: 18),
-                label: const Text('Reject'),
+                label: Text(AppLocalizations.of(context)!.reject),
                 style: OutlinedButton.styleFrom(
                   foregroundColor: Colors.red,
                 ),
@@ -123,7 +130,7 @@ class OrderCard extends ConsumerWidget {
               child: ElevatedButton.icon(
                 onPressed: () => _acceptOrder(context, ref),
                 icon: const Icon(Icons.check, size: 18),
-                label: const Text('Accept'),
+                label: Text(AppLocalizations.of(context)!.accept),
               ),
             ),
           ],
@@ -133,7 +140,7 @@ class OrderCard extends ConsumerWidget {
         return ElevatedButton.icon(
           onPressed: () => _markPreparing(context, ref),
           icon: const Icon(Icons.restaurant, size: 18),
-          label: const Text('Start Preparing'),
+          label: Text(AppLocalizations.of(context)!.startPreparing),
           style: ElevatedButton.styleFrom(
             minimumSize: const Size(double.infinity, 40),
           ),
@@ -143,7 +150,7 @@ class OrderCard extends ConsumerWidget {
         return ElevatedButton.icon(
           onPressed: () => _markReady(context, ref),
           icon: const Icon(Icons.check_circle, size: 18),
-          label: const Text('Mark as Ready'),
+          label: Text(AppLocalizations.of(context)!.markAsReady),
           style: ElevatedButton.styleFrom(
             minimumSize: const Size(double.infinity, 40),
           ),
@@ -153,7 +160,7 @@ class OrderCard extends ConsumerWidget {
         return ElevatedButton.icon(
           onPressed: () => _assignRider(context, ref),
           icon: const Icon(Icons.delivery_dining, size: 18),
-          label: const Text('Assign Rider'),
+          label: Text(AppLocalizations.of(context)!.assignRider),
           style: ElevatedButton.styleFrom(
             minimumSize: const Size(double.infinity, 40),
           ),
@@ -179,7 +186,7 @@ class OrderCard extends ConsumerWidget {
   Future<void> _acceptOrder(BuildContext context, WidgetRef ref) async {
     final privateKey = ref.read(currentUserPrivateKeyProvider);
     if (privateKey == null) {
-      _showError(context, 'Private key not available');
+      _showError(context, AppLocalizations.of(context)!.privateKeyNotAvailable);
       return;
     }
 
@@ -192,12 +199,12 @@ class OrderCard extends ConsumerWidget {
           );
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Order accepted')),
+          SnackBar(content: Text(AppLocalizations.of(context)!.orderAccepted)),
         );
       }
     } catch (e) {
       if (context.mounted) {
-        _showError(context, 'Failed to accept: $e');
+        _showError(context, '${AppLocalizations.of(context)!.error}: $e');
       }
     }
   }
@@ -205,24 +212,24 @@ class OrderCard extends ConsumerWidget {
   Future<void> _rejectOrder(BuildContext context, WidgetRef ref) async {
     final privateKey = ref.read(currentUserPrivateKeyProvider);
     if (privateKey == null) {
-      _showError(context, 'Private key not available');
+      _showError(context, AppLocalizations.of(context)!.privateKeyNotAvailable);
       return;
     }
 
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Reject Order'),
-        content: const Text('Are you sure you want to reject this order?'),
+  title: Text(AppLocalizations.of(context)!.rejectOrderTitle),
+  content: Text(AppLocalizations.of(context)!.rejectOrderConfirm),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: Text(AppLocalizations.of(context)!.cancel),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
             style: TextButton.styleFrom(foregroundColor: Colors.red),
-            child: const Text('Reject'),
+            child: Text(AppLocalizations.of(context)!.reject),
           ),
         ],
       ),
@@ -237,7 +244,7 @@ class OrderCard extends ConsumerWidget {
             );
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Order rejected')),
+            SnackBar(content: Text(AppLocalizations.of(context)!.orderRejected)),
           );
         }
       } catch (e) {
@@ -259,7 +266,7 @@ class OrderCard extends ConsumerWidget {
           );
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Order is being prepared')),
+          SnackBar(content: Text(AppLocalizations.of(context)!.orderBeingPrepared)),
         );
       }
     } catch (e) {
@@ -277,7 +284,7 @@ class OrderCard extends ConsumerWidget {
       await ref.read(orderNotifierProvider.notifier).markReady(order, privateKey);
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Order is ready for pickup')),
+          SnackBar(content: Text(AppLocalizations.of(context)!.orderReadyForPickup)),
         );
       }
     } catch (e) {
@@ -289,7 +296,7 @@ class OrderCard extends ConsumerWidget {
 
   void _assignRider(BuildContext context, WidgetRef ref) {
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Rider assignment - Coming soon...')),
+      SnackBar(content: Text(AppLocalizations.of(context)!.riderAssignmentComingSoon)),
     );
   }
 

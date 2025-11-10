@@ -5,6 +5,21 @@
     "description": "Application title"
   },
   
+  "changeLanguage": "Change language",
+  "@changeLanguage": {
+    "description": "Tooltip/label for language switcher"
+  },
+  
+  "english": "English",
+  "@english": {
+    "description": "English language name"
+  },
+  
+  "thai": "ไทย",
+  "@thai": {
+    "description": "Thai language name"
+  },
+  
   "welcomeTitle": "ZapD Merchant",
   "@welcomeTitle": {
     "description": "Welcome page title"
@@ -25,6 +40,8 @@
     "description": "Nostr protocol description"
   },
   
+    "acceptsOrdersDescription": "Allow customers to place orders",
+    "@acceptsOrdersDescription": { "description": "Subtitle explaining accepts orders" },
   "newToZapD": "New to ZapD?",
   "@newToZapD": {
     "description": "New user section title"
@@ -104,6 +121,59 @@
   "@copied": {
     "description": "Copied message"
   },
+
+  "comingSoon": "Coming soon...",
+  "@comingSoon": { "description": "Generic coming soon label" },
+
+  "stallDuplicatedSuccess": "Stall duplicated successfully",
+  "@stallDuplicatedSuccess": { "description": "Snackbar when stall duplication succeeds" },
+
+  "stallDeleted": "Stall deleted",
+  "@stallDeleted": { "description": "Snackbar when stall deletion succeeds" },
+
+  "deleteStallTitle": "Delete Stall",
+  "@deleteStallTitle": { "description": "Dialog title for deleting a stall" },
+
+  "deleteStallConfirm": "Are you sure you want to delete \"{stallName}\"?",
+  "@deleteStallConfirm": {
+    "description": "Confirmation message when deleting a stall",
+    "placeholders": {
+      "stallName": {}
+    }
+  },
+
+  "open": "Open",
+  "@open": { "description": "Stall is open" },
+
+  "closed": "Closed",
+  "@closed": { "description": "Stall is closed" },
+
+  "edit": "Edit",
+  "@edit": { "description": "Edit label" },
+
+  "duplicate": "Duplicate",
+  "@duplicate": { "description": "Duplicate label" },
+
+  "products": "Products",
+  "@products": { "description": "Products label" },
+
+  "importAndContinue": "Import & Continue",
+  "@importAndContinue": { "description": "Import key button" },
+
+  "pleaseEnterPrivateKey": "Please enter a private key",
+  "@pleaseEnterPrivateKey": { "description": "Prompt to enter private key" },
+
+  "analyticsSubtitle": "View sales and performance metrics",
+  "@analyticsSubtitle": { "description": "Subtitle for analytics menu card" },
+
+  "accountInformation": "Account Information",
+  "@accountInformation": { "description": "Account info card title" },
+
+  "nostrAuthentication": "Nostr Authentication",
+  "@nostrAuthentication": { "description": "Nostr auth card title" },
+
+  "shop": "Shop",
+  "@shop": { "description": "Fallback stall type label" },
   
   "importantSaveKey": "Important: Save Your Private Key",
   "@importantSaveKey": {
@@ -378,6 +448,21 @@
   "copiedInvoice": "Invoice copied to clipboard",
   "@copiedInvoice": {
     "description": "Invoice copied message"
+  },
+
+  "merchantNotAuthenticated": "Merchant not authenticated",
+  "@merchantNotAuthenticated": {
+    "description": "Snackbar shown when merchant is not authenticated"
+  },
+
+  "orderTotalNotAvailable": "Order total not available",
+  "@orderTotalNotAvailable": {
+    "description": "Snackbar shown when an order's total cannot be calculated"
+  },
+
+  "lightningLabel": "⚡ Lightning",
+  "@lightningLabel": {
+    "description": "Label for Lightning payment method"
   },
   
   "paymentId": "Payment ID",
@@ -1074,6 +1159,85 @@
   "@orderDetails": {
     "description": "Order details title"
   },
+
+  "orderLabel": "Order",
+  "@orderLabel": {
+    "description": "Label used before order id, e.g. 'Order #123'"
+  },
+
+  "unknownStall": "Unknown Stall",
+  "@unknownStall": {
+    "description": "Fallback stall name when none provided"
+  },
+
+  "readyPrefix": "Ready:",
+  "@readyPrefix": {
+    "description": "Prefix for ready time label"
+  },
+
+  "reject": "Reject",
+  "@reject": { "description": "Reject button label" },
+
+  "accept": "Accept",
+  "@accept": { "description": "Accept button label" },
+
+  "startPreparing": "Start Preparing",
+  "@startPreparing": { "description": "Start preparing button label" },
+
+  "markAsReady": "Mark as Ready",
+  "@markAsReady": { "description": "Mark order as ready button label" },
+
+  "assignRider": "Assign Rider",
+  "@assignRider": { "description": "Assign rider button label" },
+
+  "privateKeyNotAvailable": "Private key not available",
+  "@privateKeyNotAvailable": { "description": "Shown when private key is missing" },
+
+  "orderAccepted": "Order accepted",
+  "@orderAccepted": { "description": "Snackbar after accepting order" },
+
+  "orderRejected": "Order rejected",
+  "@orderRejected": { "description": "Snackbar after rejecting order" },
+
+  "orderBeingPrepared": "Order is being prepared",
+  "@orderBeingPrepared": { "description": "Snackbar when order moved to preparing" },
+
+  "orderReadyForPickup": "Order is ready for pickup",
+  "@orderReadyForPickup": { "description": "Snackbar when order is ready" },
+
+  "rejectOrderTitle": "Reject Order",
+  "@rejectOrderTitle": { "description": "Dialog title when rejecting an order" },
+
+  "rejectOrderConfirm": "Are you sure you want to reject this order?",
+  "@rejectOrderConfirm": { "description": "Dialog confirm text for rejecting an order" },
+
+  "riderAssignmentComingSoon": "Rider assignment - Coming soon...",
+  "@riderAssignmentComingSoon": { "description": "Temporary message when rider assignment not implemented" },
+
+  "decryptingOrderDetails": "Decrypting order details...",
+  "@decryptingOrderDetails": {
+    "description": "Shown while order details are being decrypted"
+  },
+
+  "decryptDetails": "Decrypt Details",
+  "@decryptDetails": {
+    "description": "Button to attempt decryption of order details"
+  },
+
+  "orderDetailsEncrypted": "Order details are encrypted",
+  "@orderDetailsEncrypted": {
+    "description": "Shown when order details are encrypted and not available"
+  },
+
+  "customerInformation": "Customer Information",
+  "@customerInformation": {
+    "description": "Customer information section title"
+  },
+
+  "updateOrderStatus": "Update Order Status",
+  "@updateOrderStatus": {
+    "description": "Header for update order status section"
+  },
   
   "copyOrderId": "Copy Order ID",
   "@copyOrderId": {
@@ -1118,6 +1282,115 @@
   "none": "None",
   "@none": {
     "description": "None label"
+  },
+
+  "nameLabel": "Name",
+  "@nameLabel": {
+    "description": "Customer name label"
+  },
+
+  "nostrPubkeyLabel": "Nostr Pubkey",
+  "@nostrPubkeyLabel": {
+    "description": "Nostr pubkey label"
+  },
+
+  "phoneLabel": "Phone",
+  "@phoneLabel": {
+    "description": "Phone label"
+  },
+
+  "emailLabel": "Email",
+  "@emailLabel": {
+    "description": "Email label"
+  },
+
+  "addressLabel": "Address",
+  "@addressLabel": {
+    "description": "Address label"
+  },
+
+  "messageLabel": "Message:",
+  "@messageLabel": {
+    "description": "Label for customer message field"
+  },
+
+  "subtotal": "Subtotal",
+  "@subtotal": {
+    "description": "Subtotal label"
+  },
+
+  "shipping": "Shipping",
+  "@shipping": {
+    "description": "Shipping cost label"
+  },
+
+  "discount": "Discount",
+  "@discount": {
+    "description": "Discount label"
+  },
+
+  "totalLabel": "Total",
+  "@totalLabel": {
+    "description": "Total label"
+  },
+
+  "paymentHashLabel": "Payment Hash",
+  "@paymentHashLabel": {
+    "description": "Payment hash label"
+  },
+
+  "paymentProofLabel": "Payment Proof",
+  "@paymentProofLabel": {
+    "description": "Payment proof / preimage label"
+  },
+
+  "updatedLabel": "Updated",
+  "@updatedLabel": {
+    "description": "Updated at label"
+  },
+
+  "estimatedReadyLabel": "Estimated Ready",
+  "@estimatedReadyLabel": {
+    "description": "Estimated ready time label"
+  },
+
+  "updatingOrderStatus": "Updating order status...",
+  "@updatingOrderStatus": {
+    "description": "Shown while updating order status"
+  },
+
+  "orderStatusUpdated": "Order status updated to {status}",
+  "@orderStatusUpdated": {
+    "description": "Snackbar when order status updated",
+    "placeholders": {
+      "status": {}
+    }
+  },
+
+  "failedToUpdateStatus": "Failed to update status: {error}",
+  "@failedToUpdateStatus": {
+    "description": "Snackbar when status update fails",
+    "placeholders": {
+      "error": {}
+    }
+  },
+
+  "actionCannotBeUndone": "This action cannot be undone.",
+  "@actionCannotBeUndone": {
+    "description": "Dialog text warning that an action cannot be undone"
+  },
+
+  "notificationOrderTapped": "Order {orderId}",
+  "@notificationOrderTapped": {
+    "description": "Short message shown when tapping a notification referencing an order",
+    "placeholders": {
+      "orderId": {}
+    }
+  },
+
+  "currencySymbol": "฿",
+  "@currencySymbol": {
+    "description": "Currency symbol used in the app"
   },
   
   "actions": "Actions",
@@ -1164,4 +1437,37 @@
   "@failedToDecryptOrderDetails": {
     "description": "Failed to decrypt message"
   }
+  ,
+  "receiptsTitle": "Receipts",
+  "@receiptsTitle": { "description": "Receipts screen title" },
+
+  "receiptsView": "View",
+  "@receiptsView": { "description": "View button label on receipts" },
+
+  "receiptsCopyId": "Copy ID",
+  "@receiptsCopyId": { "description": "Copy receipt id button label" },
+
+  "receiptsAmountPrefix": "Amount:",
+  "@receiptsAmountPrefix": { "description": "Prefix before amount value on receipts" },
+
+  "receiptDetailTitle": "Receipt: {id}",
+  "@receiptDetailTitle": {
+    "description": "Dialog title for receipt detail",
+    "placeholders": { "id": {} }
+  },
+
+  "receiptLabelTitle": "Title",
+  "@receiptLabelTitle": { "description": "Label for receipt title in detail dialog" },
+
+  "receiptLabelDate": "Date",
+  "@receiptLabelDate": { "description": "Label for receipt date in detail dialog" },
+
+  "receiptLabelAmount": "Amount",
+  "@receiptLabelAmount": { "description": "Label for receipt amount in detail dialog" },
+
+  "receiptLabelItems": "Items",
+  "@receiptLabelItems": { "description": "Label for receipt items in detail dialog" },
+
+  "receiptCopied": "Receipt id copied to clipboard",
+  "@receiptCopied": { "description": "Snackbar message when receipt id copied" }
 }

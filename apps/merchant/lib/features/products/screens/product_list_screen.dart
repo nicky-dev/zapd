@@ -19,6 +19,8 @@ class ProductListScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
     final productsAsync = ref.watch(productNotifierProvider(stall.id));
+    final width = MediaQuery.of(context).size.width;
+    final horizontalPadding = width < 600 ? 16.0 : 48.0;
 
     return Scaffold(
       appBar: AppBar(
@@ -71,7 +73,7 @@ class ProductListScreen extends ConsumerWidget {
               await ref.read(productNotifierProvider(stall.id).notifier).loadProducts();
             },
             child: ListView.builder(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 16),
               itemCount: products.length,
               itemBuilder: (context, index) {
                 final product = products[index];
@@ -124,6 +126,7 @@ class ProductListScreen extends ConsumerWidget {
         data: (products) => products.isNotEmpty
             ? FloatingActionButton(
                 onPressed: () => _navigateToAddProduct(context, ref),
+                tooltip: l10n.addProduct,
                 child: const Icon(Icons.add),
               )
             : null,

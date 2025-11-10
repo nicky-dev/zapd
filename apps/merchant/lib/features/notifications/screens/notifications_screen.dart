@@ -95,9 +95,9 @@ class NotificationsScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.clearAllConfirm),
-        content: const Text('This action cannot be undone.'),
+  builder: (context) => AlertDialog(
+  title: Text(l10n.clearAllConfirm),
+  content: Text(l10n.actionCannotBeUndone),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
@@ -248,11 +248,11 @@ class _NotificationTile extends ConsumerWidget {
   void _handleNotificationTap(BuildContext context, WidgetRef ref, AppNotification notification) {
     final l10n = AppLocalizations.of(context)!;
     // Navigate based on notification type
-    if (notification.orderId != null) {
+      if (notification.orderId != null) {
       // TODO: Navigate to order detail
       // For now, just show a message
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('${l10n.orderId}: ${notification.orderId}')),
+        SnackBar(content: Text(l10n.notificationOrderTapped(notification.orderId!))),
       );
     }
   }

@@ -5,6 +5,7 @@ import '../providers/stall_provider.dart';
 import '../../../core/providers/nostr_provider.dart';
 import '../screens/stall_form_screen.dart';
 import '../../products/screens/product_list_screen.dart';
+import '../../../l10n/app_localizations.dart';
 
 class StallCard extends ConsumerWidget {
   const StallCard({
@@ -63,11 +64,11 @@ class StallCard extends ConsumerWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                         const SizedBox(height: 4),
-                      Text(
-                          stall.stallType?.displayName ?? 'Shop',
+                        Text(
+                          stall.stallType?.displayName ?? AppLocalizations.of(context)!.shop,
                           style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                color: Colors.grey[600],
-                              ),
+                            color: Colors.grey[600],
+                          ),
                         ),
                       ],
                     ),
@@ -83,7 +84,7 @@ class StallCard extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
-                      stall.acceptsOrders ? 'Open' : 'Closed',
+                      stall.acceptsOrders ? AppLocalizations.of(context)!.open : AppLocalizations.of(context)!.closed,
                       style: TextStyle(
                         color: stall.acceptsOrders ? Colors.green[800] : Colors.red[800],
                         fontWeight: FontWeight.w600,
@@ -108,7 +109,7 @@ class StallCard extends ConsumerWidget {
                 children: [
                   _ActionButton(
                     icon: Icons.edit,
-                    label: 'Edit',
+                    label: AppLocalizations.of(context)!.edit,
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -124,7 +125,7 @@ class StallCard extends ConsumerWidget {
                   const SizedBox(width: 8),
                   _ActionButton(
                     icon: Icons.content_copy,
-                    label: 'Duplicate',
+                    label: AppLocalizations.of(context)!.duplicate,
                     onPressed: () async {
                       final privateKey = ref.read(currentUserPrivateKeyProvider);
                       if (privateKey == null) {
@@ -139,7 +140,7 @@ class StallCard extends ConsumerWidget {
                             );
                         if (context.mounted) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Stall duplicated successfully')),
+                            SnackBar(content: Text(AppLocalizations.of(context)!.stallDuplicatedSuccess)),
                           );
                         }
                       } catch (e) {
@@ -152,7 +153,7 @@ class StallCard extends ConsumerWidget {
                   const SizedBox(width: 8),
                   _ActionButton(
                     icon: Icons.inventory_2,
-                    label: 'Products',
+                    label: AppLocalizations.of(context)!.products,
                     onPressed: () => _showComingSoon(context),
                   ),
                   const Spacer(),
@@ -171,7 +172,7 @@ class StallCard extends ConsumerWidget {
 
   void _showComingSoon(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Coming soon...')),
+      SnackBar(content: Text(AppLocalizations.of(context)!.comingSoon)),
     );
   }
 
@@ -190,7 +191,7 @@ class StallCard extends ConsumerWidget {
           children: [
             ListTile(
               leading: const Icon(Icons.delete),
-              title: const Text('Delete Stall'),
+              title: Text(AppLocalizations.of(context)!.deleteStallTitle),
               onTap: () {
                 Navigator.pop(context);
                 _confirmDelete(context, ref);
@@ -206,12 +207,12 @@ class StallCard extends ConsumerWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Delete Stall'),
-        content: Text('Are you sure you want to delete "${stall.name}"?'),
+        title: Text(AppLocalizations.of(context)!.deleteStallTitle),
+        content: Text(AppLocalizations.of(context)!.deleteStallConfirm(stall.name)),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
+            child: Text(AppLocalizations.of(context)!.cancel),
           ),
           TextButton(
             onPressed: () async {
@@ -230,7 +231,7 @@ class StallCard extends ConsumerWidget {
                 if (context.mounted) {
                   Navigator.pop(context);
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Stall deleted')),
+                    SnackBar(content: Text(AppLocalizations.of(context)!.stallDeleted)),
                   );
                 }
               } catch (e) {
@@ -240,7 +241,7 @@ class StallCard extends ConsumerWidget {
                 }
               }
             },
-            child: const Text('Delete', style: TextStyle(color: Colors.red)),
+            child: Text(AppLocalizations.of(context)!.delete, style: const TextStyle(color: Colors.red)),
           ),
         ],
       ),

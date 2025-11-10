@@ -23,6 +23,9 @@ class _OrderListScreenState extends ConsumerState<OrderListScreen> {
     final filteredOrders = _filterStatus == null
         ? orders
         : orders.where((o) => o.status == _filterStatus).toList();
+    final width = MediaQuery.of(context).size.width;
+    final horizontalPadding = width < 600 ? 16.0 : 48.0;
+    final isNarrow = width < 600;
 
     return Scaffold(
       appBar: AppBar(
@@ -61,34 +64,59 @@ class _OrderListScreenState extends ConsumerState<OrderListScreen> {
       ),
       body: Column(
         children: [
-          // Status summary chips
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.all(16),
-            child: Row(
-              children: [
-                _StatusChip(
-                  label: l10n.all,
-                  count: orders.length,
-                  isSelected: _filterStatus == null,
-                  onTap: () => setState(() => _filterStatus = null),
-                ),
-                const SizedBox(width: 8),
-                ...OrderStatus.values.map((status) {
-                  final count = orders.where((o) => o.status == status).length;
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 8),
-                    child: _StatusChip(
-                      label: status.displayName,
-                      count: count,
-                      icon: status.icon,
-                      isSelected: _filterStatus == status,
-                      onTap: () => setState(() => _filterStatus = status),
+          // Status summary chips (wrap on narrow screens)
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 12),
+            child: isNarrow
+                ? Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: [
+                      _StatusChip(
+                        label: l10n.all,
+                        count: orders.length,
+                        isSelected: _filterStatus == null,
+                        onTap: () => setState(() => _filterStatus = null),
+                      ),
+                      ...OrderStatus.values.map((status) {
+                        final count = orders.where((o) => o.status == status).length;
+                        return _StatusChip(
+                          label: status.displayName,
+                          count: count,
+                          icon: status.icon,
+                          isSelected: _filterStatus == status,
+                          onTap: () => setState(() => _filterStatus = status),
+                        );
+                      }),
+                    ],
+                  )
+                : SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        _StatusChip(
+                          label: l10n.all,
+                          count: orders.length,
+                          isSelected: _filterStatus == null,
+                          onTap: () => setState(() => _filterStatus = null),
+                        ),
+                        const SizedBox(width: 8),
+                        ...OrderStatus.values.map((status) {
+                          final count = orders.where((o) => o.status == status).length;
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 8),
+                            child: _StatusChip(
+                              label: status.displayName,
+                              count: count,
+                              icon: status.icon,
+                              isSelected: _filterStatus == status,
+                              onTap: () => setState(() => _filterStatus = status),
+                            ),
+                          );
+                        }),
+                      ],
                     ),
-                  );
-                }),
-              ],
-            ),
+                  ),
           ),
 
           // Order list
@@ -98,16 +126,17 @@ class _OrderListScreenState extends ConsumerState<OrderListScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
-                          Icons.inbox_outlined,
-                          size: 80,
-                          color: Colors.grey[400],
+                        Semantics(
+                          label: l10n.noOrdersYet,
+                          child: Icon(
+                            Icons.inbox_outlined,
+                            size: 80,
+                            color: Colors.grey[400],
+                          ),
                         ),
                         const SizedBox(height: 16),
                         Text(
-                          _filterStatus == null
-                              ? l10n.noOrdersYet
-                              : 'No ${_filterStatus!.displayName.toLowerCase()} orders',
+                          l10n.noOrdersYet,
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                         const SizedBox(height: 8),
@@ -120,7 +149,7 @@ class _OrderListScreenState extends ConsumerState<OrderListScreen> {
                     ),
                   )
                 : ListView.builder(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
                     itemCount: filteredOrders.length,
                     itemBuilder: (context, index) {
                       return OrderCard(order: filteredOrders[index]);

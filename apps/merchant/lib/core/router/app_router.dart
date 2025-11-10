@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../l10n/app_localizations.dart';
 
 import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/register_page.dart';
 import '../../features/auth/presentation/pages/welcome_page.dart';
 import '../../features/auth/presentation/providers/auth_provider.dart';
 import '../../features/dashboard/presentation/pages/dashboard_page.dart';
+import '../../features/receipts/screens/receipts_screen.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(authProvider);
@@ -50,10 +52,15 @@ final routerProvider = Provider<GoRouter>((ref) {
         name: 'dashboard',
         builder: (context, state) => const DashboardPage(),
       ),
+      GoRoute(
+        path: '/receipts',
+        name: 'receipts',
+        builder: (context, state) => const ReceiptsScreen(),
+      ),
     ],
     errorBuilder: (context, state) => Scaffold(
       body: Center(
-        child: Text('Error: ${state.error}'),
+        child: Text('${AppLocalizations.of(context)!.error}: ${state.error}'),
       ),
     ),
   );
