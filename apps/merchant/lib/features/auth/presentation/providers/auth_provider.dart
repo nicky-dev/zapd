@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:nostr_core/nostr_core.dart';
 
 const _keyPrivateKey = 'nostr_private_key';
 const _keyPublicKey = 'nostr_public_key';
@@ -49,9 +50,8 @@ class AuthNotifier extends AsyncNotifier<AuthState> {
   }
 
   Future<void> savePrivateKey(String privateKey) async {
-    // TODO: Derive public key from private key using secp256k1
-    // For now, use a placeholder
-    final publicKey = 'pub_${privateKey.substring(0, 8)}';
+    // Derive public key from private key using secp256k1
+    final publicKey = Schnorr.getPublicKey(privateKey);
 
     await _storage.write(key: _keyPrivateKey, value: privateKey);
     await _storage.write(key: _keyPublicKey, value: publicKey);

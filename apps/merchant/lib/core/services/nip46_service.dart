@@ -118,8 +118,9 @@ class Nip46Service {
 
       _bunkerConnection = connection;
 
-      // Save connection info for session restoration
-      // TODO: Implement proper session storage with NDK types
+      // Note: Session storage with Nip46Session requires BunkerConnection
+      // and ephemeral keys which are managed by NDK internally.
+      // For simplicity, we rely on the auth provider to store the public key.
       
       return connection;
     } catch (e, stackTrace) {
@@ -139,11 +140,16 @@ class Nip46Service {
         return false;
       }
 
-      // TODO: Implement session restoration with NDK
-      // This requires reconnecting to relays
-      // For now, we can't restore sessions
+      // Session restoration with NIP-46 requires full reconnection flow
+      // because ephemeral keys and connection state are not easily serializable
+      // User needs to scan QR code or paste bunker URL again
+      print('[NIP-46] Previous session found but requires reconnection');
+      if (session.remotePublicKey != null) {
+        print('[NIP-46] Last connected to: ${session.remotePublicKey}');
+      }
       return false;
     } catch (e) {
+      print('[NIP-46] Session check failed: $e');
       return false;
     }
   }

@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../auth/presentation/providers/auth_provider.dart';
+import '../../../stalls/screens/stall_list_screen.dart';
+import '../../../orders/screens/order_list_screen.dart';
+import '../../../orders/providers/order_provider.dart';
+import '../../../settings/screens/settings_screen.dart';
 
 class DashboardPage extends ConsumerWidget {
   const DashboardPage({super.key});
@@ -9,11 +13,18 @@ class DashboardPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final authState = ref.watch(authProvider);
+    final pendingOrders = ref.watch(pendingOrdersProvider);
+    final activeOrders = ref.watch(activeOrdersProvider);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dashboard'),
+        title: const Text('ZapD Merchant'),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            tooltip: 'Settings',
+            onPressed: () => _navigateToSettings(context),
+          ),
           IconButton(
             icon: const Icon(Icons.logout),
             tooltip: 'Logout',
@@ -27,37 +38,127 @@ class DashboardPage extends ConsumerWidget {
         ],
       ),
       body: authState.when(
-        data: (state) => Center(
+        data: (state) => SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(
-                Icons.dashboard_outlined,
-                size: 100,
-                color: Theme.of(context).colorScheme.primary,
+              // Welcome header
+              Text(
+                'Welcome back! 👋',
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'Manage your stalls, products, and orders',
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: Colors.grey[600],
+                    ),
               ),
               const SizedBox(height: 24),
+
+              // Quick stats
+              Row(
+                children: [
+                  Expanded(
+                    child: _StatCard(
+                      icon: Icons.pending_actions,
+                      label: 'Pending Orders',
+                      value: pendingOrders.length.toString(),
+                      color: Colors.orange,
+                      onTap: () => _navigateToOrders(context, OrderFilter.pending),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: _StatCard(
+                      icon: Icons.restaurant,
+                      label: 'Active Orders',
+                      value: activeOrders.length.toString(),
+                      color: Colors.blue,
+                      onTap: () => _navigateToOrders(context, OrderFilter.active),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 32),
+
+              // Main menu
               Text(
-                'Welcome to Dashboard!',
-                style: Theme.of(context).textTheme.headlineMedium,
+                'Quick Actions',
+                style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: 16),
+
+              _MenuCard(
+                icon: Icons.store,
+                title: 'My Stalls',
+                subtitle: 'Manage your restaurant or shop stalls',
+                color: Colors.purple,
+                onTap: () => _navigateToStalls(context),
+              ),
+              const SizedBox(height: 12),
+
+              _MenuCard(
+                icon: Icons.shopping_bag,
+                title: 'Orders',
+                subtitle: 'View and manage customer orders',
+                color: Colors.green,
+                onTap: () => _navigateToOrders(context, OrderFilter.all),
+              ),
+              const SizedBox(height: 12),
+
+              _MenuCard(
+                icon: Icons.analytics,
+                title: 'Analytics',
+                subtitle: 'View sales and performance metrics',
+                color: Colors.blue,
+                onTap: () => _showComingSoon(context),
+              ),
+              const SizedBox(height: 12),
+
+              _MenuCard(
+                icon: Icons.settings,
+                title: 'Settings',
+                subtitle: 'Configure your account and preferences',
+                color: Colors.grey,
+                onTap: () => _navigateToSettings(context),
+              ),
+
+              const SizedBox(height: 32),
+
+              // Account info
               if (state.publicKey != null)
                 Card(
-                  margin: const EdgeInsets.all(16),
                   child: Padding(
                     padding: const EdgeInsets.all(16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.account_circle,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              'Account Information',
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                          ],
+                        ),
+                        const Divider(height: 24),
                         Text(
                           'Public Key:',
-                          style: Theme.of(context).textTheme.titleSmall,
+                          style: Theme.of(context).textTheme.labelSmall,
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: 4),
                         Text(
                           state.publicKey!,
-                          style: Theme.of(context).textTheme.bodySmall,
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                fontFamily: 'monospace',
+                              ),
                         ),
                       ],
                     ),
@@ -68,7 +169,165 @@ class DashboardPage extends ConsumerWidget {
         ),
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, stack) => Center(
-          child: Text('Error: $error'),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.error_outline, size: 48, color: Colors.red),
+              const SizedBox(height: 16),
+              Text('Error: $error'),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _navigateToStalls(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const StallListScreen(),
+      ),
+    );
+  }
+
+  void _navigateToOrders(BuildContext context, OrderFilter filter) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const OrderListScreen(),
+      ),
+    );
+  }
+
+  void _navigateToSettings(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const SettingsScreen(),
+      ),
+    );
+  }
+
+  void _showComingSoon(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Coming soon...')),
+    );
+  }
+}
+
+enum OrderFilter { all, pending, active }
+
+class _StatCard extends StatelessWidget {
+  const _StatCard({
+    required this.icon,
+    required this.label,
+    required this.value,
+    required this.color,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final String label;
+  final String value;
+  final Color color;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              Icon(icon, size: 32, color: color),
+              const SizedBox(height: 8),
+              Text(
+                value,
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: color,
+                    ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                label,
+                style: Theme.of(context).textTheme.bodySmall,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _MenuCard extends StatelessWidget {
+  const _MenuCard({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.color,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final Color color;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            children: [
+              Container(
+                width: 56,
+                height: 56,
+                decoration: BoxDecoration(
+                  color: color.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Icon(icon, color: color, size: 28),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      subtitle,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: Colors.grey[600],
+                          ),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(
+                Icons.arrow_forward_ios,
+                size: 16,
+                color: Colors.grey[400],
+              ),
+            ],
+          ),
         ),
       ),
     );

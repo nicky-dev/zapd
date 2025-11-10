@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nostr_core/nostr_core.dart';
 
 import '../providers/auth_provider.dart';
 
@@ -27,20 +28,15 @@ class _AuthPageState extends ConsumerState<AuthPage> {
     setState(() => _isGenerating = true);
     
     try {
-      // TODO: Implement key generation with secp256k1
-      // For now, generate a random hex string (64 chars)
-      final random = List.generate(
-        64,
-        (i) => '0123456789abcdef'[DateTime.now().microsecondsSinceEpoch % 16],
-      ).join();
-      
-      _privateKeyController.text = random;
+      // Generate a new secp256k1 private key
+      final keyPair = KeyPair.generate();
+      _privateKeyController.text = keyPair.privateKey;
       
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('⚠️ Demo key generated. Use secp256k1 in production!'),
-            backgroundColor: Colors.orange,
+            content: Text('New key pair generated successfully!'),
+            backgroundColor: Colors.green,
           ),
         );
       }

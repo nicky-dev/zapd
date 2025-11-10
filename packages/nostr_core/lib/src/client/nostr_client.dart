@@ -1,18 +1,23 @@
 import 'dart:convert';
 import 'dart:async';
-import 'package:web_socket_channel/web_socket_channel.dart';
 import '../events/event.dart';
 import '../events/filter.dart';
 import '../models/relay.dart';
 import '../models/subscription.dart';
+import 'relay_pool.dart';
 
-/// Nostr client for connecting to relays
+/// Nostr client for connecting to relays (using RelayPool for better reliability)
 class NostrClient {
   final List<Relay> _relays = [];
-  final Map<String, WebSocketChannel> _connections = {};
+  late final RelayPool _pool;
   final Map<String, StreamController<NostrEvent>> _subscriptions = {};
+  StreamSubscription<Map<String, dynamic>>? _poolSubscription;
 
   bool _isConnected = false;
+
+  NostrClient() {
+    _pool = RelayPool();
+  }
 
   /// Check if client is connected to relays
   bool get isConnected => _isConnected;
@@ -20,63 +25,45 @@ class NostrClient {
   /// Get list of relays
   List<Relay> get relays => List.unmodifiable(_relays);
 
+  /// Get relay pool statistics
+  Map<String, dynamic> get stats => _pool.getStats();
+
   /// Add relay
   void addRelay(Relay relay) {
     if (!_relays.any((r) => r.url == relay.url)) {
       _relays.add(relay);
+      _pool.addRelay(relay.url);
     }
   }
 
   /// Remove relay
   void removeRelay(String url) {
     _relays.removeWhere((relay) => relay.url == url);
-    _disconnectRelay(url);
+    _pool.removeRelay(url);
   }
 
   /// Connect to all relays
   Future<void> connect() async {
-    for (final relay in _relays) {
-      await _connectRelay(relay);
-    }
+    await _pool.connectAll();
     _isConnected = true;
+    _startListening();
   }
 
   /// Disconnect from all relays
   Future<void> disconnect() async {
-    for (final url in _connections.keys.toList()) {
-      await _disconnectRelay(url);
-    }
+    await _poolSubscription?.cancel();
+    _poolSubscription = null;
+    await _pool.disconnectAll();
     _isConnected = false;
   }
 
-  /// Connect to a single relay
-  Future<void> _connectRelay(Relay relay) async {
-    if (_connections.containsKey(relay.url)) {
-      return; // Already connected
-    }
-
-    try {
-      final channel = WebSocketChannel.connect(Uri.parse(relay.url));
-      _connections[relay.url] = channel;
-
-      // Listen to messages
-      channel.stream.listen(
-        (data) => _handleMessage(relay.url, data),
-        onError: (error) => _handleError(relay.url, error),
-        onDone: () => _handleDisconnect(relay.url),
-      );
-
-      print('Connected to relay: ${relay.url}');
-    } catch (e) {
-      print('Failed to connect to ${relay.url}: $e');
-    }
-  }
-
-  /// Disconnect from a single relay
-  Future<void> _disconnectRelay(String url) async {
-    final channel = _connections.remove(url);
-    await channel?.sink.close();
-    print('Disconnected from relay: $url');
+  /// Start listening to relay pool messages
+  void _startListening() {
+    _poolSubscription = _pool.messageStream.listen((message) {
+      final relayUrl = message['relay'] as String;
+      final data = message['data'];
+      _handleMessage(relayUrl, data);
+    });
   }
 
   /// Handle incoming message
@@ -146,30 +133,25 @@ class NostrClient {
     print('Notice from $relayUrl: $notice');
   }
 
-  /// Handle error
-  void _handleError(String relayUrl, dynamic error) {
-    print('Error from $relayUrl: $error');
-  }
-
-  /// Handle disconnect
-  void _handleDisconnect(String relayUrl) {
-    print('Disconnected from $relayUrl');
-    _connections.remove(relayUrl);
-  }
-
-  /// Publish event to all connected relays
+  /// Publish event to all connected relays (broadcast to all)
   Future<void> publish(NostrEvent event) async {
     final message = jsonEncode(['EVENT', event.toJson()]);
-
-    for (final entry in _connections.entries) {
-      try {
-        entry.value.sink.add(message);
-        print('Published event to ${entry.key}');
-      } catch (e) {
-        print('Failed to publish to ${entry.key}: $e');
-      }
-    }
+    _pool.broadcastToAll(message);
+    print('Published event to all relays');
   }
+
+  /// Publish to N best relays (load balanced)
+  Future<void> publishToNBest(NostrEvent event, {int n = 3}) async {
+    final message = jsonEncode(['EVENT', event.toJson()]);
+    _pool.sendToNBest(message, n);
+    print('Published event to $n best relays');
+  }
+
+  /// Get list of healthy relay URLs
+  List<String> get healthyRelays => _pool.healthyRelays;
+
+  /// Get best relay URL
+  String? get bestRelay => _pool.getBestRelay();
 
   /// Subscribe to events with filters
   Subscription subscribe(
@@ -183,14 +165,7 @@ class NostrClient {
     // Send REQ message to all relays
     final filtersJson = filters.map((f) => f.toJson()).toList();
     final message = jsonEncode(['REQ', subId, ...filtersJson]);
-
-    for (final entry in _connections.entries) {
-      try {
-        entry.value.sink.add(message);
-      } catch (e) {
-        print('Failed to subscribe on ${entry.key}: $e');
-      }
-    }
+    _pool.broadcastToAll(message);
 
     return Subscription(
       id: subId,
@@ -204,14 +179,7 @@ class NostrClient {
   void _closeSubscription(String subscriptionId) {
     // Send CLOSE message to all relays
     final message = jsonEncode(['CLOSE', subscriptionId]);
-
-    for (final entry in _connections.entries) {
-      try {
-        entry.value.sink.add(message);
-      } catch (e) {
-        print('Failed to close subscription on ${entry.key}: $e');
-      }
-    }
+    _pool.broadcastToAll(message);
 
     // Close and remove controller
     final controller = _subscriptions.remove(subscriptionId);

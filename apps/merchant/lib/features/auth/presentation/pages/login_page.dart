@@ -186,8 +186,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       // Get public key from remote signer
       final publicKey = await Nip46Service.getPublicKey();
       
-      // Store the session info for future signing
-      // TODO: Store session in secure storage for reuse
+      // Store the NIP-46 session with public key
+      // Note: For NIP-46, we store the public key as the identifier
+      // The actual signing happens remotely via the bunker
       await ref.read(authProvider.notifier).savePrivateKey(publicKey);
 
       if (!mounted) return;

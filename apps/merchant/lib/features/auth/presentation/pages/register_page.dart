@@ -1,9 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nostr_core/nostr_core.dart';
 
 import '../providers/auth_provider.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -31,18 +30,10 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
     // Simulate key generation delay
     await Future.delayed(const Duration(milliseconds: 800));
 
-    // TODO: Replace with actual secp256k1 key generation
-    final random = Random.secure();
-    final privateKey = List.generate(
-      64,
-      (index) => random.nextInt(16).toRadixString(16),
-    ).join();
-    
-    // TODO: Derive actual public key from private key
-    final publicKey = List.generate(
-      64,
-      (index) => random.nextInt(16).toRadixString(16),
-    ).join();
+    // Generate actual secp256k1 key pair
+    final keyPair = KeyPair.generate();
+    final privateKey = keyPair.privateKey;
+    final publicKey = keyPair.publicKey;
 
     setState(() {
       _generatedPrivateKeyHex = privateKey;
