@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nostr_core/nostr_core.dart';
 import '../../../core/providers/nostr_provider.dart';
+import '../../../core/providers/media_server_provider.dart';
 import '../../auth/presentation/providers/auth_provider.dart';
 
 class SettingsScreen extends ConsumerStatefulWidget {
@@ -43,6 +44,11 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             _buildSectionHeader('Nostr Relays'),
             _buildRelayStats(stats),
             _buildRelayListTile(),
+            const Divider(height: 32),
+
+            // Media Server Section
+            _buildSectionHeader('Media Server'),
+            _buildMediaServerSettings(),
             const Divider(height: 32),
 
             // App Info Section
@@ -231,6 +237,158 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               : null,
         );
       }).toList(),
+    );
+  }
+
+  Widget _buildMediaServerSettings() {
+    final mediaServer = ref.watch(mediaServerProvider);
+
+    return Column(
+      children: [
+        ListTile(
+          leading: const Icon(Icons.cloud_upload),
+          title: const Text('Image Upload Server'),
+          subtitle: Text(
+            '${mediaServer.name} ${mediaServer.isNIP96 ? '(NIP-96)' : '(Legacy)'}\n${mediaServer.serverUrl}',
+            style: const TextStyle(fontSize: 12),
+          ),
+          trailing: IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: _showMediaServerDialog,
+            tooltip: 'Change server',
+          ),
+        ),
+      ],
+    );
+  }
+
+  void _showMediaServerDialog() {
+    final currentServer = ref.read(mediaServerProvider);
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Media Server Settings'),
+        content: SizedBox(
+          width: double.maxFinite,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text('Select a media server for uploading product images:'),
+              const SizedBox(height: 16),
+              
+              // Predefined servers
+              ...MediaServerConfig.predefinedServers.map((server) {
+                final isSelected = server.serverUrl == currentServer.serverUrl;
+                return RadioListTile<String>(
+                  dense: true,
+                  value: server.serverUrl,
+                  groupValue: currentServer.serverUrl,
+                  title: Text('${server.name} ${server.isNIP96 ? '(NIP-96)' : ''}'),
+                  subtitle: Text(
+                    server.serverUrl,
+                    style: const TextStyle(fontSize: 11),
+                  ),
+                  selected: isSelected,
+                  onChanged: (value) {
+                    ref.read(mediaServerProvider.notifier).setMediaServer(server);
+                    Navigator.pop(context);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Media server changed to ${server.name}')),
+                    );
+                  },
+                );
+              }),
+              
+              const Divider(),
+              
+              // Custom server option
+              ListTile(
+                dense: true,
+                leading: const Icon(Icons.add),
+                title: const Text('Custom Server'),
+                onTap: () {
+                  Navigator.pop(context);
+                  _showCustomServerDialog();
+                },
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Close'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showCustomServerDialog() {
+    final nameController = TextEditingController();
+    final urlController = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Custom Media Server'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: nameController,
+              decoration: const InputDecoration(
+                labelText: 'Server Name',
+                hintText: 'e.g., My Server',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: urlController,
+              decoration: const InputDecoration(
+                labelText: 'Upload URL',
+                hintText: 'https://example.com/upload',
+                border: OutlineInputBorder(),
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () {
+              final name = nameController.text.trim();
+              final url = urlController.text.trim();
+              
+              if (name.isEmpty || url.isEmpty) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Please fill in all fields')),
+                );
+                return;
+              }
+              
+              if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Invalid URL format')),
+                );
+                return;
+              }
+              
+              ref.read(mediaServerProvider.notifier).setCustomMediaServer(url, name);
+              Navigator.pop(context);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Media server changed to $name')),
+              );
+            },
+            child: const Text('Save'),
+          ),
+        ],
+      ),
     );
   }
 

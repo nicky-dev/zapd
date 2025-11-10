@@ -5,6 +5,7 @@ import '../models/product.dart';
 import '../providers/product_provider.dart';
 import '../../../core/providers/nostr_provider.dart';
 import '../../../core/providers/image_upload_provider.dart';
+import '../../auth/presentation/providers/auth_provider.dart';
 
 class ProductFormScreen extends ConsumerStatefulWidget {
   final String stallId;
@@ -258,12 +259,27 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
       // Read image bytes
       final bytes = await pickedFile.readAsBytes();
 
-      // Upload to nostr.build
-      final imageUploadService = ref.read(imageUploadServiceProvider);
-      final imageUrl = await imageUploadService.uploadImage(
-        bytes,
-        pickedFile.name,
+      // Get private key for NIP-98 auth
+      final authState = await ref.read(authProvider.future);
+      final privateKey = authState.privateKey;
+
+      if (privateKey == null) {
+        throw Exception('Private key not available for authentication');
+      }
+
+      // Upload using NIP-96
+      final nip96Service = ref.read(nip96ServiceProvider);
+      final response = await nip96Service.uploadFile(
+        imageBytes: bytes,
+        fileName: pickedFile.name,
+        privateKey: privateKey,
       );
+
+      if (!response.isSuccess || response.nip94Event?.url == null) {
+        throw Exception(response.message);
+      }
+
+      final imageUrl = response.nip94Event!.url!;
 
       // Add to images list
       setState(() {
