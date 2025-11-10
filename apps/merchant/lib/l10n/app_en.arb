@@ -323,5 +323,845 @@
   "nostrConnectConnected": "Connected to Nostr Connect!",
   "@nostrConnectConnected": {
     "description": "Nostr Connect success message"
+  },
+  
+  "paymentDetails": "Payment Details",
+  "@paymentDetails": {
+    "description": "Payment details screen title"
+  },
+  
+  "paymentStatus": "Payment Status",
+  "@paymentStatus": {
+    "description": "Payment status label"
+  },
+  
+  "paymentStatusPending": "Pending",
+  "@paymentStatusPending": {
+    "description": "Payment status: pending"
+  },
+  
+  "paymentStatusPaid": "Paid",
+  "@paymentStatusPaid": {
+    "description": "Payment status: paid"
+  },
+  
+  "paymentStatusExpired": "Expired",
+  "@paymentStatusExpired": {
+    "description": "Payment status: expired"
+  },
+  
+  "paymentStatusFailed": "Failed",
+  "@paymentStatusFailed": {
+    "description": "Payment status: failed"
+  },
+  
+  "amount": "Amount",
+  "@amount": {
+    "description": "Amount label"
+  },
+  
+  "estimatedSats": "Estimated",
+  "@estimatedSats": {
+    "description": "Estimated sats label"
+  },
+  
+  "lightningInvoice": "Lightning Invoice",
+  "@lightningInvoice": {
+    "description": "Lightning invoice label"
+  },
+  
+  "tapToCopy": "Tap to copy",
+  "@tapToCopy": {
+    "description": "Tap to copy hint"
+  },
+  
+  "copiedInvoice": "Invoice copied to clipboard",
+  "@copiedInvoice": {
+    "description": "Invoice copied message"
+  },
+  
+  "paymentId": "Payment ID",
+  "@paymentId": {
+    "description": "Payment ID label"
+  },
+  
+  "orderId": "Order ID",
+  "@orderId": {
+    "description": "Order ID label"
+  },
+  
+  "paymentMethod": "Payment Method",
+  "@paymentMethod": {
+    "description": "Payment method label"
+  },
+  
+  "paymentHash": "Payment Hash",
+  "@paymentHash": {
+    "description": "Payment hash label"
+  },
+  
+  "preimage": "Preimage",
+  "@preimage": {
+    "description": "Preimage label"
+  },
+  
+  "createdAt": "Created",
+  "@createdAt": {
+    "description": "Created at label"
+  },
+  
+  "paidAt": "Paid At",
+  "@paidAt": {
+    "description": "Paid at label"
+  },
+  
+  "expiresAt": "Expires At",
+  "@expiresAt": {
+    "description": "Expires at label"
+  },
+  
+  "showQrCode": "Show QR Code",
+  "@showQrCode": {
+    "description": "Show QR code button"
+  },
+  
+  "copyInvoice": "Copy Invoice",
+  "@copyInvoice": {
+    "description": "Copy invoice button"
+  },
+  
+  "checkStatus": "Check Status",
+  "@checkStatus": {
+    "description": "Check status button"
+  },
+  
+  "scanWithWallet": "Scan with Lightning Wallet",
+  "@scanWithWallet": {
+    "description": "QR dialog title"
+  },
+  
+  "close": "Close",
+  "@close": {
+    "description": "Close button"
+  },
+  
+  "payment": "Payment",
+  "@payment": {
+    "description": "Payment label"
+  },
+  
+  "noPayment": "No payment yet",
+  "@noPayment": {
+    "description": "No payment message"
+  },
+  
+  "generateLightningInvoice": "Generate Lightning Invoice",
+  "@generateLightningInvoice": {
+    "description": "Generate invoice button"
+  },
+  
+  "viewDetails": "View Details",
+  "@viewDetails": {
+    "description": "View details button"
+  },
+  
+  "notifications": "Notifications",
+  "@notifications": {
+    "description": "Notifications screen title"
+  },
+  
+  "markAllAsRead": "Mark All Read",
+  "@markAllAsRead": {
+    "description": "Mark all as read button"
+  },
+  
+  "clearAll": "Clear All",
+  "@clearAll": {
+    "description": "Clear all button"
+  },
+  
+  "noNotifications": "No notifications",
+  "@noNotifications": {
+    "description": "Empty notifications message"
+  },
+  
+  "clearAllConfirm": "Are you sure you want to clear all notifications?",
+  "@clearAllConfirm": {
+    "description": "Clear all confirmation message"
+  },
+  
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button"
+  },
+  
+  "notificationDeleted": "Notification deleted",
+  "@notificationDeleted": {
+    "description": "Notification deleted message"
+  },
+  
+  "undo": "Undo",
+  "@undo": {
+    "description": "Undo button"
+  },
+  
+  "notificationNewOrder": "New Order",
+  "@notificationNewOrder": {
+    "description": "New order notification type"
+  },
+  
+  "notificationOrderUpdate": "Order Update",
+  "@notificationOrderUpdate": {
+    "description": "Order update notification type"
+  },
+  
+  "notificationPayment": "Payment",
+  "@notificationPayment": {
+    "description": "Payment notification type"
+  },
+  
+  "notificationSystem": "System",
+  "@notificationSystem": {
+    "description": "System notification type"
+  },
+  
+  "justNow": "Just now",
+  "@justNow": {
+    "description": "Just now time label"
+  },
+  
+  "minutesAgo": "{count}m ago",
+  "@minutesAgo": {
+    "description": "Minutes ago time label",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  
+  "hoursAgo": "{count}h ago",
+  "@hoursAgo": {
+    "description": "Hours ago time label",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  
+  "daysAgo": "{count}d ago",
+  "@daysAgo": {
+    "description": "Days ago time label",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  
+  "analytics": "Analytics",
+  "@analytics": {
+    "description": "Analytics screen title"
+  },
+  
+  "totalRevenue": "Total Revenue",
+  "@totalRevenue": {
+    "description": "Total revenue label"
+  },
+  
+  "totalOrders": "Total Orders",
+  "@totalOrders": {
+    "description": "Total orders label"
+  },
+  
+  "averageOrderValue": "Average Order Value",
+  "@averageOrderValue": {
+    "description": "Average order value label"
+  },
+  
+  "revenueTrend": "Revenue Trend",
+  "@revenueTrend": {
+    "description": "Revenue trend chart title"
+  },
+  
+  "orderStatusDistribution": "Order Status Distribution",
+  "@orderStatusDistribution": {
+    "description": "Order status chart title"
+  },
+  
+  "topProducts": "Top Products",
+  "@topProducts": {
+    "description": "Top products section title"
+  },
+  
+  "noDataAvailable": "No data available",
+  "@noDataAvailable": {
+    "description": "No data message"
+  },
+  
+  "periodToday": "Today",
+  "@periodToday": {
+    "description": "Today period"
+  },
+  
+  "periodWeek": "This Week",
+  "@periodWeek": {
+    "description": "This week period"
+  },
+  
+  "periodMonth": "This Month",
+  "@periodMonth": {
+    "description": "This month period"
+  },
+  
+  "periodYear": "This Year",
+  "@periodYear": {
+    "description": "This year period"
+  },
+  
+  "soldCount": "Sold: {count}",
+  "@soldCount": {
+    "description": "Sold count label",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  
+  "orders": "orders",
+  "@orders": {
+    "description": "Orders label (lowercase)"
+  },
+  
+  "selectPeriod": "Select Period",
+  "@selectPeriod": {
+    "description": "Select period label"
+  },
+  
+  "welcomeBack": "Welcome back! 👋",
+  "@welcomeBack": {
+    "description": "Dashboard welcome message"
+  },
+  
+  "manageYourBusiness": "Manage your stalls, products, and orders",
+  "@manageYourBusiness": {
+    "description": "Dashboard subtitle"
+  },
+  
+  "pendingOrders": "Pending Orders",
+  "@pendingOrders": {
+    "description": "Pending orders label"
+  },
+  
+  "activeOrders": "Active Orders",
+  "@activeOrders": {
+    "description": "Active orders label"
+  },
+  
+  "quickActions": "Quick Actions",
+  "@quickActions": {
+    "description": "Quick actions section title"
+  },
+  
+  "myStalls": "My Stalls",
+  "@myStalls": {
+    "description": "My stalls menu item"
+  },
+  
+  "manageStalls": "Manage your food stalls",
+  "@manageStalls": {
+    "description": "Manage stalls description"
+  },
+  
+  "myOrders": "My Orders",
+  "@myOrders": {
+    "description": "My orders menu item"
+  },
+  
+  "viewAndManageOrders": "View and manage customer orders",
+  "@viewAndManageOrders": {
+    "description": "Manage orders description"
+  },
+  
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings menu item"
+  },
+  
+  "configureApp": "Configure app preferences",
+  "@configureApp": {
+    "description": "Settings description"
+  },
+  
+  "account": "Account",
+  "@account": {
+    "description": "Account section header"
+  },
+  
+  "publicKey": "Public Key (npub)",
+  "@publicKey": {
+    "description": "Public key label"
+  },
+  
+  "privateKey": "Private Key (nsec)",
+  "@privateKey": {
+    "description": "Private key label"
+  },
+  
+  "notAvailable": "Not available",
+  "@notAvailable": {
+    "description": "Not available text"
+  },
+  
+  "nostrRelays": "Nostr Relays",
+  "@nostrRelays": {
+    "description": "Nostr relays section header"
+  },
+  
+  "connectionStatus": "Connection Status",
+  "@connectionStatus": {
+    "description": "Connection status label"
+  },
+  
+  "total": "Total",
+  "@total": {
+    "description": "Total label"
+  },
+  
+  "connected": "Connected",
+  "@connected": {
+    "description": "Connected label"
+  },
+  
+  "healthy": "Healthy",
+  "@healthy": {
+    "description": "Healthy label"
+  },
+  
+  "relayList": "Relay List",
+  "@relayList": {
+    "description": "Relay list label"
+  },
+  
+  "relaysConfigured": "{count} relays configured",
+  "@relaysConfigured": {
+    "description": "Number of relays configured",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  
+  "mediaServer": "Media Server",
+  "@mediaServer": {
+    "description": "Media server section header"
+  },
+  
+  "about": "About",
+  "@about": {
+    "description": "About section header"
+  },
+  
+  "version": "Version",
+  "@version": {
+    "description": "Version label"
+  },
+  
+  "protocol": "Protocol",
+  "@protocol": {
+    "description": "Protocol label"
+  },
+  
+  "encryption": "Encryption",
+  "@encryption": {
+    "description": "Encryption label"
+  },
+  
+  "dangerZone": "Danger Zone",
+  "@dangerZone": {
+    "description": "Danger zone section header"
+  },
+  
+  "exportPrivateKey": "Export Private Key",
+  "@exportPrivateKey": {
+    "description": "Export private key button"
+  },
+  
+  "backupPrivateKey": "Backup your private key",
+  "@backupPrivateKey": {
+    "description": "Backup private key description"
+  },
+  
+  "logout": "Logout",
+  "@logout": {
+    "description": "Logout button"
+  },
+  
+  "signOutAccount": "Sign out from your account",
+  "@signOutAccount": {
+    "description": "Sign out description"
+  },
+  
+  "errorLoadingSettings": "Error loading settings: {error}",
+  "@errorLoadingSettings": {
+    "description": "Error loading settings message",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  
+  "copiedToClipboard": "{label} copied to clipboard",
+  "@copiedToClipboard": {
+    "description": "Copied to clipboard message",
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  
+  "noStallsYet": "No stalls yet",
+  "@noStallsYet": {
+    "description": "No stalls message"
+  },
+  
+  "createFirstStall": "Create your first stall to get started",
+  "@createFirstStall": {
+    "description": "Create first stall prompt"
+  },
+  
+  "error": "Error",
+  "@error": {
+    "description": "Error label"
+  },
+  
+  "retry": "Retry",
+  "@retry": {
+    "description": "Retry button"
+  },
+  
+  "newStall": "New Stall",
+  "@newStall": {
+    "description": "New stall button"
+  },
+  
+  "chooseStallType": "Choose Stall Type",
+  "@chooseStallType": {
+    "description": "Choose stall type dialog title"
+  },
+  
+  "orders": "Orders",
+  "@orders": {
+    "description": "Orders screen title"
+  },
+  
+  "filterByStatus": "Filter by status",
+  "@filterByStatus": {
+    "description": "Filter by status tooltip"
+  },
+  
+  "allOrders": "All Orders",
+  "@allOrders": {
+    "description": "All orders filter"
+  },
+  
+  "all": "All",
+  "@all": {
+    "description": "All label"
+  },
+  
+  "noOrdersYet": "No orders yet",
+  "@noOrdersYet": {
+    "description": "No orders message"
+  },
+  
+  "ordersWillAppear": "Orders from customers will appear here",
+  "@ordersWillAppear": {
+    "description": "Orders will appear message"
+  },
+  
+  "refresh": "Refresh",
+  "@refresh": {
+    "description": "Refresh button"
+  },
+  
+  "products": "Products",
+  "@products": {
+    "description": "Products label"
+  },
+  
+  "noProductsYet": "No products yet",
+  "@noProductsYet": {
+    "description": "No products message"
+  },
+  
+  "addFirstProduct": "Add your first product to start selling",
+  "@addFirstProduct": {
+    "description": "Add first product prompt"
+  },
+  
+  "addProduct": "Add Product",
+  "@addProduct": {
+    "description": "Add product button"
+  },
+  
+  "failedToLoadProducts": "Failed to load products",
+  "@failedToLoadProducts": {
+    "description": "Failed to load products message"
+  },
+  
+  "editProduct": "Edit Product",
+  "@editProduct": {
+    "description": "Edit product button"
+  },
+  
+  "deleteProduct": "Delete Product",
+  "@deleteProduct": {
+    "description": "Delete product button"
+  },
+  
+  "createStall": "Create Stall",
+  "@createStall": {
+    "description": "Create stall title"
+  },
+  
+  "editStall": "Edit Stall",
+  "@editStall": {
+    "description": "Edit stall title"
+  },
+  
+  "stallName": "Stall Name",
+  "@stallName": {
+    "description": "Stall name field"
+  },
+  
+  "description": "Description",
+  "@description": {
+    "description": "Description field"
+  },
+  
+  "currency": "Currency",
+  "@currency": {
+    "description": "Currency field"
+  },
+  
+  "cuisine": "Cuisine",
+  "@cuisine": {
+    "description": "Cuisine field"
+  },
+  
+  "preparationTime": "Preparation Time",
+  "@preparationTime": {
+    "description": "Preparation time field"
+  },
+  
+  "operatingHours": "Operating Hours",
+  "@operatingHours": {
+    "description": "Operating hours field"
+  },
+  
+  "acceptsOrders": "Accepts Orders",
+  "@acceptsOrders": {
+    "description": "Accepts orders toggle"
+  },
+  
+  "shippingZones": "Shipping Zones",
+  "@shippingZones": {
+    "description": "Shipping zones section"
+  },
+  
+  "addShippingZone": "Add Shipping Zone",
+  "@addShippingZone": {
+    "description": "Add shipping zone button"
+  },
+  
+  "save": "Save",
+  "@save": {
+    "description": "Save button"
+  },
+  
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button"
+  },
+  
+  "delete": "Delete",
+  "@delete": {
+    "description": "Delete button"
+  },
+  
+  "confirm": "Confirm",
+  "@confirm": {
+    "description": "Confirm button"
+  },
+  
+  "productName": "Product Name",
+  "@productName": {
+    "description": "Product name field"
+  },
+  
+  "price": "Price",
+  "@price": {
+    "description": "Price field"
+  },
+  
+  "category": "Category",
+  "@category": {
+    "description": "Category field"
+  },
+  
+  "inStock": "In Stock",
+  "@inStock": {
+    "description": "In stock toggle"
+  },
+  
+  "images": "Images",
+  "@images": {
+    "description": "Images section"
+  },
+  
+  "addImage": "Add Image",
+  "@addImage": {
+    "description": "Add image button"
+  },
+  
+  "basicInformation": "Basic Information",
+  "@basicInformation": {
+    "description": "Basic information section"
+  },
+  
+  "stallNameRequired": "Stall Name *",
+  "@stallNameRequired": {
+    "description": "Stall name required field"
+  },
+  
+  "stallNameHint": "e.g., Thai Street Food",
+  "@stallNameHint": {
+    "description": "Stall name hint"
+  },
+  
+  "descriptionOptional": "Description (optional)",
+  "@descriptionOptional": {
+    "description": "Description optional field"
+  },
+  
+  "pleaseEnterStallName": "Please enter a stall name",
+  "@pleaseEnterStallName": {
+    "description": "Stall name validation"
+  },
+  
+  "stallCreatedSuccessfully": "Stall created successfully",
+  "@stallCreatedSuccessfully": {
+    "description": "Stall created message"
+  },
+  
+  "stallUpdatedSuccessfully": "Stall updated successfully",
+  "@stallUpdatedSuccessfully": {
+    "description": "Stall updated message"
+  },
+  
+  "pleaseAddShippingZone": "Please add at least one shipping zone",
+  "@pleaseAddShippingZone": {
+    "description": "Shipping zone required message"
+  },
+  
+  "orderDetails": "Order Details",
+  "@orderDetails": {
+    "description": "Order details title"
+  },
+  
+  "copyOrderId": "Copy Order ID",
+  "@copyOrderId": {
+    "description": "Copy order ID action"
+  },
+  
+  "copyCustomerPubkey": "Copy Customer Pubkey",
+  "@copyCustomerPubkey": {
+    "description": "Copy customer pubkey action"
+  },
+  
+  "status": "Status",
+  "@status": {
+    "description": "Status label"
+  },
+  
+  "customer": "Customer",
+  "@customer": {
+    "description": "Customer label"
+  },
+  
+  "orderItems": "Order Items",
+  "@orderItems": {
+    "description": "Order items label"
+  },
+  
+  "deliveryAddress": "Delivery Address",
+  "@deliveryAddress": {
+    "description": "Delivery address label"
+  },
+  
+  "contactPhone": "Contact Phone",
+  "@contactPhone": {
+    "description": "Contact phone label"
+  },
+  
+  "specialInstructions": "Special Instructions",
+  "@specialInstructions": {
+    "description": "Special instructions label"
+  },
+  
+  "none": "None",
+  "@none": {
+    "description": "None label"
+  },
+  
+  "actions": "Actions",
+  "@actions": {
+    "description": "Actions label"
+  },
+  
+  "acceptOrder": "Accept Order",
+  "@acceptOrder": {
+    "description": "Accept order button"
+  },
+  
+  "prepareOrder": "Prepare Order",
+  "@prepareOrder": {
+    "description": "Prepare order button"
+  },
+  
+  "readyForPickup": "Ready for Pickup",
+  "@readyForPickup": {
+    "description": "Ready for pickup button"
+  },
+  
+  "completeOrder": "Complete Order",
+  "@completeOrder": {
+    "description": "Complete order button"
+  },
+  
+  "cancelOrder": "Cancel Order",
+  "@cancelOrder": {
+    "description": "Cancel order button"
+  },
+  
+  "loading": "Loading...",
+  "@loading": {
+    "description": "Loading message"
+  },
+  
+  "authenticationRequired": "Authentication required",
+  "@authenticationRequired": {
+    "description": "Authentication required message"
+  },
+  
+  "failedToDecryptOrderDetails": "Failed to decrypt order details",
+  "@failedToDecryptOrderDetails": {
+    "description": "Failed to decrypt message"
   }
 }

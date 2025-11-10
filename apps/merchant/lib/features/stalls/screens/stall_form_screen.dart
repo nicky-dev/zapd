@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../l10n/app_localizations.dart';
 import '../models/stall.dart';
 import '../models/stall_type.dart';
 import '../providers/stall_provider.dart';
@@ -68,10 +69,11 @@ class _StallFormScreenState extends ConsumerState<StallFormScreen> {
   }
 
   Future<void> _saveStall() async {
+    final l10n = AppLocalizations.of(context)!;
     if (!_formKey.currentState!.validate()) return;
     if (_shippingZones.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please add at least one shipping zone')),
+        SnackBar(content: Text(l10n.pleaseAddShippingZone)),
       );
       return;
     }
@@ -108,14 +110,14 @@ class _StallFormScreenState extends ConsumerState<StallFormScreen> {
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Stall ${widget.stall == null ? "created" : "updated"} successfully')),
+          SnackBar(content: Text(widget.stall == null ? l10n.stallCreatedSuccessfully : l10n.stallUpdatedSuccessfully)),
         );
         Navigator.pop(context);
       }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: $e')),
+          SnackBar(content: Text('${l10n.error}: $e')),
         );
       }
     } finally {
@@ -160,9 +162,10 @@ class _StallFormScreenState extends ConsumerState<StallFormScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.stall == null ? 'Create Stall' : 'Edit Stall'),
+        title: Text(widget.stall == null ? l10n.createStall : l10n.editStall),
         actions: [
           if (_isLoading)
             const Center(
@@ -179,7 +182,7 @@ class _StallFormScreenState extends ConsumerState<StallFormScreen> {
             IconButton(
               icon: const Icon(Icons.save),
               onPressed: _saveStall,
-              tooltip: 'Save',
+              tooltip: l10n.save,
             ),
         ],
       ),
@@ -189,15 +192,15 @@ class _StallFormScreenState extends ConsumerState<StallFormScreen> {
           padding: const EdgeInsets.all(16),
           children: [
             // Basic Info Section
-            _buildSectionHeader('Basic Information'),
+            _buildSectionHeader(l10n.basicInformation),
             const SizedBox(height: 12),
             
             TextFormField(
               controller: _nameController,
-              decoration: const InputDecoration(
-                labelText: 'Stall Name *',
-                hintText: 'e.g., Thai Street Food',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: l10n.stallNameRequired,
+                hintText: l10n.stallNameHint,
+                border: const OutlineInputBorder(),
               ),
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {

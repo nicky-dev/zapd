@@ -57,13 +57,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get keyGeneratedSuccess => 'Key Generated Successfully!';
 
   @override
-  String get privateKey => 'Private Key';
+  String get privateKey => 'Private Key (nsec)';
 
   @override
   String get privateKeySecret => 'Private Key (Keep Secret!)';
 
   @override
-  String get publicKey => 'Public Key';
+  String get publicKey => 'Public Key (npub)';
 
   @override
   String get publicKeySafeToShare => 'Public Key (Safe to Share)';
@@ -91,7 +91,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get generateDifferentKey => 'Generate Different Key';
 
   @override
-  String get welcomeBack => 'Welcome Back!';
+  String get welcomeBack => 'Welcome back! 👋';
 
   @override
   String get chooseSignInMethod => 'Choose your preferred sign-in method';
@@ -214,4 +214,484 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get nostrConnectConnected => 'Connected to Nostr Connect!';
+
+  @override
+  String get paymentDetails => 'Payment Details';
+
+  @override
+  String get paymentStatus => 'Payment Status';
+
+  @override
+  String get paymentStatusPending => 'Pending';
+
+  @override
+  String get paymentStatusPaid => 'Paid';
+
+  @override
+  String get paymentStatusExpired => 'Expired';
+
+  @override
+  String get paymentStatusFailed => 'Failed';
+
+  @override
+  String get amount => 'Amount';
+
+  @override
+  String get estimatedSats => 'Estimated';
+
+  @override
+  String get lightningInvoice => 'Lightning Invoice';
+
+  @override
+  String get tapToCopy => 'Tap to copy';
+
+  @override
+  String get copiedInvoice => 'Invoice copied to clipboard';
+
+  @override
+  String get paymentId => 'Payment ID';
+
+  @override
+  String get orderId => 'Order ID';
+
+  @override
+  String get paymentMethod => 'Payment Method';
+
+  @override
+  String get paymentHash => 'Payment Hash';
+
+  @override
+  String get preimage => 'Preimage';
+
+  @override
+  String get createdAt => 'Created';
+
+  @override
+  String get paidAt => 'Paid At';
+
+  @override
+  String get expiresAt => 'Expires At';
+
+  @override
+  String get showQrCode => 'Show QR Code';
+
+  @override
+  String get copyInvoice => 'Copy Invoice';
+
+  @override
+  String get checkStatus => 'Check Status';
+
+  @override
+  String get scanWithWallet => 'Scan with Lightning Wallet';
+
+  @override
+  String get close => 'Close';
+
+  @override
+  String get payment => 'Payment';
+
+  @override
+  String get noPayment => 'No payment yet';
+
+  @override
+  String get generateLightningInvoice => 'Generate Lightning Invoice';
+
+  @override
+  String get viewDetails => 'View Details';
+
+  @override
+  String get notifications => 'Notifications';
+
+  @override
+  String get markAllAsRead => 'Mark All Read';
+
+  @override
+  String get clearAll => 'Clear All';
+
+  @override
+  String get noNotifications => 'No notifications';
+
+  @override
+  String get clearAllConfirm =>
+      'Are you sure you want to clear all notifications?';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get notificationDeleted => 'Notification deleted';
+
+  @override
+  String get undo => 'Undo';
+
+  @override
+  String get notificationNewOrder => 'New Order';
+
+  @override
+  String get notificationOrderUpdate => 'Order Update';
+
+  @override
+  String get notificationPayment => 'Payment';
+
+  @override
+  String get notificationSystem => 'System';
+
+  @override
+  String get justNow => 'Just now';
+
+  @override
+  String minutesAgo(int count) {
+    return '${count}m ago';
+  }
+
+  @override
+  String hoursAgo(int count) {
+    return '${count}h ago';
+  }
+
+  @override
+  String daysAgo(int count) {
+    return '${count}d ago';
+  }
+
+  @override
+  String get analytics => 'Analytics';
+
+  @override
+  String get totalRevenue => 'Total Revenue';
+
+  @override
+  String get totalOrders => 'Total Orders';
+
+  @override
+  String get averageOrderValue => 'Average Order Value';
+
+  @override
+  String get revenueTrend => 'Revenue Trend';
+
+  @override
+  String get orderStatusDistribution => 'Order Status Distribution';
+
+  @override
+  String get topProducts => 'Top Products';
+
+  @override
+  String get noDataAvailable => 'No data available';
+
+  @override
+  String get periodToday => 'Today';
+
+  @override
+  String get periodWeek => 'This Week';
+
+  @override
+  String get periodMonth => 'This Month';
+
+  @override
+  String get periodYear => 'This Year';
+
+  @override
+  String soldCount(int count) {
+    return 'Sold: $count';
+  }
+
+  @override
+  String get orders => 'Orders';
+
+  @override
+  String get selectPeriod => 'Select Period';
+
+  @override
+  String get manageYourBusiness => 'Manage your stalls, products, and orders';
+
+  @override
+  String get pendingOrders => 'Pending Orders';
+
+  @override
+  String get activeOrders => 'Active Orders';
+
+  @override
+  String get quickActions => 'Quick Actions';
+
+  @override
+  String get myStalls => 'My Stalls';
+
+  @override
+  String get manageStalls => 'Manage your food stalls';
+
+  @override
+  String get myOrders => 'My Orders';
+
+  @override
+  String get viewAndManageOrders => 'View and manage customer orders';
+
+  @override
+  String get settings => 'Settings';
+
+  @override
+  String get configureApp => 'Configure app preferences';
+
+  @override
+  String get account => 'Account';
+
+  @override
+  String get notAvailable => 'Not available';
+
+  @override
+  String get nostrRelays => 'Nostr Relays';
+
+  @override
+  String get connectionStatus => 'Connection Status';
+
+  @override
+  String get total => 'Total';
+
+  @override
+  String get connected => 'Connected';
+
+  @override
+  String get healthy => 'Healthy';
+
+  @override
+  String get relayList => 'Relay List';
+
+  @override
+  String relaysConfigured(int count) {
+    return '$count relays configured';
+  }
+
+  @override
+  String get mediaServer => 'Media Server';
+
+  @override
+  String get about => 'About';
+
+  @override
+  String get version => 'Version';
+
+  @override
+  String get protocol => 'Protocol';
+
+  @override
+  String get encryption => 'Encryption';
+
+  @override
+  String get dangerZone => 'Danger Zone';
+
+  @override
+  String get exportPrivateKey => 'Export Private Key';
+
+  @override
+  String get backupPrivateKey => 'Backup your private key';
+
+  @override
+  String get signOutAccount => 'Sign out from your account';
+
+  @override
+  String errorLoadingSettings(String error) {
+    return 'Error loading settings: $error';
+  }
+
+  @override
+  String copiedToClipboard(String label) {
+    return '$label copied to clipboard';
+  }
+
+  @override
+  String get noStallsYet => 'No stalls yet';
+
+  @override
+  String get createFirstStall => 'Create your first stall to get started';
+
+  @override
+  String get error => 'Error';
+
+  @override
+  String get retry => 'Retry';
+
+  @override
+  String get newStall => 'New Stall';
+
+  @override
+  String get chooseStallType => 'Choose Stall Type';
+
+  @override
+  String get filterByStatus => 'Filter by status';
+
+  @override
+  String get allOrders => 'All Orders';
+
+  @override
+  String get all => 'All';
+
+  @override
+  String get noOrdersYet => 'No orders yet';
+
+  @override
+  String get ordersWillAppear => 'Orders from customers will appear here';
+
+  @override
+  String get refresh => 'Refresh';
+
+  @override
+  String get products => 'Products';
+
+  @override
+  String get noProductsYet => 'No products yet';
+
+  @override
+  String get addFirstProduct => 'Add your first product to start selling';
+
+  @override
+  String get addProduct => 'Add Product';
+
+  @override
+  String get failedToLoadProducts => 'Failed to load products';
+
+  @override
+  String get editProduct => 'Edit Product';
+
+  @override
+  String get deleteProduct => 'Delete Product';
+
+  @override
+  String get createStall => 'Create Stall';
+
+  @override
+  String get editStall => 'Edit Stall';
+
+  @override
+  String get stallName => 'Stall Name';
+
+  @override
+  String get description => 'Description';
+
+  @override
+  String get currency => 'Currency';
+
+  @override
+  String get cuisine => 'Cuisine';
+
+  @override
+  String get preparationTime => 'Preparation Time';
+
+  @override
+  String get operatingHours => 'Operating Hours';
+
+  @override
+  String get acceptsOrders => 'Accepts Orders';
+
+  @override
+  String get shippingZones => 'Shipping Zones';
+
+  @override
+  String get addShippingZone => 'Add Shipping Zone';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get confirm => 'Confirm';
+
+  @override
+  String get productName => 'Product Name';
+
+  @override
+  String get price => 'Price';
+
+  @override
+  String get category => 'Category';
+
+  @override
+  String get inStock => 'In Stock';
+
+  @override
+  String get images => 'Images';
+
+  @override
+  String get addImage => 'Add Image';
+
+  @override
+  String get basicInformation => 'Basic Information';
+
+  @override
+  String get stallNameRequired => 'Stall Name *';
+
+  @override
+  String get stallNameHint => 'e.g., Thai Street Food';
+
+  @override
+  String get descriptionOptional => 'Description (optional)';
+
+  @override
+  String get pleaseEnterStallName => 'Please enter a stall name';
+
+  @override
+  String get stallCreatedSuccessfully => 'Stall created successfully';
+
+  @override
+  String get stallUpdatedSuccessfully => 'Stall updated successfully';
+
+  @override
+  String get pleaseAddShippingZone => 'Please add at least one shipping zone';
+
+  @override
+  String get orderDetails => 'Order Details';
+
+  @override
+  String get copyOrderId => 'Copy Order ID';
+
+  @override
+  String get copyCustomerPubkey => 'Copy Customer Pubkey';
+
+  @override
+  String get status => 'Status';
+
+  @override
+  String get customer => 'Customer';
+
+  @override
+  String get orderItems => 'Order Items';
+
+  @override
+  String get deliveryAddress => 'Delivery Address';
+
+  @override
+  String get contactPhone => 'Contact Phone';
+
+  @override
+  String get specialInstructions => 'Special Instructions';
+
+  @override
+  String get none => 'None';
+
+  @override
+  String get actions => 'Actions';
+
+  @override
+  String get acceptOrder => 'Accept Order';
+
+  @override
+  String get prepareOrder => 'Prepare Order';
+
+  @override
+  String get readyForPickup => 'Ready for Pickup';
+
+  @override
+  String get completeOrder => 'Complete Order';
+
+  @override
+  String get cancelOrder => 'Cancel Order';
+
+  @override
+  String get loading => 'Loading...';
+
+  @override
+  String get authenticationRequired => 'Authentication required';
+
+  @override
+  String get failedToDecryptOrderDetails => 'Failed to decrypt order details';
 }

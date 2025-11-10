@@ -65,6 +65,8 @@ dependencies:
   web_socket_channel: ^3.0.1
   http: ^1.2.2
   image_picker: ^1.1.2
+  qr_flutter: ^4.1.0
+  fl_chart: ^0.69.0
 
   # Icons
   cupertino_icons: ^1.0.8

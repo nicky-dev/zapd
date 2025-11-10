@@ -21,8 +21,10 @@ class MerchantApp extends ConsumerWidget {
     const zapdLightOrange = Color(0xFFFFB84D); // Lighter orange
     const zapdCream = Color(0xFFFFF8F0); // Light cream background
 
+    print('🌍 Building app with locale: ${locale.languageCode}'); // Debug
+
     return MaterialApp.router(
-      key: ValueKey(locale.languageCode),
+      key: ValueKey('${locale.languageCode}_${locale.toString()}'),
       title: 'ZapD Merchant',
       debugShowCheckedModeBanner: false,
       routerConfig: router,

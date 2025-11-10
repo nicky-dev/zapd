@@ -1,33 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/widgets/language_switcher.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
 import '../../../stalls/screens/stall_list_screen.dart';
 import '../../../orders/screens/order_list_screen.dart';
 import '../../../orders/providers/order_provider.dart';
 import '../../../settings/screens/settings_screen.dart';
+import '../../../notifications/widgets/notification_bell.dart';
+import '../../../analytics/screens/analytics_screen.dart';
 
 class DashboardPage extends ConsumerWidget {
   const DashboardPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final authState = ref.watch(authProvider);
     final pendingOrders = ref.watch(pendingOrdersProvider);
     final activeOrders = ref.watch(activeOrdersProvider);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ZapD Merchant'),
+        title: Text(l10n.appTitle),
         actions: [
+          const LanguageSwitcher(),
+          const NotificationBell(),
           IconButton(
             icon: const Icon(Icons.settings),
-            tooltip: 'Settings',
+            tooltip: l10n.settings,
             onPressed: () => _navigateToSettings(context),
           ),
           IconButton(
             icon: const Icon(Icons.logout),
-            tooltip: 'Logout',
+            tooltip: l10n.logout,
             onPressed: () async {
               await ref.read(authProvider.notifier).logout();
               if (context.mounted) {
@@ -45,12 +52,12 @@ class DashboardPage extends ConsumerWidget {
             children: [
               // Welcome header
               Text(
-                'Welcome back! 👋',
+                l10n.welcomeBack,
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
               const SizedBox(height: 8),
               Text(
-                'Manage your stalls, products, and orders',
+                l10n.manageYourBusiness,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: Colors.grey[600],
                     ),
@@ -63,7 +70,7 @@ class DashboardPage extends ConsumerWidget {
                   Expanded(
                     child: _StatCard(
                       icon: Icons.pending_actions,
-                      label: 'Pending Orders',
+                      label: l10n.pendingOrders,
                       value: pendingOrders.length.toString(),
                       color: Colors.orange,
                       onTap: () => _navigateToOrders(context, OrderFilter.pending),
@@ -73,7 +80,7 @@ class DashboardPage extends ConsumerWidget {
                   Expanded(
                     child: _StatCard(
                       icon: Icons.restaurant,
-                      label: 'Active Orders',
+                      label: l10n.activeOrders,
                       value: activeOrders.length.toString(),
                       color: Colors.blue,
                       onTap: () => _navigateToOrders(context, OrderFilter.active),
@@ -85,42 +92,39 @@ class DashboardPage extends ConsumerWidget {
 
               // Main menu
               Text(
-                'Quick Actions',
+                l10n.quickActions,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: 16),
 
               _MenuCard(
                 icon: Icons.store,
-                title: 'My Stalls',
-                subtitle: 'Manage your restaurant or shop stalls',
-                color: Colors.purple,
+                title: l10n.myStalls,
+                subtitle: l10n.manageStalls,
+                color: Colors.orange,
                 onTap: () => _navigateToStalls(context),
               ),
               const SizedBox(height: 12),
-
               _MenuCard(
-                icon: Icons.shopping_bag,
-                title: 'Orders',
-                subtitle: 'View and manage customer orders',
+                icon: Icons.receipt_long,
+                title: l10n.myOrders,
+                subtitle: l10n.viewAndManageOrders,
                 color: Colors.green,
                 onTap: () => _navigateToOrders(context, OrderFilter.all),
               ),
               const SizedBox(height: 12),
-
               _MenuCard(
                 icon: Icons.analytics,
-                title: 'Analytics',
+                title: l10n.analytics,
                 subtitle: 'View sales and performance metrics',
                 color: Colors.blue,
-                onTap: () => _showComingSoon(context),
+                onTap: () => _navigateToAnalytics(context),
               ),
               const SizedBox(height: 12),
-
               _MenuCard(
                 icon: Icons.settings,
-                title: 'Settings',
-                subtitle: 'Configure your account and preferences',
+                title: l10n.settings,
+                subtitle: l10n.configureApp,
                 color: Colors.grey,
                 onTap: () => _navigateToSettings(context),
               ),
@@ -209,9 +213,12 @@ class DashboardPage extends ConsumerWidget {
     );
   }
 
-  void _showComingSoon(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Coming soon...')),
+  void _navigateToAnalytics(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const AnalyticsScreen(),
+      ),
     );
   }
 }

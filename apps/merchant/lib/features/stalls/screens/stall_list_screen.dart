@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../core/widgets/language_switcher.dart';
+import '../../../l10n/app_localizations.dart';
 import '../providers/stall_provider.dart';
 import '../models/stall_type.dart';
 import '../widgets/stall_card.dart';
@@ -10,14 +12,17 @@ class StallListScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final stallsAsync = ref.watch(stallNotifierProvider);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Stalls'),
+        title: Text(l10n.myStalls),
         actions: [
+          const LanguageSwitcher(),
           IconButton(
             icon: const Icon(Icons.refresh),
+            tooltip: l10n.refresh,
             onPressed: () {
               ref.read(stallNotifierProvider.notifier).loadStalls();
             },
@@ -38,12 +43,12 @@ class StallListScreen extends ConsumerWidget {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'No stalls yet',
+                    l10n.noStallsYet,
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Create your first stall to get started',
+                    l10n.createFirstStall,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ],
@@ -66,13 +71,13 @@ class StallListScreen extends ConsumerWidget {
             children: [
               const Icon(Icons.error_outline, size: 48, color: Colors.red),
               const SizedBox(height: 16),
-              Text('Error: $error'),
+              Text('${l10n.error}: $error'),
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
                   ref.read(stallNotifierProvider.notifier).loadStalls();
                 },
-                child: const Text('Retry'),
+                child: Text(l10n.retry),
               ),
             ],
           ),
@@ -81,16 +86,17 @@ class StallListScreen extends ConsumerWidget {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _showCreateStallDialog(context, ref),
         icon: const Icon(Icons.add),
-        label: const Text('New Stall'),
+        label: Text(l10n.newStall),
       ),
     );
   }
 
   Future<void> _showCreateStallDialog(BuildContext context, WidgetRef ref) async {
+    final l10n = AppLocalizations.of(context)!;
     final result = await showDialog<StallType>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Choose Stall Type'),
+        title: Text(l10n.chooseStallType),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: StallType.values.map((type) {

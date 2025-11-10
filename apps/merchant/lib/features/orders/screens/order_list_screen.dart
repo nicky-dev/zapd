@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../core/widgets/language_switcher.dart';
+import '../../../l10n/app_localizations.dart';
 import '../providers/order_provider.dart';
 import '../models/order_status.dart';
 import '../widgets/order_card.dart';
@@ -16,6 +18,7 @@ class _OrderListScreenState extends ConsumerState<OrderListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final orders = ref.watch(orderNotifierProvider);
     final filteredOrders = _filterStatus == null
         ? orders
@@ -23,20 +26,21 @@ class _OrderListScreenState extends ConsumerState<OrderListScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Orders'),
+        title: Text(l10n.orders),
         actions: [
+          const LanguageSwitcher(),
           PopupMenuButton<OrderStatus?>(
             icon: const Icon(Icons.filter_list),
-            tooltip: 'Filter by status',
+            tooltip: l10n.filterByStatus,
             onSelected: (status) {
               setState(() {
                 _filterStatus = status;
               });
             },
             itemBuilder: (context) => [
-              const PopupMenuItem(
+              PopupMenuItem(
                 value: null,
-                child: Text('All Orders'),
+                child: Text(l10n.allOrders),
               ),
               const PopupMenuDivider(),
               ...OrderStatus.values.map((status) {
@@ -64,7 +68,7 @@ class _OrderListScreenState extends ConsumerState<OrderListScreen> {
             child: Row(
               children: [
                 _StatusChip(
-                  label: 'All',
+                  label: l10n.all,
                   count: orders.length,
                   isSelected: _filterStatus == null,
                   onTap: () => setState(() => _filterStatus = null),
@@ -102,13 +106,13 @@ class _OrderListScreenState extends ConsumerState<OrderListScreen> {
                         const SizedBox(height: 16),
                         Text(
                           _filterStatus == null
-                              ? 'No orders yet'
+                              ? l10n.noOrdersYet
                               : 'No ${_filterStatus!.displayName.toLowerCase()} orders',
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          'Orders will appear here when customers place them',
+                          l10n.ordersWillAppear,
                           style: Theme.of(context).textTheme.bodyMedium,
                           textAlign: TextAlign.center,
                         ),

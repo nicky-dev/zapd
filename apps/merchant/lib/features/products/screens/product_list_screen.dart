@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../l10n/app_localizations.dart';
 import '../providers/product_provider.dart';
 import '../widgets/product_card.dart';
 import 'product_form_screen.dart';
@@ -16,14 +17,16 @@ class ProductListScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final productsAsync = ref.watch(productNotifierProvider(stall.id));
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('${stall.name} - Products'),
+        title: Text('${stall.name} - ${l10n.products}'),
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
+            tooltip: l10n.refresh,
             onPressed: () {
               ref.read(productNotifierProvider(stall.id).notifier).loadProducts();
             },
@@ -44,19 +47,19 @@ class ProductListScreen extends ConsumerWidget {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'No products yet',
+                    l10n.noProductsYet,
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Add your first product to start selling',
+                    l10n.addFirstProduct,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   const SizedBox(height: 24),
                   ElevatedButton.icon(
                     onPressed: () => _navigateToAddProduct(context, ref),
                     icon: const Icon(Icons.add),
-                    label: const Text('Add Product'),
+                    label: Text(l10n.addProduct),
                   ),
                 ],
               ),
@@ -97,7 +100,7 @@ class ProductListScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 16),
               Text(
-                'Failed to load products',
+                l10n.failedToLoadProducts,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: 8),
@@ -111,7 +114,7 @@ class ProductListScreen extends ConsumerWidget {
                 onPressed: () {
                   ref.read(productNotifierProvider(stall.id).notifier).loadProducts();
                 },
-                child: const Text('Retry'),
+                child: Text(l10n.retry),
               ),
             ],
           ),

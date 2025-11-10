@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nostr_core/nostr_core.dart';
 import '../../../core/providers/nostr_provider.dart';
 import '../../../core/providers/media_server_provider.dart';
+import '../../../core/widgets/language_switcher.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../auth/presentation/providers/auth_provider.dart';
 
 class SettingsScreen extends ConsumerStatefulWidget {
@@ -18,22 +20,26 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final authState = ref.watch(authProvider);
     final nostrClient = ref.watch(nostrClientProvider);
     final stats = nostrClient.stats;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings'),
+        title: Text(l10n.settings),
+        actions: const [
+          LanguageSwitcher(),
+        ],
       ),
       body: authState.when(
         data: (state) => ListView(
           children: [
             // Account Section
-            _buildSectionHeader('Account'),
+            _buildSectionHeader(l10n.account),
             _buildAccountTile(
-              'Public Key (npub)',
-              state.publicKey != null ? NIP19.encodePublicKey(state.publicKey!) : 'Not available',
+              l10n.publicKey,
+              state.publicKey != null ? NIP19.encodePublicKey(state.publicKey!) : l10n.notAvailable,
               Icons.key,
             ),
             if (state.privateKey != null)
@@ -41,34 +47,34 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             const Divider(height: 32),
 
             // Relay Section
-            _buildSectionHeader('Nostr Relays'),
+            _buildSectionHeader(l10n.nostrRelays),
             _buildRelayStats(stats),
             _buildRelayListTile(),
             const Divider(height: 32),
 
             // Media Server Section
-            _buildSectionHeader('Media Server'),
+            _buildSectionHeader(l10n.mediaServer),
             _buildMediaServerSettings(),
             const Divider(height: 32),
 
             // App Info Section
-            _buildSectionHeader('About'),
-            _buildInfoTile('Version', '1.0.0', Icons.info_outline),
-            _buildInfoTile('Protocol', 'Nostr + NIP-15', Icons.hub),
-            _buildInfoTile('Encryption', 'NIP-44 (XChaCha20)', Icons.lock),
+            _buildSectionHeader(l10n.about),
+            _buildInfoTile(l10n.version, '1.0.0', Icons.info_outline),
+            _buildInfoTile(l10n.protocol, 'Nostr + NIP-15', Icons.hub),
+            _buildInfoTile(l10n.encryption, 'NIP-44 (XChaCha20)', Icons.lock),
             const Divider(height: 32),
 
             // Danger Zone
-            _buildSectionHeader('Danger Zone'),
+            _buildSectionHeader(l10n.dangerZone),
             _buildDangerTile(
-              'Export Private Key',
-              'Backup your private key',
+              l10n.exportPrivateKey,
+              l10n.backupPrivateKey,
               Icons.download,
               onTap: () => _exportPrivateKey(state.privateKey),
             ),
             _buildDangerTile(
-              'Logout',
-              'Sign out from your account',
+              l10n.logout,
+              l10n.signOutAccount,
               Icons.logout,
               onTap: _confirmLogout,
             ),
@@ -77,7 +83,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
         ),
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, stack) => Center(
-          child: Text('Error loading settings: $error'),
+          child: Text(l10n.errorLoadingSettings(error.toString())),
         ),
       ),
     );
@@ -113,11 +119,12 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   }
 
   Widget _buildPrivateKeyTile(String privateKey) {
+    final l10n = AppLocalizations.of(context)!;
     final nsec = NIP19.encodePrivateKey(privateKey);
     
     return ListTile(
       leading: const Icon(Icons.vpn_key),
-      title: const Text('Private Key (nsec)'),
+      title: Text(l10n.privateKey),
       subtitle: Text(
         _showPrivateKey
             ? (nsec.length > 32
@@ -139,7 +146,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           ),
           IconButton(
             icon: const Icon(Icons.copy),
-            onPressed: () => _copyToClipboard(nsec, 'Private Key (nsec)'),
+            onPressed: () => _copyToClipboard(nsec, l10n.privateKey),
           ),
         ],
       ),
@@ -147,6 +154,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   }
 
   Widget _buildRelayStats(Map<String, dynamic> stats) {
+    final l10n = AppLocalizations.of(context)!;
     final total = stats['total'] as int? ?? 0;
     final connected = stats['connected'] as int? ?? 0;
     final healthy = stats['healthy'] as int? ?? 0;
@@ -159,16 +167,16 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Connection Status',
+              l10n.connectionStatus,
               style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: 12),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildStatColumn('Total', total, Colors.blue),
-                _buildStatColumn('Connected', connected, Colors.green),
-                _buildStatColumn('Healthy', healthy, Colors.teal),
+                _buildStatColumn(l10n.total, total, Colors.blue),
+                _buildStatColumn(l10n.connected, connected, Colors.green),
+                _buildStatColumn(l10n.healthy, healthy, Colors.teal),
               ],
             ),
           ],
@@ -201,13 +209,14 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   }
 
   Widget _buildRelayListTile() {
+    final l10n = AppLocalizations.of(context)!;
     final nostrClient = ref.watch(nostrClientProvider);
     final relays = nostrClient.relays;
 
     return ExpansionTile(
       leading: const Icon(Icons.dns),
-      title: const Text('Relay List'),
-      subtitle: Text('${relays.length} relays configured'),
+      title: Text(l10n.relayList),
+      subtitle: Text(l10n.relaysConfigured(relays.length)),
       children: relays.map((relay) {
         final stats = nostrClient.stats['relays'] as Map<String, dynamic>? ?? {};
         final relayStats = stats[relay.url] as Map<String, dynamic>? ?? {};
@@ -419,9 +428,10 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   }
 
   void _copyToClipboard(String text, String label) {
+    final l10n = AppLocalizations.of(context)!;
     Clipboard.setData(ClipboardData(text: text));
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('$label copied to clipboard')),
+      SnackBar(content: Text(l10n.copiedToClipboard(label))),
     );
   }
 

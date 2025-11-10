@@ -191,7 +191,7 @@ abstract class AppLocalizations {
   /// Private key label
   ///
   /// In en, this message translates to:
-  /// **'Private Key'**
+  /// **'Private Key (nsec)'**
   String get privateKey;
 
   /// Private key with warning
@@ -203,7 +203,7 @@ abstract class AppLocalizations {
   /// Public key label
   ///
   /// In en, this message translates to:
-  /// **'Public Key'**
+  /// **'Public Key (npub)'**
   String get publicKey;
 
   /// Public key with note
@@ -254,10 +254,10 @@ abstract class AppLocalizations {
   /// **'Generate Different Key'**
   String get generateDifferentKey;
 
-  /// Login page title
+  /// Dashboard welcome message
   ///
   /// In en, this message translates to:
-  /// **'Welcome Back!'**
+  /// **'Welcome back! 👋'**
   String get welcomeBack;
 
   /// Login page subtitle
@@ -487,6 +487,936 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Connected to Nostr Connect!'**
   String get nostrConnectConnected;
+
+  /// Payment details screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Details'**
+  String get paymentDetails;
+
+  /// Payment status label
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Status'**
+  String get paymentStatus;
+
+  /// Payment status: pending
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get paymentStatusPending;
+
+  /// Payment status: paid
+  ///
+  /// In en, this message translates to:
+  /// **'Paid'**
+  String get paymentStatusPaid;
+
+  /// Payment status: expired
+  ///
+  /// In en, this message translates to:
+  /// **'Expired'**
+  String get paymentStatusExpired;
+
+  /// Payment status: failed
+  ///
+  /// In en, this message translates to:
+  /// **'Failed'**
+  String get paymentStatusFailed;
+
+  /// Amount label
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get amount;
+
+  /// Estimated sats label
+  ///
+  /// In en, this message translates to:
+  /// **'Estimated'**
+  String get estimatedSats;
+
+  /// Lightning invoice label
+  ///
+  /// In en, this message translates to:
+  /// **'Lightning Invoice'**
+  String get lightningInvoice;
+
+  /// Tap to copy hint
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to copy'**
+  String get tapToCopy;
+
+  /// Invoice copied message
+  ///
+  /// In en, this message translates to:
+  /// **'Invoice copied to clipboard'**
+  String get copiedInvoice;
+
+  /// Payment ID label
+  ///
+  /// In en, this message translates to:
+  /// **'Payment ID'**
+  String get paymentId;
+
+  /// Order ID label
+  ///
+  /// In en, this message translates to:
+  /// **'Order ID'**
+  String get orderId;
+
+  /// Payment method label
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Method'**
+  String get paymentMethod;
+
+  /// Payment hash label
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Hash'**
+  String get paymentHash;
+
+  /// Preimage label
+  ///
+  /// In en, this message translates to:
+  /// **'Preimage'**
+  String get preimage;
+
+  /// Created at label
+  ///
+  /// In en, this message translates to:
+  /// **'Created'**
+  String get createdAt;
+
+  /// Paid at label
+  ///
+  /// In en, this message translates to:
+  /// **'Paid At'**
+  String get paidAt;
+
+  /// Expires at label
+  ///
+  /// In en, this message translates to:
+  /// **'Expires At'**
+  String get expiresAt;
+
+  /// Show QR code button
+  ///
+  /// In en, this message translates to:
+  /// **'Show QR Code'**
+  String get showQrCode;
+
+  /// Copy invoice button
+  ///
+  /// In en, this message translates to:
+  /// **'Copy Invoice'**
+  String get copyInvoice;
+
+  /// Check status button
+  ///
+  /// In en, this message translates to:
+  /// **'Check Status'**
+  String get checkStatus;
+
+  /// QR dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Scan with Lightning Wallet'**
+  String get scanWithWallet;
+
+  /// Close button
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
+  /// Payment label
+  ///
+  /// In en, this message translates to:
+  /// **'Payment'**
+  String get payment;
+
+  /// No payment message
+  ///
+  /// In en, this message translates to:
+  /// **'No payment yet'**
+  String get noPayment;
+
+  /// Generate invoice button
+  ///
+  /// In en, this message translates to:
+  /// **'Generate Lightning Invoice'**
+  String get generateLightningInvoice;
+
+  /// View details button
+  ///
+  /// In en, this message translates to:
+  /// **'View Details'**
+  String get viewDetails;
+
+  /// Notifications screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notifications;
+
+  /// Mark all as read button
+  ///
+  /// In en, this message translates to:
+  /// **'Mark All Read'**
+  String get markAllAsRead;
+
+  /// Clear all button
+  ///
+  /// In en, this message translates to:
+  /// **'Clear All'**
+  String get clearAll;
+
+  /// Empty notifications message
+  ///
+  /// In en, this message translates to:
+  /// **'No notifications'**
+  String get noNotifications;
+
+  /// Clear all confirmation message
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to clear all notifications?'**
+  String get clearAllConfirm;
+
+  /// Cancel button
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// Notification deleted message
+  ///
+  /// In en, this message translates to:
+  /// **'Notification deleted'**
+  String get notificationDeleted;
+
+  /// Undo button
+  ///
+  /// In en, this message translates to:
+  /// **'Undo'**
+  String get undo;
+
+  /// New order notification type
+  ///
+  /// In en, this message translates to:
+  /// **'New Order'**
+  String get notificationNewOrder;
+
+  /// Order update notification type
+  ///
+  /// In en, this message translates to:
+  /// **'Order Update'**
+  String get notificationOrderUpdate;
+
+  /// Payment notification type
+  ///
+  /// In en, this message translates to:
+  /// **'Payment'**
+  String get notificationPayment;
+
+  /// System notification type
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get notificationSystem;
+
+  /// Just now time label
+  ///
+  /// In en, this message translates to:
+  /// **'Just now'**
+  String get justNow;
+
+  /// Minutes ago time label
+  ///
+  /// In en, this message translates to:
+  /// **'{count}m ago'**
+  String minutesAgo(int count);
+
+  /// Hours ago time label
+  ///
+  /// In en, this message translates to:
+  /// **'{count}h ago'**
+  String hoursAgo(int count);
+
+  /// Days ago time label
+  ///
+  /// In en, this message translates to:
+  /// **'{count}d ago'**
+  String daysAgo(int count);
+
+  /// Analytics screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Analytics'**
+  String get analytics;
+
+  /// Total revenue label
+  ///
+  /// In en, this message translates to:
+  /// **'Total Revenue'**
+  String get totalRevenue;
+
+  /// Total orders label
+  ///
+  /// In en, this message translates to:
+  /// **'Total Orders'**
+  String get totalOrders;
+
+  /// Average order value label
+  ///
+  /// In en, this message translates to:
+  /// **'Average Order Value'**
+  String get averageOrderValue;
+
+  /// Revenue trend chart title
+  ///
+  /// In en, this message translates to:
+  /// **'Revenue Trend'**
+  String get revenueTrend;
+
+  /// Order status chart title
+  ///
+  /// In en, this message translates to:
+  /// **'Order Status Distribution'**
+  String get orderStatusDistribution;
+
+  /// Top products section title
+  ///
+  /// In en, this message translates to:
+  /// **'Top Products'**
+  String get topProducts;
+
+  /// No data message
+  ///
+  /// In en, this message translates to:
+  /// **'No data available'**
+  String get noDataAvailable;
+
+  /// Today period
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get periodToday;
+
+  /// This week period
+  ///
+  /// In en, this message translates to:
+  /// **'This Week'**
+  String get periodWeek;
+
+  /// This month period
+  ///
+  /// In en, this message translates to:
+  /// **'This Month'**
+  String get periodMonth;
+
+  /// This year period
+  ///
+  /// In en, this message translates to:
+  /// **'This Year'**
+  String get periodYear;
+
+  /// Sold count label
+  ///
+  /// In en, this message translates to:
+  /// **'Sold: {count}'**
+  String soldCount(int count);
+
+  /// Orders screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Orders'**
+  String get orders;
+
+  /// Select period label
+  ///
+  /// In en, this message translates to:
+  /// **'Select Period'**
+  String get selectPeriod;
+
+  /// Dashboard subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Manage your stalls, products, and orders'**
+  String get manageYourBusiness;
+
+  /// Pending orders label
+  ///
+  /// In en, this message translates to:
+  /// **'Pending Orders'**
+  String get pendingOrders;
+
+  /// Active orders label
+  ///
+  /// In en, this message translates to:
+  /// **'Active Orders'**
+  String get activeOrders;
+
+  /// Quick actions section title
+  ///
+  /// In en, this message translates to:
+  /// **'Quick Actions'**
+  String get quickActions;
+
+  /// My stalls menu item
+  ///
+  /// In en, this message translates to:
+  /// **'My Stalls'**
+  String get myStalls;
+
+  /// Manage stalls description
+  ///
+  /// In en, this message translates to:
+  /// **'Manage your food stalls'**
+  String get manageStalls;
+
+  /// My orders menu item
+  ///
+  /// In en, this message translates to:
+  /// **'My Orders'**
+  String get myOrders;
+
+  /// Manage orders description
+  ///
+  /// In en, this message translates to:
+  /// **'View and manage customer orders'**
+  String get viewAndManageOrders;
+
+  /// Settings menu item
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
+
+  /// Settings description
+  ///
+  /// In en, this message translates to:
+  /// **'Configure app preferences'**
+  String get configureApp;
+
+  /// Account section header
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get account;
+
+  /// Not available text
+  ///
+  /// In en, this message translates to:
+  /// **'Not available'**
+  String get notAvailable;
+
+  /// Nostr relays section header
+  ///
+  /// In en, this message translates to:
+  /// **'Nostr Relays'**
+  String get nostrRelays;
+
+  /// Connection status label
+  ///
+  /// In en, this message translates to:
+  /// **'Connection Status'**
+  String get connectionStatus;
+
+  /// Total label
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get total;
+
+  /// Connected label
+  ///
+  /// In en, this message translates to:
+  /// **'Connected'**
+  String get connected;
+
+  /// Healthy label
+  ///
+  /// In en, this message translates to:
+  /// **'Healthy'**
+  String get healthy;
+
+  /// Relay list label
+  ///
+  /// In en, this message translates to:
+  /// **'Relay List'**
+  String get relayList;
+
+  /// Number of relays configured
+  ///
+  /// In en, this message translates to:
+  /// **'{count} relays configured'**
+  String relaysConfigured(int count);
+
+  /// Media server section header
+  ///
+  /// In en, this message translates to:
+  /// **'Media Server'**
+  String get mediaServer;
+
+  /// About section header
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get about;
+
+  /// Version label
+  ///
+  /// In en, this message translates to:
+  /// **'Version'**
+  String get version;
+
+  /// Protocol label
+  ///
+  /// In en, this message translates to:
+  /// **'Protocol'**
+  String get protocol;
+
+  /// Encryption label
+  ///
+  /// In en, this message translates to:
+  /// **'Encryption'**
+  String get encryption;
+
+  /// Danger zone section header
+  ///
+  /// In en, this message translates to:
+  /// **'Danger Zone'**
+  String get dangerZone;
+
+  /// Export private key button
+  ///
+  /// In en, this message translates to:
+  /// **'Export Private Key'**
+  String get exportPrivateKey;
+
+  /// Backup private key description
+  ///
+  /// In en, this message translates to:
+  /// **'Backup your private key'**
+  String get backupPrivateKey;
+
+  /// Sign out description
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out from your account'**
+  String get signOutAccount;
+
+  /// Error loading settings message
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading settings: {error}'**
+  String errorLoadingSettings(String error);
+
+  /// Copied to clipboard message
+  ///
+  /// In en, this message translates to:
+  /// **'{label} copied to clipboard'**
+  String copiedToClipboard(String label);
+
+  /// No stalls message
+  ///
+  /// In en, this message translates to:
+  /// **'No stalls yet'**
+  String get noStallsYet;
+
+  /// Create first stall prompt
+  ///
+  /// In en, this message translates to:
+  /// **'Create your first stall to get started'**
+  String get createFirstStall;
+
+  /// Error label
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get error;
+
+  /// Retry button
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
+  /// New stall button
+  ///
+  /// In en, this message translates to:
+  /// **'New Stall'**
+  String get newStall;
+
+  /// Choose stall type dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Choose Stall Type'**
+  String get chooseStallType;
+
+  /// Filter by status tooltip
+  ///
+  /// In en, this message translates to:
+  /// **'Filter by status'**
+  String get filterByStatus;
+
+  /// All orders filter
+  ///
+  /// In en, this message translates to:
+  /// **'All Orders'**
+  String get allOrders;
+
+  /// All label
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get all;
+
+  /// No orders message
+  ///
+  /// In en, this message translates to:
+  /// **'No orders yet'**
+  String get noOrdersYet;
+
+  /// Orders will appear message
+  ///
+  /// In en, this message translates to:
+  /// **'Orders from customers will appear here'**
+  String get ordersWillAppear;
+
+  /// Refresh button
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh'**
+  String get refresh;
+
+  /// Products label
+  ///
+  /// In en, this message translates to:
+  /// **'Products'**
+  String get products;
+
+  /// No products message
+  ///
+  /// In en, this message translates to:
+  /// **'No products yet'**
+  String get noProductsYet;
+
+  /// Add first product prompt
+  ///
+  /// In en, this message translates to:
+  /// **'Add your first product to start selling'**
+  String get addFirstProduct;
+
+  /// Add product button
+  ///
+  /// In en, this message translates to:
+  /// **'Add Product'**
+  String get addProduct;
+
+  /// Failed to load products message
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load products'**
+  String get failedToLoadProducts;
+
+  /// Edit product button
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Product'**
+  String get editProduct;
+
+  /// Delete product button
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Product'**
+  String get deleteProduct;
+
+  /// Create stall title
+  ///
+  /// In en, this message translates to:
+  /// **'Create Stall'**
+  String get createStall;
+
+  /// Edit stall title
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Stall'**
+  String get editStall;
+
+  /// Stall name field
+  ///
+  /// In en, this message translates to:
+  /// **'Stall Name'**
+  String get stallName;
+
+  /// Description field
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get description;
+
+  /// Currency field
+  ///
+  /// In en, this message translates to:
+  /// **'Currency'**
+  String get currency;
+
+  /// Cuisine field
+  ///
+  /// In en, this message translates to:
+  /// **'Cuisine'**
+  String get cuisine;
+
+  /// Preparation time field
+  ///
+  /// In en, this message translates to:
+  /// **'Preparation Time'**
+  String get preparationTime;
+
+  /// Operating hours field
+  ///
+  /// In en, this message translates to:
+  /// **'Operating Hours'**
+  String get operatingHours;
+
+  /// Accepts orders toggle
+  ///
+  /// In en, this message translates to:
+  /// **'Accepts Orders'**
+  String get acceptsOrders;
+
+  /// Shipping zones section
+  ///
+  /// In en, this message translates to:
+  /// **'Shipping Zones'**
+  String get shippingZones;
+
+  /// Add shipping zone button
+  ///
+  /// In en, this message translates to:
+  /// **'Add Shipping Zone'**
+  String get addShippingZone;
+
+  /// Save button
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// Delete button
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// Confirm button
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// Product name field
+  ///
+  /// In en, this message translates to:
+  /// **'Product Name'**
+  String get productName;
+
+  /// Price field
+  ///
+  /// In en, this message translates to:
+  /// **'Price'**
+  String get price;
+
+  /// Category field
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get category;
+
+  /// In stock toggle
+  ///
+  /// In en, this message translates to:
+  /// **'In Stock'**
+  String get inStock;
+
+  /// Images section
+  ///
+  /// In en, this message translates to:
+  /// **'Images'**
+  String get images;
+
+  /// Add image button
+  ///
+  /// In en, this message translates to:
+  /// **'Add Image'**
+  String get addImage;
+
+  /// Basic information section
+  ///
+  /// In en, this message translates to:
+  /// **'Basic Information'**
+  String get basicInformation;
+
+  /// Stall name required field
+  ///
+  /// In en, this message translates to:
+  /// **'Stall Name *'**
+  String get stallNameRequired;
+
+  /// Stall name hint
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., Thai Street Food'**
+  String get stallNameHint;
+
+  /// Description optional field
+  ///
+  /// In en, this message translates to:
+  /// **'Description (optional)'**
+  String get descriptionOptional;
+
+  /// Stall name validation
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a stall name'**
+  String get pleaseEnterStallName;
+
+  /// Stall created message
+  ///
+  /// In en, this message translates to:
+  /// **'Stall created successfully'**
+  String get stallCreatedSuccessfully;
+
+  /// Stall updated message
+  ///
+  /// In en, this message translates to:
+  /// **'Stall updated successfully'**
+  String get stallUpdatedSuccessfully;
+
+  /// Shipping zone required message
+  ///
+  /// In en, this message translates to:
+  /// **'Please add at least one shipping zone'**
+  String get pleaseAddShippingZone;
+
+  /// Order details title
+  ///
+  /// In en, this message translates to:
+  /// **'Order Details'**
+  String get orderDetails;
+
+  /// Copy order ID action
+  ///
+  /// In en, this message translates to:
+  /// **'Copy Order ID'**
+  String get copyOrderId;
+
+  /// Copy customer pubkey action
+  ///
+  /// In en, this message translates to:
+  /// **'Copy Customer Pubkey'**
+  String get copyCustomerPubkey;
+
+  /// Status label
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get status;
+
+  /// Customer label
+  ///
+  /// In en, this message translates to:
+  /// **'Customer'**
+  String get customer;
+
+  /// Order items label
+  ///
+  /// In en, this message translates to:
+  /// **'Order Items'**
+  String get orderItems;
+
+  /// Delivery address label
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery Address'**
+  String get deliveryAddress;
+
+  /// Contact phone label
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Phone'**
+  String get contactPhone;
+
+  /// Special instructions label
+  ///
+  /// In en, this message translates to:
+  /// **'Special Instructions'**
+  String get specialInstructions;
+
+  /// None label
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get none;
+
+  /// Actions label
+  ///
+  /// In en, this message translates to:
+  /// **'Actions'**
+  String get actions;
+
+  /// Accept order button
+  ///
+  /// In en, this message translates to:
+  /// **'Accept Order'**
+  String get acceptOrder;
+
+  /// Prepare order button
+  ///
+  /// In en, this message translates to:
+  /// **'Prepare Order'**
+  String get prepareOrder;
+
+  /// Ready for pickup button
+  ///
+  /// In en, this message translates to:
+  /// **'Ready for Pickup'**
+  String get readyForPickup;
+
+  /// Complete order button
+  ///
+  /// In en, this message translates to:
+  /// **'Complete Order'**
+  String get completeOrder;
+
+  /// Cancel order button
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel Order'**
+  String get cancelOrder;
+
+  /// Loading message
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loading;
+
+  /// Authentication required message
+  ///
+  /// In en, this message translates to:
+  /// **'Authentication required'**
+  String get authenticationRequired;
+
+  /// Failed to decrypt message
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to decrypt order details'**
+  String get failedToDecryptOrderDetails;
 }
 
 class _AppLocalizationsDelegate

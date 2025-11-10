@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../l10n/app_localizations.dart';
 import '../models/order.dart';
 import '../models/order_status.dart';
 import '../providers/order_provider.dart';
 import '../../auth/presentation/providers/auth_provider.dart';
+import '../../payments/widgets/order_payment_widget.dart';
 
 class OrderDetailScreen extends ConsumerStatefulWidget {
   final Order order;
@@ -30,6 +32,7 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
   }
 
   Future<void> _loadOrderDetails() async {
+    final l10n = AppLocalizations.of(context)!;
     if (widget.order.details != null) {
       setState(() {
         _decryptedDetails = widget.order.details;
@@ -48,7 +51,7 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
 
       if (privateKey == null) {
         setState(() {
-          _errorMessage = 'Authentication required';
+          _errorMessage = l10n.authenticationRequired;
           _isLoadingDetails = false;
         });
         return;
@@ -68,7 +71,7 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
       });
     } catch (e) {
       setState(() {
-        _errorMessage = 'Failed to decrypt order details: $e';
+        _errorMessage = '${l10n.failedToDecryptOrderDetails}: $e';
         _isLoadingDetails = false;
       });
     }
@@ -76,12 +79,14 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Order #${widget.order.id.substring(0, 8)}'),
+        title: Text('${l10n.orderDetails} #${widget.order.id.substring(0, 8)}'),
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
+            tooltip: l10n.refresh,
             onPressed: _loadOrderDetails,
           ),
           PopupMenuButton<String>(
@@ -96,23 +101,23 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
               }
             },
             itemBuilder: (context) => [
-              const PopupMenuItem(
+              PopupMenuItem(
                 value: 'copy_id',
                 child: Row(
                   children: [
-                    Icon(Icons.copy, size: 20),
-                    SizedBox(width: 8),
-                    Text('Copy Order ID'),
+                    const Icon(Icons.copy, size: 20),
+                    const SizedBox(width: 8),
+                    Text(l10n.copyOrderId),
                   ],
                 ),
               ),
-              const PopupMenuItem(
+              PopupMenuItem(
                 value: 'copy_customer',
                 child: Row(
                   children: [
-                    Icon(Icons.person, size: 20),
-                    SizedBox(width: 8),
-                    Text('Copy Customer Pubkey'),
+                    const Icon(Icons.person, size: 20),
+                    const SizedBox(width: 8),
+                    Text(l10n.copyCustomerPubkey),
                   ],
                 ),
               ),
@@ -377,6 +382,9 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
               ),
             ),
           ),
+        const SizedBox(height: 16),
+        // Lightning Payment
+        OrderPaymentWidget(order: widget.order),
       ],
     );
   }

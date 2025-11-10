@@ -57,13 +57,13 @@ class AppLocalizationsTh extends AppLocalizations {
   String get keyGeneratedSuccess => 'สร้างกุญแจสำเร็จ!';
 
   @override
-  String get privateKey => 'กุญแจส่วนตัว';
+  String get privateKey => 'Private Key (nsec)';
 
   @override
   String get privateKeySecret => 'กุญแจส่วนตัว (เก็บเป็นความลับ!)';
 
   @override
-  String get publicKey => 'กุญแจสาธารณะ';
+  String get publicKey => 'Public Key (npub)';
 
   @override
   String get publicKeySafeToShare => 'กุญแจสาธารณะ (แชร์ได้)';
@@ -91,7 +91,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get generateDifferentKey => 'สร้างกุญแจใหม่';
 
   @override
-  String get welcomeBack => 'ยินดีต้อนรับกลับมา!';
+  String get welcomeBack => 'ยินดีต้อนรับกลับมา! 👋';
 
   @override
   String get chooseSignInMethod => 'เลือกวิธีเข้าสู่ระบบที่คุณต้องการ';
@@ -214,4 +214,484 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get nostrConnectConnected => 'เชื่อมต่อ Nostr Connect สำเร็จ!';
+
+  @override
+  String get paymentDetails => 'รายละเอียดการชำระเงิน';
+
+  @override
+  String get paymentStatus => 'สถานะการชำระเงิน';
+
+  @override
+  String get paymentStatusPending => 'รอดำเนินการ';
+
+  @override
+  String get paymentStatusPaid => 'ชำระแล้ว';
+
+  @override
+  String get paymentStatusExpired => 'หมดอายุ';
+
+  @override
+  String get paymentStatusFailed => 'ล้มเหลว';
+
+  @override
+  String get amount => 'จำนวนเงิน';
+
+  @override
+  String get estimatedSats => 'ประมาณ';
+
+  @override
+  String get lightningInvoice => 'ใบแจ้งหนี้ Lightning';
+
+  @override
+  String get tapToCopy => 'แตะเพื่อคัดลอก';
+
+  @override
+  String get copiedInvoice => 'คัดลอกใบแจ้งหนี้แล้ว';
+
+  @override
+  String get paymentId => 'รหัสการชำระเงิน';
+
+  @override
+  String get orderId => 'รหัสคำสั่งซื้อ';
+
+  @override
+  String get paymentMethod => 'วิธีการชำระเงิน';
+
+  @override
+  String get paymentHash => 'Payment Hash';
+
+  @override
+  String get preimage => 'Preimage';
+
+  @override
+  String get createdAt => 'สร้างเมื่อ';
+
+  @override
+  String get paidAt => 'ชำระเมื่อ';
+
+  @override
+  String get expiresAt => 'หมดอายุเมื่อ';
+
+  @override
+  String get showQrCode => 'แสดง QR Code';
+
+  @override
+  String get copyInvoice => 'คัดลอกใบแจ้งหนี้';
+
+  @override
+  String get checkStatus => 'ตรวจสอบสถานะ';
+
+  @override
+  String get scanWithWallet => 'สแกนด้วย Lightning Wallet';
+
+  @override
+  String get close => 'ปิด';
+
+  @override
+  String get payment => 'การชำระเงิน';
+
+  @override
+  String get noPayment => 'ยังไม่มีการชำระเงิน';
+
+  @override
+  String get generateLightningInvoice => 'สร้างใบแจ้งหนี้ Lightning';
+
+  @override
+  String get viewDetails => 'ดูรายละเอียด';
+
+  @override
+  String get notifications => 'การแจ้งเตือน';
+
+  @override
+  String get markAllAsRead => 'ทำเครื่องหมายอ่านทั้งหมด';
+
+  @override
+  String get clearAll => 'ล้างทั้งหมด';
+
+  @override
+  String get noNotifications => 'ไม่มีการแจ้งเตือน';
+
+  @override
+  String get clearAllConfirm => 'คุณแน่ใจว่าต้องการล้างการแจ้งเตือนทั้งหมด?';
+
+  @override
+  String get cancel => 'ยกเลิก';
+
+  @override
+  String get notificationDeleted => 'ลบการแจ้งเตือนแล้ว';
+
+  @override
+  String get undo => 'เลิกทำ';
+
+  @override
+  String get notificationNewOrder => 'คำสั่งซื้อใหม่';
+
+  @override
+  String get notificationOrderUpdate => 'อัปเดตคำสั่งซื้อ';
+
+  @override
+  String get notificationPayment => 'การชำระเงิน';
+
+  @override
+  String get notificationSystem => 'ระบบ';
+
+  @override
+  String get justNow => 'เมื่อสักครู่';
+
+  @override
+  String minutesAgo(int count) {
+    return '$count นาทีที่แล้ว';
+  }
+
+  @override
+  String hoursAgo(int count) {
+    return '$count ชั่วโมงที่แล้ว';
+  }
+
+  @override
+  String daysAgo(int count) {
+    return '$count วันที่แล้ว';
+  }
+
+  @override
+  String get analytics => 'วิเคราะห์ยอดขาย';
+
+  @override
+  String get totalRevenue => 'รายได้รวม';
+
+  @override
+  String get totalOrders => 'คำสั่งซื้อทั้งหมด';
+
+  @override
+  String get averageOrderValue => 'มูลค่าเฉลี่ยต่อคำสั่งซื้อ';
+
+  @override
+  String get revenueTrend => 'แนวโน้มรายได้';
+
+  @override
+  String get orderStatusDistribution => 'การกระจายสถานะคำสั่งซื้อ';
+
+  @override
+  String get topProducts => 'สินค้าขายดี';
+
+  @override
+  String get noDataAvailable => 'ไม่มีข้อมูล';
+
+  @override
+  String get periodToday => 'วันนี้';
+
+  @override
+  String get periodWeek => 'สัปดาห์นี้';
+
+  @override
+  String get periodMonth => 'เดือนนี้';
+
+  @override
+  String get periodYear => 'ปีนี้';
+
+  @override
+  String soldCount(int count) {
+    return 'ขายแล้ว: $count';
+  }
+
+  @override
+  String get orders => 'คำสั่งซื้อ';
+
+  @override
+  String get selectPeriod => 'เลือกช่วงเวลา';
+
+  @override
+  String get manageYourBusiness => 'จัดการร้านค้า สินค้า และคำสั่งซื้อของคุณ';
+
+  @override
+  String get pendingOrders => 'คำสั่งซื้อที่รอดำเนินการ';
+
+  @override
+  String get activeOrders => 'คำสั่งซื้อที่กำลังดำเนินการ';
+
+  @override
+  String get quickActions => 'เมนูด่วน';
+
+  @override
+  String get myStalls => 'ร้านค้าของฉัน';
+
+  @override
+  String get manageStalls => 'จัดการร้านค้าอาหารของคุณ';
+
+  @override
+  String get myOrders => 'คำสั่งซื้อของฉัน';
+
+  @override
+  String get viewAndManageOrders => 'ดูและจัดการคำสั่งซื้อของลูกค้า';
+
+  @override
+  String get settings => 'ตั้งค่า';
+
+  @override
+  String get configureApp => 'ตั้งค่าแอพพลิเคชัน';
+
+  @override
+  String get account => 'บัญชี';
+
+  @override
+  String get notAvailable => 'ไม่มีข้อมูล';
+
+  @override
+  String get nostrRelays => 'Nostr Relays';
+
+  @override
+  String get connectionStatus => 'สถานะการเชื่อมต่อ';
+
+  @override
+  String get total => 'ทั้งหมด';
+
+  @override
+  String get connected => 'เชื่อมต่อแล้ว';
+
+  @override
+  String get healthy => 'ปกติ';
+
+  @override
+  String get relayList => 'รายการ Relay';
+
+  @override
+  String relaysConfigured(int count) {
+    return 'ตั้งค่า $count relays แล้ว';
+  }
+
+  @override
+  String get mediaServer => 'เซิร์ฟเวอร์สื่อ';
+
+  @override
+  String get about => 'เกี่ยวกับ';
+
+  @override
+  String get version => 'เวอร์ชัน';
+
+  @override
+  String get protocol => 'โปรโตคอล';
+
+  @override
+  String get encryption => 'การเข้ารหัส';
+
+  @override
+  String get dangerZone => 'โซนอันตราย';
+
+  @override
+  String get exportPrivateKey => 'ส่งออก Private Key';
+
+  @override
+  String get backupPrivateKey => 'สำรองข้อมูล private key ของคุณ';
+
+  @override
+  String get signOutAccount => 'ออกจากบัญชีของคุณ';
+
+  @override
+  String errorLoadingSettings(String error) {
+    return 'เกิดข้อผิดพลาดในการโหลดการตั้งค่า: $error';
+  }
+
+  @override
+  String copiedToClipboard(String label) {
+    return 'คัดลอก $label ไปยังคลิปบอร์ดแล้ว';
+  }
+
+  @override
+  String get noStallsYet => 'ยังไม่มีร้านค้า';
+
+  @override
+  String get createFirstStall => 'สร้างร้านค้าแรกของคุณเพื่อเริ่มต้น';
+
+  @override
+  String get error => 'ข้อผิดพลาด';
+
+  @override
+  String get retry => 'ลองอีกครั้ง';
+
+  @override
+  String get newStall => 'ร้านค้าใหม่';
+
+  @override
+  String get chooseStallType => 'เลือกประเภทร้านค้า';
+
+  @override
+  String get filterByStatus => 'กรองตามสถานะ';
+
+  @override
+  String get allOrders => 'คำสั่งซื้อทั้งหมด';
+
+  @override
+  String get all => 'ทั้งหมด';
+
+  @override
+  String get noOrdersYet => 'ยังไม่มีคำสั่งซื้อ';
+
+  @override
+  String get ordersWillAppear => 'คำสั่งซื้อจากลูกค้าจะปรากฏที่นี่';
+
+  @override
+  String get refresh => 'รีเฟรช';
+
+  @override
+  String get products => 'สินค้า';
+
+  @override
+  String get noProductsYet => 'ยังไม่มีสินค้า';
+
+  @override
+  String get addFirstProduct => 'เพิ่มสินค้าแรกของคุณเพื่อเริ่มขาย';
+
+  @override
+  String get addProduct => 'เพิ่มสินค้า';
+
+  @override
+  String get failedToLoadProducts => 'โหลดสินค้าไม่สำเร็จ';
+
+  @override
+  String get editProduct => 'แก้ไขสินค้า';
+
+  @override
+  String get deleteProduct => 'ลบสินค้า';
+
+  @override
+  String get createStall => 'สร้างร้านค้า';
+
+  @override
+  String get editStall => 'แก้ไขร้านค้า';
+
+  @override
+  String get stallName => 'ชื่อร้านค้า';
+
+  @override
+  String get description => 'คำอธิบาย';
+
+  @override
+  String get currency => 'สกุลเงิน';
+
+  @override
+  String get cuisine => 'ประเภทอาหาร';
+
+  @override
+  String get preparationTime => 'เวลาเตรียม';
+
+  @override
+  String get operatingHours => 'เวลาเปิด-ปิด';
+
+  @override
+  String get acceptsOrders => 'รับคำสั่งซื้อ';
+
+  @override
+  String get shippingZones => 'โซนการจัดส่ง';
+
+  @override
+  String get addShippingZone => 'เพิ่มโซนการจัดส่ง';
+
+  @override
+  String get save => 'บันทึก';
+
+  @override
+  String get delete => 'ลบ';
+
+  @override
+  String get confirm => 'ยืนยัน';
+
+  @override
+  String get productName => 'ชื่อสินค้า';
+
+  @override
+  String get price => 'ราคา';
+
+  @override
+  String get category => 'หมวดหมู่';
+
+  @override
+  String get inStock => 'มีสินค้า';
+
+  @override
+  String get images => 'รูปภาพ';
+
+  @override
+  String get addImage => 'เพิ่มรูปภาพ';
+
+  @override
+  String get basicInformation => 'ข้อมูลพื้นฐาน';
+
+  @override
+  String get stallNameRequired => 'ชื่อร้านค้า *';
+
+  @override
+  String get stallNameHint => 'เช่น ร้านอาหารไทย';
+
+  @override
+  String get descriptionOptional => 'คำอธิบาย (ไม่จำเป็น)';
+
+  @override
+  String get pleaseEnterStallName => 'กรุณากรอกชื่อร้านค้า';
+
+  @override
+  String get stallCreatedSuccessfully => 'สร้างร้านค้าสำเร็จ';
+
+  @override
+  String get stallUpdatedSuccessfully => 'อัปเดตร้านค้าสำเร็จ';
+
+  @override
+  String get pleaseAddShippingZone => 'กรุณาเพิ่มโซนการจัดส่งอย่างน้อย 1 โซน';
+
+  @override
+  String get orderDetails => 'รายละเอียดคำสั่งซื้อ';
+
+  @override
+  String get copyOrderId => 'คัดลอก Order ID';
+
+  @override
+  String get copyCustomerPubkey => 'คัดลอก Customer Pubkey';
+
+  @override
+  String get status => 'สถานะ';
+
+  @override
+  String get customer => 'ลูกค้า';
+
+  @override
+  String get orderItems => 'รายการสินค้า';
+
+  @override
+  String get deliveryAddress => 'ที่อยู่จัดส่ง';
+
+  @override
+  String get contactPhone => 'เบอร์โทรติดต่อ';
+
+  @override
+  String get specialInstructions => 'คำสั่งพิเศษ';
+
+  @override
+  String get none => 'ไม่มี';
+
+  @override
+  String get actions => 'การดำเนินการ';
+
+  @override
+  String get acceptOrder => 'รับคำสั่งซื้อ';
+
+  @override
+  String get prepareOrder => 'เตรียมคำสั่งซื้อ';
+
+  @override
+  String get readyForPickup => 'พร้อมรับสินค้า';
+
+  @override
+  String get completeOrder => 'คำสั่งซื้อเสร็จสมบูรณ์';
+
+  @override
+  String get cancelOrder => 'ยกเลิกคำสั่งซื้อ';
+
+  @override
+  String get loading => 'กำลังโหลด...';
+
+  @override
+  String get authenticationRequired => 'ต้องเข้าสู่ระบบ';
+
+  @override
+  String get failedToDecryptOrderDetails =>
+      'ถอดรหัสรายละเอียดคำสั่งซื้อไม่สำเร็จ';
 }
