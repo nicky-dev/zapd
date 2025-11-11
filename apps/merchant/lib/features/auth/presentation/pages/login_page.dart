@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -40,10 +39,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   Future<void> _loginWithPrivateKey() async {
     final input = _privateKeyController.text.trim();
-    final l10n = AppLocalizations.of(context);
+  final l10n = AppLocalizations.of(context)!;
 
     if (input.isEmpty) {
-      _showError(l10n?.errorEnterPrivateKey ?? 'Please enter your private key');
+  _showError(l10n.errorEnterPrivateKey);
       return;
     }
 
@@ -55,7 +54,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       // Check if input is nsec format
       if (input.startsWith('nsec1')) {
         if (!Nip19.isNsec(input)) {
-          _showError(l10n?.errorInvalidNsec ?? 'Invalid nsec format');
+          _showError(l10n.errorInvalidNsec);
           setState(() => _isLoading = false);
           return;
         }
@@ -63,8 +62,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       } else {
         // Assume hex format
         if (input.length != 64) {
-          _showError(l10n?.errorPrivateKeyLength ?? 
-              'Private key must be 64 characters (hex) or start with nsec1');
+          _showError(l10n.errorPrivateKeyLength);
           setState(() => _isLoading = false);
           return;
         }
@@ -77,7 +75,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       context.go('/dashboard');
     } catch (e) {
       if (!mounted) return;
-      _showError('${l10n?.errorLoginFailed ?? "Failed to login"}: $e');
+      _showError('${l10n.errorLoginFailed}: $e');
     } finally {
       if (mounted) {
         setState(() => _isLoading = false);
@@ -86,20 +84,15 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   }
 
   Future<void> _loginWithNostrExtension() async {
-    final l10n = AppLocalizations.of(context);
+  final l10n = AppLocalizations.of(context)!;
     
     setState(() => _isLoading = true);
 
     try {
       // Check if extension is available
-      if (!await Nip07Service.isAvailable()) {
+      if (!Nip07Service.isAvailable()) {
         if (!mounted) return;
-        _showError(l10n?.noExtensionFound ?? 
-          'No Nostr extension found!\n\n'
-          'Please install one of these extensions:\n'
-          '• nos2x\n'
-          '• Alby\n'
-          '• Flamingo');
+        _showError(l10n.noExtensionFound);
         setState(() => _isLoading = false);
         return;
       }
@@ -115,7 +108,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(l10n?.extensionConnected ?? 'Extension connected successfully!'),
+          content: Text(l10n.extensionConnected),
           backgroundColor: Colors.green,
         ),
       );
@@ -125,8 +118,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       context.go('/dashboard');
     } catch (e) {
       if (!mounted) return;
-      final l10n = AppLocalizations.of(context);
-      _showError('${l10n?.errorConnectFailed ?? "Failed to connect"}: $e');
+      final l10n = AppLocalizations.of(context)!;
+      _showError('${l10n.errorConnectFailed}: $e');
     } finally {
       if (mounted) {
         setState(() => _isLoading = false);
@@ -136,16 +129,16 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   Future<void> _loginWithNostrConnect() async {
     final bunkerUrl = _bunkerUrlController.text.trim();
-    final l10n = AppLocalizations.of(context);
+  final l10n = AppLocalizations.of(context)!;
 
     if (bunkerUrl.isEmpty) {
-      _showError(l10n?.errorEnterBunkerUrl ?? 'Please enter a Nostr Connect URL');
+      _showError(l10n.errorEnterBunkerUrl);
       return;
     }
 
     // Basic validation
     if (!bunkerUrl.startsWith('bunker://')) {
-      _showError('Invalid bunker URL format. Must start with bunker://');
+      _showError(l10n.errorInvalidBunkerUrl);
       return;
     }
 
@@ -158,19 +151,19 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
-          title: const Text('⏳ Waiting for Approval'),
-          content: const Column(
+          title: Text(l10n.waitingForApproval),
+          content: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Please approve this connection on your nsecBunker or Amber app.'),
-              SizedBox(height: 16),
-              Text('Steps:', style: TextStyle(fontWeight: FontWeight.bold)),
-              Text('1. Open your nsecBunker/Amber app'),
-              Text('2. You should see a connection request'),
-              Text('3. Approve the request'),
-              SizedBox(height: 16),
-              Center(child: CircularProgressIndicator()),
+              Text(l10n.waitingForApprovalContent),
+              const SizedBox(height: 16),
+              Text(l10n.stepsLabel, style: const TextStyle(fontWeight: FontWeight.bold)),
+              Text(l10n.step1),
+              Text(l10n.step2),
+              Text(l10n.step3),
+              const SizedBox(height: 16),
+              const Center(child: CircularProgressIndicator()),
             ],
           ),
         ),
@@ -195,8 +188,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('${l10n?.nostrConnectConnected ?? "Connected to Nostr Connect!"}\n'
-              'Public key: ${publicKey.substring(0, 16)}...'),
+          content: Text(AppLocalizations.of(context)!.nostrConnectConnectedWithKey(l10n.nostrConnectConnected, '${publicKey.substring(0, 16)}...')),
           backgroundColor: Colors.green,
         ),
       );
@@ -210,7 +202,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         Navigator.of(context).pop();
       }
       if (!mounted) return;
-      _showError('${l10n?.errorInvalidBunkerUrl ?? "Invalid bunker URL"}: ${e.message}');
+      _showError('${l10n.errorInvalidBunkerUrl}: ${e.message}');
     } on TimeoutException {
       // Close waiting dialog if open
       if (mounted && Navigator.of(context).canPop()) {
@@ -261,7 +253,7 @@ Next: Add native cryptography library
         displayError = 'Relay disconnected - unsigned events rejected.\n'
             'NIP-46 requires secp256k1 signatures.';
       } else {
-        displayError = '${l10n?.errorConnectFailed ?? "Failed to connect"}: $e';
+    displayError = '${l10n.errorConnectFailed}: $e';
       }
       
       _showError(displayError);
@@ -315,7 +307,7 @@ Next: Add native cryptography library
                 Text(
                   l10n?.chooseSignInMethod ?? 'Choose your preferred sign-in method',
                   style: theme.textTheme.bodyLarge?.copyWith(
-                    color: theme.colorScheme.onSurface.withOpacity(0.7),
+                    color: theme.colorScheme.onSurface.withAlpha((0.7 * 255).round()),
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -387,7 +379,7 @@ Next: Add native cryptography library
     return Card(
       elevation: isSelected ? 4 : 1,
       color: isSelected 
-          ? theme.colorScheme.primaryContainer.withOpacity(0.3)
+          ? theme.colorScheme.primaryContainer.withAlpha((0.3 * 255).round())
           : null,
       child: InkWell(
         onTap: () {
@@ -458,7 +450,7 @@ Next: Add native cryptography library
                     Text(
                       description,
                       style: theme.textTheme.bodySmall?.copyWith(
-                        color: theme.colorScheme.onSurface.withOpacity(0.7),
+                        color: theme.colorScheme.onSurface.withAlpha((0.7 * 255).round()),
                       ),
                     ),
                   ],
@@ -563,7 +555,7 @@ Next: Add native cryptography library
               l10n?.extensionDescription ?? 
                   'This will use your browser extension (NIP-07) for secure key management.',
               style: theme.textTheme.bodyMedium?.copyWith(
-                color: theme.colorScheme.onSurface.withOpacity(0.7),
+                color: theme.colorScheme.onSurface.withAlpha((0.7 * 255).round()),
               ),
               textAlign: TextAlign.center,
             ),
@@ -630,7 +622,7 @@ Next: Add native cryptography library
               l10n?.nostrConnectFullDescription ?? 
                   'Use a remote signer or hardware wallet (NIP-46) for maximum security.',
               style: theme.textTheme.bodyMedium?.copyWith(
-                color: theme.colorScheme.onSurface.withOpacity(0.7),
+                color: theme.colorScheme.onSurface.withAlpha((0.7 * 255).round()),
               ),
               textAlign: TextAlign.center,
             ),

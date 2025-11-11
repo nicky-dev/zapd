@@ -844,6 +844,11 @@
   "@mediaServer": {
     "description": "Media server section header"
   },
+  "nip96Tag": "NIP-96",
+  "@nip96Tag": { "description": "Short tag for NIP-96 media servers" },
+
+  "legacyTag": "Legacy",
+  "@legacyTag": { "description": "Short tag for legacy media servers" },
   
   "about": "About",
   "@about": {
@@ -1470,4 +1475,352 @@
 
   "receiptCopied": "Receipt id copied to clipboard",
   "@receiptCopied": { "description": "Snackbar message when receipt id copied" }
+,
+  "waitingForApproval": "⏳ Waiting for Approval",
+  "@waitingForApproval": { "description": "Dialog title while waiting for remote approval" },
+
+  "waitingForApprovalContent": "Please approve this connection on your nsecBunker or Amber app.",
+  "@waitingForApprovalContent": { "description": "Dialog content instructing the user to approve the connection" },
+
+  "stepsLabel": "Steps:",
+  "@stepsLabel": { "description": "Label for a short steps list" },
+
+  "step1": "1. Open your nsecBunker/Amber app",
+  "@step1": { "description": "Step 1 text for Nostr Connect approval" },
+
+  "step2": "2. You should see a connection request",
+  "@step2": { "description": "Step 2 text for Nostr Connect approval" },
+
+  "step3": "3. Approve the request",
+  "@step3": { "description": "Step 3 text for Nostr Connect approval" },
+
+  "deleteProductConfirm": "Are you sure you want to delete \"{productName}\"?",
+  "@deleteProductConfirm": {
+    "description": "Confirmation when deleting a product",
+    "placeholders": { "productName": {} }
+  },
+
+  "productDeletedSuccessfully": "Product deleted successfully",
+  "@productDeletedSuccessfully": { "description": "Snackbar after product deletion" },
+
+  "failedToDeleteProduct": "Failed to delete product: {error}",
+  "@failedToDeleteProduct": {
+    "description": "Error shown when product deletion fails",
+    "placeholders": { "error": {} }
+  },
+
+  "productCreated": "Product created successfully",
+  "@productCreated": { "description": "Snackbar shown after creating a product" },
+
+  "productUpdated": "Product updated successfully",
+  "@productUpdated": { "description": "Snackbar shown after updating a product" },
+
+  "imageUploadedSuccessfully": "Image uploaded successfully",
+  "@imageUploadedSuccessfully": { "description": "Snackbar after successful image upload" },
+
+  "failedToUploadImage": "Failed to upload image: {error}",
+  "@failedToUploadImage": { "description": "Image upload error", "placeholders": { "error": {} } },
+
+  "noImagesAdded": "No images added",
+  "@noImagesAdded": { "description": "Shown when no images have been added" },
+
+  "addImage": "Add Image",
+  "@addImage": { "description": "Add image button label" },
+
+  "uploading": "Uploading...",
+  "@uploading": { "description": "Uploading state label" },
+
+  "addCategory": "Add Category",
+  "@addCategory": { "description": "Dialog title / button for adding a category" },
+
+  "addSpecification": "Add Specification",
+  "@addSpecification": { "description": "Button title for adding a product specification" },
+
+  "noCategoriesAdded": "No categories added",
+  "@noCategoriesAdded": { "description": "Shown when there are no categories" },
+
+  "noSpecsAdded": "No specs added",
+  "@noSpecsAdded": { "description": "Shown when there are no specs" },
+
+  "addShippingOverride": "Add Shipping Override",
+  "@addShippingOverride": { "description": "Button to add shipping override" },
+
+  "noShippingOverrides": "No shipping overrides",
+  "@noShippingOverrides": { "description": "Shown when there are no shipping overrides" },
+
+  "imageUploadServerTitle": "Image Upload Server",
+  "@imageUploadServerTitle": { "description": "Settings title for image upload server" },
+
+  "mediaServerSettingsTitle": "Media Server Settings",
+  "@mediaServerSettingsTitle": { "description": "Media server settings title" },
+
+  "selectMediaServerDescription": "Select a media server for uploading product images:",
+  "@selectMediaServerDescription": { "description": "Description text about selecting media server" },
+
+  "mediaServerChangedTo": "Media server changed to {name}",
+  "@mediaServerChangedTo": { "description": "Snackbar after media server change", "placeholders": { "name": {} } },
+
+  "customServerTitle": "Custom Server",
+  "@customServerTitle": { "description": "Title for custom server dialog" },
+
+  "copyNsec": "Copy nsec",
+  "@copyNsec": { "description": "Label for copying nsec/private key" }
+  ,
+  "pleaseFillAllFields": "Please fill in all fields",
+  "@pleaseFillAllFields": { "description": "Validation message for empty fields" },
+
+  "invalidUrlFormat": "Invalid URL format",
+  "@invalidUrlFormat": { "description": "Invalid URL format message" },
+
+  "logoutConfirm": "Are you sure you want to logout?",
+  "@logoutConfirm": { "description": "Logout confirmation dialog text" }
+
+  ,
+  "debugRunnerLabel": "Debug runner - minimal app",
+  "@debugRunnerLabel": { "description": "Label shown in the debug runner app" }
+  ,
+  "noCategoriesAdded": "No categories added",
+  "@noCategoriesAdded": { "description": "Shown when there are no categories" },
+
+  "noSpecsAdded": "No specs added",
+  "@noSpecsAdded": { "description": "Shown when there are no specs" },
+
+  "noShippingOverrides": "No shipping overrides",
+  "@noShippingOverrides": { "description": "Shown when there are no shipping overrides" },
+
+  "zoneLabel": "Zone: {id}",
+  "@zoneLabel": { "description": "Label for shipping zone", "placeholders": { "id": {} } },
+
+  "descriptionLabel": "Description",
+  "@descriptionLabel": { "description": "Label for description input" },
+
+  "descriptionHint": "Describe your stall, menu, or policies",
+  "@descriptionHint": { "description": "Hint for the description input" },
+
+  "stallTypeLabel": "Stall Type",
+  "@stallTypeLabel": { "description": "Label for stall type selector" },
+
+  "currencyLabel": "Currency",
+  "@currencyLabel": { "description": "Label for currency input" },
+
+  "currencyHint": "e.g., THB",
+  "@currencyHint": { "description": "Hint for currency input" },
+
+  "prepTimeLabel": "Preparation Time (mins)",
+  "@prepTimeLabel": { "description": "Label for preparation time input" },
+
+  "foodDetailsLabel": "Food Details",
+  "@foodDetailsLabel": { "description": "Section header for food-specific fields" },
+
+  "cuisineTypeLabel": "Cuisine",
+  "@cuisineTypeLabel": { "description": "Label for cuisine input" },
+
+  "cuisineHint": "e.g., Thai, Italian",
+  "@cuisineHint": { "description": "Hint for cuisine input" },
+
+  "operatingHoursLabel": "Operating Hours",
+  "@operatingHoursLabel": { "description": "Label for operating hours input" },
+
+  "operatingHoursHint": "e.g., 09:00-22:00",
+  "@operatingHoursHint": { "description": "Hint for operating hours input" },
+
+  "shippingZonesLabel": "Shipping Zones",
+  "@shippingZonesLabel": { "description": "Section header for shipping zones" },
+
+  "shippingZonesDescription": "Define delivery zones and costs",
+  "@shippingZonesDescription": { "description": "Short description shown above shipping zones" },
+
+  "costLabel": "Cost",
+  "@costLabel": { "description": "Label for cost in shipping zone" },
+
+  "regionsLabel": "Regions",
+  "@regionsLabel": { "description": "Label for regions list in a shipping zone" },
+
+  "allRegions": "All regions",
+  "@allRegions": { "description": "Label shown when a zone covers all regions" },
+
+  "updateStall": "Update Stall",
+  "@updateStall": { "description": "Label for update stall action" },
+
+  "extraCostLabel": "Extra cost: {cost}",
+  "@extraCostLabel": { "description": "Label for shipping extra cost", "placeholders": { "cost": {} } },
+
+  "availableForOrder": "Available for Order",
+  "@availableForOrder": { "description": "Switch title when product is available" },
+
+  "availableForOrderSubtitle": "Customers can order this product",
+  "@availableForOrderSubtitle": { "description": "Switch subtitle when product is available" }
+,
+  "createProduct": "Create Product",
+  "@createProduct": { "description": "Title / label for creating a product" },
+
+  "productImages": "Product Images",
+  "@productImages": { "description": "Section header for product images" },
+
+  "uploadImagesDescription": "Upload images to showcase your product",
+  "@uploadImagesDescription": { "description": "Short description shown above product images" },
+
+  "categories": "Categories",
+  "@categories": { "description": "Categories section header" },
+
+  "availability": "Availability",
+  "@availability": { "description": "Availability section header" },
+
+  "editSpecification": "Edit Specification",
+  "@editSpecification": { "description": "Dialog title for editing a spec" },
+
+  "editShippingOverride": "Edit Shipping Override",
+  "@editShippingOverride": { "description": "Dialog title for editing a shipping override" }
+  ,
+  "add": "Add",
+  "@add": { "description": "Generic Add button text" },
+
+  "categoryName": "Category Name",
+  "@categoryName": { "description": "Label for category name input" },
+
+  "categoryHint": "e.g., Main Course, Dessert",
+  "@categoryHint": { "description": "Hint for category name input" }
+
+  ,
+  "privateKeyHexLabel": "Private Key (hex)",
+  "@privateKeyHexLabel": { "description": "Label for private key input (hex)" },
+
+  "privateKeyHexHint": "Enter your 64-character private key",
+  "@privateKeyHexHint": { "description": "Hint for private key hex input" },
+
+  "serverNameLabel": "Server Name",
+  "@serverNameLabel": { "description": "Label for server name input" },
+
+  "serverNameHint": "e.g., My Server",
+  "@serverNameHint": { "description": "Hint for server name input" },
+
+  "uploadUrlLabel": "Upload URL",
+  "@uploadUrlLabel": { "description": "Label for upload URL input" },
+
+  "uploadUrlHint": "https://example.com/upload",
+  "@uploadUrlHint": { "description": "Hint for upload url input" },
+
+  "editShippingZone": "Edit Shipping Zone",
+  "@editShippingZone": { "description": "Dialog title for editing a shipping zone" },
+
+  "zoneIdLabel": "Zone ID *",
+  "@zoneIdLabel": { "description": "Label for zone id input" },
+
+  "zoneIdHint": "zone_1",
+  "@zoneIdHint": { "description": "Hint for zone id input" },
+
+  "zoneNameLabel": "Zone Name",
+  "@zoneNameLabel": { "description": "Label for zone name input" },
+
+  "zoneNameHint": "e.g., Local Delivery, Express",
+  "@zoneNameHint": { "description": "Hint for zone name input" },
+
+  "shippingCostLabel": "Shipping Cost *",
+  "@shippingCostLabel": { "description": "Label for shipping cost input" },
+
+  "shippingCostHint": "30.00",
+  "@shippingCostHint": { "description": "Hint for shipping cost input" },
+
+  "regionsHint": "region1, region2, region3",
+  "@regionsHint": { "description": "Hint for regions input" },
+
+  "regionsHelper": "Comma-separated list (optional)",
+  "@regionsHelper": { "description": "Helper text for regions list input" },
+
+  "noShippingZonesAdded": "No shipping zones added",
+  "@noShippingZonesAdded": { "description": "Shown when no shipping zones exist" },
+
+  "pleaseEnterStallName": "Please enter stall name",
+  "@pleaseEnterStallName": { "description": "Validation message when stall name is empty" },
+
+  "requiredLabel": "Required",
+  "@requiredLabel": { "description": "Generic required label" }
+
+  ,
+  "nostrInfoDescription": "ZapD uses Nostr protocol for secure, decentralized authentication. Your private key is your identity - keep it safe!",
+  "@nostrInfoDescription": { "description": "Info card text about Nostr authentication" },
+
+  "neverSharePrivateKeyWarning": "Never share your private key. Store it securely. Loss of private key means loss of access!",
+  "@neverSharePrivateKeyWarning": { "description": "Warning shown about private key safety" }
+
+  ,
+  "productNameLabel": "Product Name *",
+  "@productNameLabel": { "description": "Label for product name input" },
+
+  "productNameHint": "e.g., Pad Thai",
+  "@productNameHint": { "description": "Hint for product name input" },
+
+  "pleaseEnterProductName": "Please enter product name",
+  "@pleaseEnterProductName": { "description": "Validation message when product name is empty" },
+
+  "priceLabel": "Price *",
+  "@priceLabel": { "description": "Label for price input" },
+
+  "invalidLabel": "Invalid",
+  "@invalidLabel": { "description": "Generic invalid input label" },
+
+  "quantityHint": "Leave empty for unlimited",
+  "@quantityHint": { "description": "Hint for quantity input" },
+
+  "spicyLevelLabel": "Spicy Level (0-5)",
+  "@spicyLevelLabel": { "description": "Label for spicy level input" },
+
+  "dailyLimitLabel": "Daily Limit",
+  "@dailyLimitLabel": { "description": "Label for daily limit input" },
+
+  "dailyLimitHint": "Max orders per day",
+  "@dailyLimitHint": { "description": "Hint for daily limit input" },
+
+  "productSpecificationsHeader": "Product Specifications (NIP-15)",
+  "@productSpecificationsHeader": { "description": "Header for product specifications section" },
+
+  "specKeyLabel": "Key *",
+  "@specKeyLabel": { "description": "Label for specification key input" },
+
+  "specKeyHint": "e.g., Size, Weight, Material",
+  "@specKeyHint": { "description": "Hint for specification key input" },
+
+  "specValueLabel": "Value *",
+  "@specValueLabel": { "description": "Label for specification value input" },
+
+  "specValueHint": "e.g., Large, 500g, Cotton",
+  "@specValueHint": { "description": "Hint for specification value input" },
+
+  "shippingCostsHeader": "Shipping Costs (NIP-15)",
+  "@shippingCostsHeader": { "description": "Header for shipping costs section" },
+
+  "extraShippingCostsDescription": "Extra shipping costs per zone",
+  "@extraShippingCostsDescription": { "description": "Short description shown above product shipping overrides" }
+
+  ,
+  "quantityLabel": "Quantity",
+  "@quantityLabel": { "description": "Label for quantity input" }
+
+  ,
+  "stallProductsTitle": "{stallName} - {products}",
+  "@stallProductsTitle": { "description": "Title showing stall name and products label", "placeholders": { "stallName": {}, "products": {} } },
+
+  "serverNameWithTag": "{name} ({tag})",
+  "@serverNameWithTag": { "description": "Server name with tag suffix (e.g., name (NIP-96))", "placeholders": { "name": {}, "tag": {} } }
+
+  ,
+  "changeServer": "Change server",
+  "@changeServer": { "description": "Tooltip text for changing media server" }
+  ,
+  "errorWithMessage": "Error: {message}",
+  "@errorWithMessage": { "description": "Error label followed by message", "placeholders": { "message": {} } }
+
+  ,
+  "orderDetailsWithId": "{label} #{id}",
+  "@orderDetailsWithId": { "description": "Order details title with truncated id", "placeholders": { "label": {}, "id": {} } },
+
+  "confirmWithStatus": "{confirm}? {status}",
+  "@confirmWithStatus": { "description": "Confirmation question with status label", "placeholders": { "confirm": {}, "status": {} } },
+
+  "labelWithValue": "{label}: {value}",
+  "@labelWithValue": { "description": "Generic label with value formatting", "placeholders": { "label": {}, "value": {} } }
+
+  ,
+  "nostrConnectConnectedWithKey": "{message}\nPublic key: {pubkey}",
+  "@nostrConnectConnectedWithKey": { "description": "Nostr Connect success with public key", "placeholders": { "message": {}, "pubkey": {} } }
 }

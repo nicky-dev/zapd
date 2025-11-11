@@ -60,7 +60,7 @@ final routerProvider = Provider<GoRouter>((ref) {
     ],
     errorBuilder: (context, state) => Scaffold(
       body: Center(
-        child: Text('${AppLocalizations.of(context)!.error}: ${state.error}'),
+        child: Text(AppLocalizations.of(context)!.errorWithMessage(state.error?.toString() ?? '')),
       ),
     ),
   );

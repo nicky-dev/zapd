@@ -117,7 +117,7 @@ class _StallFormScreenState extends ConsumerState<StallFormScreen> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('${l10n.error}: $e')),
+          SnackBar(content: Text(l10n.errorWithMessage(e.toString()))),
         );
       }
     } finally {
@@ -204,7 +204,7 @@ class _StallFormScreenState extends ConsumerState<StallFormScreen> {
               ),
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
-                  return 'Please enter stall name';
+                  return l10n.pleaseEnterStallName;
                 }
                 return null;
               },
@@ -213,10 +213,10 @@ class _StallFormScreenState extends ConsumerState<StallFormScreen> {
 
             TextFormField(
               controller: _descriptionController,
-              decoration: const InputDecoration(
-                labelText: 'Description',
-                hintText: 'Describe your stall...',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: l10n.descriptionLabel,
+                hintText: l10n.descriptionHint,
+                border: const OutlineInputBorder(),
               ),
               maxLines: 3,
             ),
@@ -224,9 +224,9 @@ class _StallFormScreenState extends ConsumerState<StallFormScreen> {
 
             DropdownButtonFormField<StallType>(
               value: _selectedType,
-              decoration: const InputDecoration(
-                labelText: 'Stall Type *',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: l10n.stallTypeLabel,
+                border: const OutlineInputBorder(),
               ),
               items: StallType.values.map((type) {
                 return DropdownMenuItem(
@@ -253,14 +253,14 @@ class _StallFormScreenState extends ConsumerState<StallFormScreen> {
                 Expanded(
                   child: TextFormField(
                     controller: _currencyController,
-                    decoration: const InputDecoration(
-                      labelText: 'Currency *',
-                      hintText: 'THB, USD, BTC',
-                      border: OutlineInputBorder(),
+                    decoration: InputDecoration(
+                      labelText: l10n.currencyLabel,
+                      hintText: l10n.currencyHint,
+                      border: const OutlineInputBorder(),
                     ),
                     validator: (value) {
                       if (value == null || value.trim().isEmpty) {
-                        return 'Required';
+                        return l10n.requiredLabel;
                       }
                       return null;
                     },
@@ -270,9 +270,9 @@ class _StallFormScreenState extends ConsumerState<StallFormScreen> {
                 Expanded(
                   child: TextFormField(
                     controller: _preparationTimeController,
-                    decoration: const InputDecoration(
-                      labelText: 'Prep Time (min)',
-                      border: OutlineInputBorder(),
+                    decoration: InputDecoration(
+                      labelText: l10n.prepTimeLabel,
+                      border: const OutlineInputBorder(),
                     ),
                     keyboardType: TextInputType.number,
                   ),
@@ -283,35 +283,35 @@ class _StallFormScreenState extends ConsumerState<StallFormScreen> {
 
             // Food-specific fields
             if (_selectedType == StallType.food) ...[
-              _buildSectionHeader('Food Details'),
+              _buildSectionHeader(l10n.foodDetailsLabel),
               const SizedBox(height: 12),
               
               TextFormField(
                 controller: _cuisineController,
-                decoration: const InputDecoration(
-                  labelText: 'Cuisine Type',
-                  hintText: 'e.g., Thai, Japanese, Italian',
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  labelText: l10n.cuisineTypeLabel,
+                  hintText: l10n.cuisineHint,
+                  border: const OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 16),
 
               TextFormField(
                 controller: _operatingHoursController,
-                decoration: const InputDecoration(
-                  labelText: 'Operating Hours',
-                  hintText: '09:00-22:00',
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  labelText: l10n.operatingHoursLabel,
+                  hintText: l10n.operatingHoursHint,
+                  border: const OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 24),
             ],
 
             // Shipping Zones Section
-            _buildSectionHeader('Shipping Zones (NIP-15)'),
+            _buildSectionHeader(l10n.shippingZonesLabel),
             const SizedBox(height: 8),
             Text(
-              'Define delivery zones with their costs and regions',
+              l10n.shippingZonesDescription,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 color: Colors.grey[600],
               ),
@@ -324,7 +324,7 @@ class _StallFormScreenState extends ConsumerState<StallFormScreen> {
                   padding: const EdgeInsets.all(16),
                   child: Center(
                     child: Text(
-                      'No shipping zones added',
+                      l10n.noShippingZonesAdded,
                       style: TextStyle(color: Colors.grey[600]),
                     ),
                   ),
@@ -340,10 +340,9 @@ class _StallFormScreenState extends ConsumerState<StallFormScreen> {
                     leading: CircleAvatar(
                       child: Text('${index + 1}'),
                     ),
-                    title: Text(zone.name ?? 'Zone ${zone.id}'),
+                    title: Text(zone.name ?? l10n.zoneLabel(zone.id)),
                     subtitle: Text(
-                      'Cost: ${zone.cost} ${_currencyController.text}\n'
-                      'Regions: ${zone.regions.isEmpty ? "All" : zone.regions.join(", ")}',
+                      '${l10n.costLabel}: ${zone.cost} ${_currencyController.text}\n${l10n.regionsLabel}: ${zone.regions.isEmpty ? l10n.allRegions : zone.regions.join(", ")}',
                     ),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
@@ -367,12 +366,12 @@ class _StallFormScreenState extends ConsumerState<StallFormScreen> {
             OutlinedButton.icon(
               onPressed: _addShippingZone,
               icon: const Icon(Icons.add),
-              label: Text(AppLocalizations.of(context)!.addShippingZone),
+          label: Text(l10n.addShippingZone),
             ),
             const SizedBox(height: 24),
 
             // Settings
-            _buildSectionHeader('Settings'),
+            _buildSectionHeader(l10n.settings),
             const SizedBox(height: 12),
             
             SwitchListTile(
@@ -391,7 +390,7 @@ class _StallFormScreenState extends ConsumerState<StallFormScreen> {
             FilledButton.icon(
               onPressed: _isLoading ? null : _saveStall,
               icon: const Icon(Icons.save),
-              label: Text(widget.stall == null ? 'Create Stall' : 'Update Stall'),
+              label: Text(widget.stall == null ? l10n.createStall : l10n.updateStall),
               style: FilledButton.styleFrom(
                 padding: const EdgeInsets.all(16),
               ),
@@ -477,47 +476,47 @@ class _ShippingZoneDialogState extends State<_ShippingZoneDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(widget.zone == null ? 'Add Shipping Zone' : 'Edit Shipping Zone'),
+  title: Text(widget.zone == null ? AppLocalizations.of(context)!.addShippingZone : AppLocalizations.of(context)!.editShippingZone),
       content: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             TextField(
               controller: _idController,
-              decoration: const InputDecoration(
-                labelText: 'Zone ID *',
-                hintText: 'zone_1',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context)!.zoneIdLabel,
+                hintText: AppLocalizations.of(context)!.zoneIdHint,
+                border: const OutlineInputBorder(),
               ),
               enabled: widget.zone == null, // Can't change ID when editing
             ),
             const SizedBox(height: 12),
             TextField(
               controller: _nameController,
-              decoration: const InputDecoration(
-                labelText: 'Zone Name',
-                hintText: 'e.g., Local Delivery, Express',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context)!.zoneNameLabel,
+                hintText: AppLocalizations.of(context)!.zoneNameHint,
+                border: const OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 12),
             TextField(
               controller: _costController,
-              decoration: const InputDecoration(
-                labelText: 'Shipping Cost *',
-                hintText: '30.00',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context)!.shippingCostLabel,
+                hintText: AppLocalizations.of(context)!.shippingCostHint,
+                border: const OutlineInputBorder(),
               ),
               keyboardType: TextInputType.number,
             ),
             const SizedBox(height: 12),
             TextField(
               controller: _regionsController,
-              decoration: const InputDecoration(
-                labelText: 'Regions',
-                hintText: 'region1, region2, region3',
-                helperText: 'Comma-separated list (optional)',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context)!.regionsLabel,
+                hintText: AppLocalizations.of(context)!.regionsHint,
+                helperText: AppLocalizations.of(context)!.regionsHelper,
+                border: const OutlineInputBorder(),
               ),
               maxLines: 2,
             ),

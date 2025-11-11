@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:nostr_core/nostr_core.dart';
 import '../models/stall.dart';
 import '../models/stall_type.dart';
@@ -203,9 +204,9 @@ class StallRepository {
         .build();
 
     final signedEvent = _signEvent(unsignedEvent, privateKey);
-    await nostrClient.publish(signedEvent);
-    
-    print('Deleted stall $stallId by publishing empty replacement event');
+  await nostrClient.publish(signedEvent);
+
+  debugPrint('Deleted stall $stallId by publishing empty replacement event');
   }
 
   /// Convert NostrEvent to Stall model
@@ -263,7 +264,7 @@ class StallRepository {
         acceptsOrders: tagMap['accepts_orders']?.first == 'true',
       );
     } catch (e) {
-      print('Error parsing stall event: $e');
+      debugPrint('Error parsing stall event: $e');
       return null;
     }
   }

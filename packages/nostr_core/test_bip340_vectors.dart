@@ -1,5 +1,5 @@
 import 'lib/src/crypto/schnorr.dart';
-import 'lib/src/crypto/key_pair.dart';
+// removed unused import
 
 void main() {
   print('�� Testing BIP-340 Schnorr with official test vectors\n');

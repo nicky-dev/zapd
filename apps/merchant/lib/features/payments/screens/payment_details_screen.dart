@@ -119,7 +119,7 @@ class _PaymentDetailsScreenState extends ConsumerState<PaymentDetailsScreen> {
     }
 
     return Card(
-      color: statusColor.withOpacity(0.1),
+  color: statusColor.withAlpha((0.1 * 255).round()),
       child: Padding(
         padding: const EdgeInsets.all(24),
         child: Column(

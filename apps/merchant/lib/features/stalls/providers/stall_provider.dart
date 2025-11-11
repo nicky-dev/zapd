@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nostr_core/nostr_core.dart';
 import '../models/stall.dart';
 import '../repositories/stall_repository.dart';
 import '../../../core/providers/nostr_provider.dart';

@@ -73,7 +73,7 @@ class StallListScreen extends ConsumerWidget {
             children: [
               const Icon(Icons.error_outline, size: 48, color: Colors.red),
               const SizedBox(height: 16),
-              Text('${l10n.error}: $error'),
+              Text(AppLocalizations.of(context)!.errorWithMessage(error.toString())),
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {

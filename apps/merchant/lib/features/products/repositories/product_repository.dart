@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:nostr_core/nostr_core.dart';
 import '../models/product.dart';
 
@@ -274,7 +275,7 @@ class ProductRepository {
         dailyLimit: int.tryParse(tagMap['daily_limit']?.first ?? ''),
       );
     } catch (e) {
-      print('Error parsing product event: $e');
+      debugPrint('Error parsing product event: $e');
       return null;
     }
   }

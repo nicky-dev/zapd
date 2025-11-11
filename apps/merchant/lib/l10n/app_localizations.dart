@@ -1100,6 +1100,18 @@ abstract class AppLocalizations {
   /// **'Media Server'**
   String get mediaServer;
 
+  /// Short tag for NIP-96 media servers
+  ///
+  /// In en, this message translates to:
+  /// **'NIP-96'**
+  String get nip96Tag;
+
+  /// Short tag for legacy media servers
+  ///
+  /// In en, this message translates to:
+  /// **'Legacy'**
+  String get legacyTag;
+
   /// About section header
   ///
   /// In en, this message translates to:
@@ -1382,7 +1394,7 @@ abstract class AppLocalizations {
   /// **'Images'**
   String get images;
 
-  /// Add image button
+  /// Add image button label
   ///
   /// In en, this message translates to:
   /// **'Add Image'**
@@ -1412,10 +1424,10 @@ abstract class AppLocalizations {
   /// **'Description (optional)'**
   String get descriptionOptional;
 
-  /// Stall name validation
+  /// Validation message when stall name is empty
   ///
   /// In en, this message translates to:
-  /// **'Please enter a stall name'**
+  /// **'Please enter stall name'**
   String get pleaseEnterStallName;
 
   /// Stall created message
@@ -1855,6 +1867,642 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Receipt id copied to clipboard'**
   String get receiptCopied;
+
+  /// Dialog title while waiting for remote approval
+  ///
+  /// In en, this message translates to:
+  /// **'⏳ Waiting for Approval'**
+  String get waitingForApproval;
+
+  /// Dialog content instructing the user to approve the connection
+  ///
+  /// In en, this message translates to:
+  /// **'Please approve this connection on your nsecBunker or Amber app.'**
+  String get waitingForApprovalContent;
+
+  /// Label for a short steps list
+  ///
+  /// In en, this message translates to:
+  /// **'Steps:'**
+  String get stepsLabel;
+
+  /// Step 1 text for Nostr Connect approval
+  ///
+  /// In en, this message translates to:
+  /// **'1. Open your nsecBunker/Amber app'**
+  String get step1;
+
+  /// Step 2 text for Nostr Connect approval
+  ///
+  /// In en, this message translates to:
+  /// **'2. You should see a connection request'**
+  String get step2;
+
+  /// Step 3 text for Nostr Connect approval
+  ///
+  /// In en, this message translates to:
+  /// **'3. Approve the request'**
+  String get step3;
+
+  /// Confirmation when deleting a product
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete \"{productName}\"?'**
+  String deleteProductConfirm(Object productName);
+
+  /// Snackbar after product deletion
+  ///
+  /// In en, this message translates to:
+  /// **'Product deleted successfully'**
+  String get productDeletedSuccessfully;
+
+  /// Error shown when product deletion fails
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to delete product: {error}'**
+  String failedToDeleteProduct(Object error);
+
+  /// Snackbar shown after creating a product
+  ///
+  /// In en, this message translates to:
+  /// **'Product created successfully'**
+  String get productCreated;
+
+  /// Snackbar shown after updating a product
+  ///
+  /// In en, this message translates to:
+  /// **'Product updated successfully'**
+  String get productUpdated;
+
+  /// Snackbar after successful image upload
+  ///
+  /// In en, this message translates to:
+  /// **'Image uploaded successfully'**
+  String get imageUploadedSuccessfully;
+
+  /// Image upload error
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to upload image: {error}'**
+  String failedToUploadImage(Object error);
+
+  /// Shown when no images have been added
+  ///
+  /// In en, this message translates to:
+  /// **'No images added'**
+  String get noImagesAdded;
+
+  /// Uploading state label
+  ///
+  /// In en, this message translates to:
+  /// **'Uploading...'**
+  String get uploading;
+
+  /// Dialog title / button for adding a category
+  ///
+  /// In en, this message translates to:
+  /// **'Add Category'**
+  String get addCategory;
+
+  /// Button title for adding a product specification
+  ///
+  /// In en, this message translates to:
+  /// **'Add Specification'**
+  String get addSpecification;
+
+  /// Shown when there are no categories
+  ///
+  /// In en, this message translates to:
+  /// **'No categories added'**
+  String get noCategoriesAdded;
+
+  /// Shown when there are no specs
+  ///
+  /// In en, this message translates to:
+  /// **'No specs added'**
+  String get noSpecsAdded;
+
+  /// Button to add shipping override
+  ///
+  /// In en, this message translates to:
+  /// **'Add Shipping Override'**
+  String get addShippingOverride;
+
+  /// Shown when there are no shipping overrides
+  ///
+  /// In en, this message translates to:
+  /// **'No shipping overrides'**
+  String get noShippingOverrides;
+
+  /// Settings title for image upload server
+  ///
+  /// In en, this message translates to:
+  /// **'Image Upload Server'**
+  String get imageUploadServerTitle;
+
+  /// Media server settings title
+  ///
+  /// In en, this message translates to:
+  /// **'Media Server Settings'**
+  String get mediaServerSettingsTitle;
+
+  /// Description text about selecting media server
+  ///
+  /// In en, this message translates to:
+  /// **'Select a media server for uploading product images:'**
+  String get selectMediaServerDescription;
+
+  /// Snackbar after media server change
+  ///
+  /// In en, this message translates to:
+  /// **'Media server changed to {name}'**
+  String mediaServerChangedTo(Object name);
+
+  /// Title for custom server dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Custom Server'**
+  String get customServerTitle;
+
+  /// Label for copying nsec/private key
+  ///
+  /// In en, this message translates to:
+  /// **'Copy nsec'**
+  String get copyNsec;
+
+  /// Validation message for empty fields
+  ///
+  /// In en, this message translates to:
+  /// **'Please fill in all fields'**
+  String get pleaseFillAllFields;
+
+  /// Invalid URL format message
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid URL format'**
+  String get invalidUrlFormat;
+
+  /// Logout confirmation dialog text
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to logout?'**
+  String get logoutConfirm;
+
+  /// Label shown in the debug runner app
+  ///
+  /// In en, this message translates to:
+  /// **'Debug runner - minimal app'**
+  String get debugRunnerLabel;
+
+  /// Label for shipping zone
+  ///
+  /// In en, this message translates to:
+  /// **'Zone: {id}'**
+  String zoneLabel(Object id);
+
+  /// Label for description input
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get descriptionLabel;
+
+  /// Hint for the description input
+  ///
+  /// In en, this message translates to:
+  /// **'Describe your stall, menu, or policies'**
+  String get descriptionHint;
+
+  /// Label for stall type selector
+  ///
+  /// In en, this message translates to:
+  /// **'Stall Type'**
+  String get stallTypeLabel;
+
+  /// Label for currency input
+  ///
+  /// In en, this message translates to:
+  /// **'Currency'**
+  String get currencyLabel;
+
+  /// Hint for currency input
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., THB'**
+  String get currencyHint;
+
+  /// Label for preparation time input
+  ///
+  /// In en, this message translates to:
+  /// **'Preparation Time (mins)'**
+  String get prepTimeLabel;
+
+  /// Section header for food-specific fields
+  ///
+  /// In en, this message translates to:
+  /// **'Food Details'**
+  String get foodDetailsLabel;
+
+  /// Label for cuisine input
+  ///
+  /// In en, this message translates to:
+  /// **'Cuisine'**
+  String get cuisineTypeLabel;
+
+  /// Hint for cuisine input
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., Thai, Italian'**
+  String get cuisineHint;
+
+  /// Label for operating hours input
+  ///
+  /// In en, this message translates to:
+  /// **'Operating Hours'**
+  String get operatingHoursLabel;
+
+  /// Hint for operating hours input
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., 09:00-22:00'**
+  String get operatingHoursHint;
+
+  /// Section header for shipping zones
+  ///
+  /// In en, this message translates to:
+  /// **'Shipping Zones'**
+  String get shippingZonesLabel;
+
+  /// Short description shown above shipping zones
+  ///
+  /// In en, this message translates to:
+  /// **'Define delivery zones and costs'**
+  String get shippingZonesDescription;
+
+  /// Label for cost in shipping zone
+  ///
+  /// In en, this message translates to:
+  /// **'Cost'**
+  String get costLabel;
+
+  /// Label for regions list in a shipping zone
+  ///
+  /// In en, this message translates to:
+  /// **'Regions'**
+  String get regionsLabel;
+
+  /// Label shown when a zone covers all regions
+  ///
+  /// In en, this message translates to:
+  /// **'All regions'**
+  String get allRegions;
+
+  /// Label for update stall action
+  ///
+  /// In en, this message translates to:
+  /// **'Update Stall'**
+  String get updateStall;
+
+  /// Label for shipping extra cost
+  ///
+  /// In en, this message translates to:
+  /// **'Extra cost: {cost}'**
+  String extraCostLabel(Object cost);
+
+  /// Switch title when product is available
+  ///
+  /// In en, this message translates to:
+  /// **'Available for Order'**
+  String get availableForOrder;
+
+  /// Switch subtitle when product is available
+  ///
+  /// In en, this message translates to:
+  /// **'Customers can order this product'**
+  String get availableForOrderSubtitle;
+
+  /// Title / label for creating a product
+  ///
+  /// In en, this message translates to:
+  /// **'Create Product'**
+  String get createProduct;
+
+  /// Section header for product images
+  ///
+  /// In en, this message translates to:
+  /// **'Product Images'**
+  String get productImages;
+
+  /// Short description shown above product images
+  ///
+  /// In en, this message translates to:
+  /// **'Upload images to showcase your product'**
+  String get uploadImagesDescription;
+
+  /// Categories section header
+  ///
+  /// In en, this message translates to:
+  /// **'Categories'**
+  String get categories;
+
+  /// Availability section header
+  ///
+  /// In en, this message translates to:
+  /// **'Availability'**
+  String get availability;
+
+  /// Dialog title for editing a spec
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Specification'**
+  String get editSpecification;
+
+  /// Dialog title for editing a shipping override
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Shipping Override'**
+  String get editShippingOverride;
+
+  /// Generic Add button text
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get add;
+
+  /// Label for category name input
+  ///
+  /// In en, this message translates to:
+  /// **'Category Name'**
+  String get categoryName;
+
+  /// Hint for category name input
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., Main Course, Dessert'**
+  String get categoryHint;
+
+  /// Label for private key input (hex)
+  ///
+  /// In en, this message translates to:
+  /// **'Private Key (hex)'**
+  String get privateKeyHexLabel;
+
+  /// Hint for private key hex input
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your 64-character private key'**
+  String get privateKeyHexHint;
+
+  /// Label for server name input
+  ///
+  /// In en, this message translates to:
+  /// **'Server Name'**
+  String get serverNameLabel;
+
+  /// Hint for server name input
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., My Server'**
+  String get serverNameHint;
+
+  /// Label for upload URL input
+  ///
+  /// In en, this message translates to:
+  /// **'Upload URL'**
+  String get uploadUrlLabel;
+
+  /// Hint for upload url input
+  ///
+  /// In en, this message translates to:
+  /// **'https://example.com/upload'**
+  String get uploadUrlHint;
+
+  /// Dialog title for editing a shipping zone
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Shipping Zone'**
+  String get editShippingZone;
+
+  /// Label for zone id input
+  ///
+  /// In en, this message translates to:
+  /// **'Zone ID *'**
+  String get zoneIdLabel;
+
+  /// Hint for zone id input
+  ///
+  /// In en, this message translates to:
+  /// **'zone_1'**
+  String get zoneIdHint;
+
+  /// Label for zone name input
+  ///
+  /// In en, this message translates to:
+  /// **'Zone Name'**
+  String get zoneNameLabel;
+
+  /// Hint for zone name input
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., Local Delivery, Express'**
+  String get zoneNameHint;
+
+  /// Label for shipping cost input
+  ///
+  /// In en, this message translates to:
+  /// **'Shipping Cost *'**
+  String get shippingCostLabel;
+
+  /// Hint for shipping cost input
+  ///
+  /// In en, this message translates to:
+  /// **'30.00'**
+  String get shippingCostHint;
+
+  /// Hint for regions input
+  ///
+  /// In en, this message translates to:
+  /// **'region1, region2, region3'**
+  String get regionsHint;
+
+  /// Helper text for regions list input
+  ///
+  /// In en, this message translates to:
+  /// **'Comma-separated list (optional)'**
+  String get regionsHelper;
+
+  /// Shown when no shipping zones exist
+  ///
+  /// In en, this message translates to:
+  /// **'No shipping zones added'**
+  String get noShippingZonesAdded;
+
+  /// Generic required label
+  ///
+  /// In en, this message translates to:
+  /// **'Required'**
+  String get requiredLabel;
+
+  /// Info card text about Nostr authentication
+  ///
+  /// In en, this message translates to:
+  /// **'ZapD uses Nostr protocol for secure, decentralized authentication. Your private key is your identity - keep it safe!'**
+  String get nostrInfoDescription;
+
+  /// Warning shown about private key safety
+  ///
+  /// In en, this message translates to:
+  /// **'Never share your private key. Store it securely. Loss of private key means loss of access!'**
+  String get neverSharePrivateKeyWarning;
+
+  /// Label for product name input
+  ///
+  /// In en, this message translates to:
+  /// **'Product Name *'**
+  String get productNameLabel;
+
+  /// Hint for product name input
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., Pad Thai'**
+  String get productNameHint;
+
+  /// Validation message when product name is empty
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter product name'**
+  String get pleaseEnterProductName;
+
+  /// Label for price input
+  ///
+  /// In en, this message translates to:
+  /// **'Price *'**
+  String get priceLabel;
+
+  /// Generic invalid input label
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid'**
+  String get invalidLabel;
+
+  /// Hint for quantity input
+  ///
+  /// In en, this message translates to:
+  /// **'Leave empty for unlimited'**
+  String get quantityHint;
+
+  /// Label for spicy level input
+  ///
+  /// In en, this message translates to:
+  /// **'Spicy Level (0-5)'**
+  String get spicyLevelLabel;
+
+  /// Label for daily limit input
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Limit'**
+  String get dailyLimitLabel;
+
+  /// Hint for daily limit input
+  ///
+  /// In en, this message translates to:
+  /// **'Max orders per day'**
+  String get dailyLimitHint;
+
+  /// Header for product specifications section
+  ///
+  /// In en, this message translates to:
+  /// **'Product Specifications (NIP-15)'**
+  String get productSpecificationsHeader;
+
+  /// Label for specification key input
+  ///
+  /// In en, this message translates to:
+  /// **'Key *'**
+  String get specKeyLabel;
+
+  /// Hint for specification key input
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., Size, Weight, Material'**
+  String get specKeyHint;
+
+  /// Label for specification value input
+  ///
+  /// In en, this message translates to:
+  /// **'Value *'**
+  String get specValueLabel;
+
+  /// Hint for specification value input
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., Large, 500g, Cotton'**
+  String get specValueHint;
+
+  /// Header for shipping costs section
+  ///
+  /// In en, this message translates to:
+  /// **'Shipping Costs (NIP-15)'**
+  String get shippingCostsHeader;
+
+  /// Short description shown above product shipping overrides
+  ///
+  /// In en, this message translates to:
+  /// **'Extra shipping costs per zone'**
+  String get extraShippingCostsDescription;
+
+  /// Label for quantity input
+  ///
+  /// In en, this message translates to:
+  /// **'Quantity'**
+  String get quantityLabel;
+
+  /// Title showing stall name and products label
+  ///
+  /// In en, this message translates to:
+  /// **'{stallName} - {products}'**
+  String stallProductsTitle(Object stallName, Object products);
+
+  /// Server name with tag suffix (e.g., name (NIP-96))
+  ///
+  /// In en, this message translates to:
+  /// **'{name} ({tag})'**
+  String serverNameWithTag(Object name, Object tag);
+
+  /// Tooltip text for changing media server
+  ///
+  /// In en, this message translates to:
+  /// **'Change server'**
+  String get changeServer;
+
+  /// Error label followed by message
+  ///
+  /// In en, this message translates to:
+  /// **'Error: {message}'**
+  String errorWithMessage(Object message);
+
+  /// Order details title with truncated id
+  ///
+  /// In en, this message translates to:
+  /// **'{label} #{id}'**
+  String orderDetailsWithId(Object label, Object id);
+
+  /// Confirmation question with status label
+  ///
+  /// In en, this message translates to:
+  /// **'{confirm}? {status}'**
+  String confirmWithStatus(Object confirm, Object status);
+
+  /// Generic label with value formatting
+  ///
+  /// In en, this message translates to:
+  /// **'{label}: {value}'**
+  String labelWithValue(Object label, Object value);
+
+  /// Nostr Connect success with public key
+  ///
+  /// In en, this message translates to:
+  /// **'{message}\nPublic key: {pubkey}'**
+  String nostrConnectConnectedWithKey(Object message, Object pubkey);
 }
 
 class _AppLocalizationsDelegate

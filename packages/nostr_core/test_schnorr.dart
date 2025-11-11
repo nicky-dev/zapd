@@ -1,7 +1,7 @@
 import 'lib/src/crypto/schnorr.dart';
 import 'lib/src/crypto/key_pair.dart';
 import 'lib/src/events/event.dart';
-import 'dart:convert';
+// removed unused import
 
 void main() {
   print('Testing Schnorr Signature...\n');

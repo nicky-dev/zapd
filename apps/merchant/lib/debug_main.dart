@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'l10n/app_localizations.dart';
 
 void main() {
   runApp(const _DebugApp());
@@ -9,10 +10,11 @@ class _DebugApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    final l10n = AppLocalizations.of(context);
+    return MaterialApp(
       home: Scaffold(
         body: Center(
-          child: Text('Debug runner - minimal app'),
+          child: Text(l10n?.debugRunnerLabel ?? 'Debug runner - minimal app'),
         ),
       ),
     );

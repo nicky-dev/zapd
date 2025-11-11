@@ -92,7 +92,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                   color: theme.colorScheme.primary,
                 ),
                 const SizedBox(height: 24),
-                
+
                 // Title
                 Text(
                   AppLocalizations.of(context)!.appTitle,
@@ -105,7 +105,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                 Text(
                   AppLocalizations.of(context)!.welcomeSubtitle,
                   style: theme.textTheme.bodyLarge?.copyWith(
-                    color: theme.colorScheme.onSurface.withOpacity(0.6),
+                    color: theme.colorScheme.onSurface.withAlpha((0.6 * 255).round()),
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -136,8 +136,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                         ),
                         const SizedBox(height: 12),
                         Text(
-                          'ZapD uses Nostr protocol for secure, decentralized authentication. '
-                          'Your private key is your identity - keep it safe!',
+                          AppLocalizations.of(context)!.nostrInfoDescription,
                           style: theme.textTheme.bodyMedium,
                         ),
                       ],
@@ -172,7 +171,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                       child: Text(
                         AppLocalizations.of(context)!.or,
                         style: theme.textTheme.bodySmall?.copyWith(
-                          color: theme.colorScheme.onSurface.withOpacity(0.6),
+                          color: theme.colorScheme.onSurface.withAlpha((0.6 * 255).round()),
                         ),
                       ),
                     ),
@@ -185,8 +184,8 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                 TextField(
                   controller: _privateKeyController,
                   decoration: InputDecoration(
-                    labelText: 'Private Key (hex)',
-                    hintText: 'Enter your 64-character private key',
+                    labelText: AppLocalizations.of(context)!.privateKeyHexLabel,
+                    hintText: AppLocalizations.of(context)!.privateKeyHexHint,
                     border: const OutlineInputBorder(),
                     suffixIcon: IconButton(
                       icon: Icon(
@@ -209,7 +208,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                 FilledButton.icon(
                   onPressed: _importKey,
                   icon: const Icon(Icons.login),
-                    label: Text(AppLocalizations.of(context)!.importAndContinue),
+                  label: Text(AppLocalizations.of(context)!.importAndContinue),
                   style: FilledButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16),
                   ),
@@ -220,10 +219,10 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: theme.colorScheme.errorContainer.withOpacity(0.3),
+                    color: theme.colorScheme.errorContainer.withAlpha((0.3 * 255).round()),
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(
-                      color: theme.colorScheme.error.withOpacity(0.3),
+                      color: theme.colorScheme.error.withAlpha((0.3 * 255).round()),
                     ),
                   ),
                   child: Row(
@@ -237,8 +236,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
-                          'Never share your private key. Store it securely. '
-                          'Loss of private key means loss of access!',
+                          AppLocalizations.of(context)!.neverSharePrivateKeyWarning,
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: theme.colorScheme.error,
                           ),

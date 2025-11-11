@@ -98,7 +98,7 @@ class OrderPaymentWidget extends ConsumerWidget {
           fontSize: 12,
         ),
       ),
-      backgroundColor: color.withOpacity(0.1),
+  backgroundColor: color.withAlpha((0.1 * 255).round()),
       side: BorderSide(color: color),
     );
   }

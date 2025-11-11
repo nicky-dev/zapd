@@ -1,5 +1,5 @@
 import 'lib/src/events/event.dart';
-import 'dart:convert';
+// removed unused import
 
 void main() {
   print('🔍 Testing NostrEvent.verify() with REJECTED event\n');

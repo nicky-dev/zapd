@@ -92,3 +92,30 @@ content: NIP44.encrypt(orderDetails, conversationKey)
 - Relay infrastructure is critical for message delivery
 - Lightning Network for instant payments
 - Focus on privacy using NIP-44 encryption
+
+## NIP-XX: Food Delivery Extension (added)
+
+The repository now includes a specification draft for NIP-XX, a Food Delivery extension built on top of NIP-15 (Marketplace).
+
+Summary (copied from `NIP-XX-FOOD-DELIVERY.md`):
+
+- Purpose: Extend marketplace events and flows to support food delivery specifics such as order lifecycle, delivery zones, rider assignment, and privacy for addresses.
+- New stall and product tags: `stall_type`, `cuisine`, `accepts_orders`, `preparation_time`, `operating_hours`, `location_encrypted`, `delivery_zone`, `min_order`, `delivery_fee`, `category`, `spicy_level`, `available`, `daily_limit`, `customization`.
+- Orders: Public status events use kind `30078` (parameterized replaceable) with statuses (pending, accepted, preparing, ready, delivering, completed, cancelled). Private order details use kind `14` with NIP-44 encryption.
+- Rider assignment and delivery coordination are handled via encrypted DMs (kind `14`) between merchant and rider.
+- Subscriptions:
+  - Merchant: subscribe to kinds `[14, 30078]` with `#p` merchant pubkey filter.
+  - Customer: subscribe to kind `30078` by author and `#d` order id.
+  - Rider: subscribe to kind `14` with `#p` rider pubkey.
+- Payments: integrate NIP-57 Lightning invoices and require verification of preimage before accepting orders.
+- Privacy: public delivery zones via geohash, exact addresses encrypted via NIP-44.
+
+Where to find it:
+- `NIP-XX-FOOD-DELIVERY.md` at repository root — contains full spec, examples, and implementation notes.
+
+Repository context update
+- Apps: `apps/merchant`, `apps/customer`, `apps/rider` (Flutter).
+- Packages: `packages/nostr_core`, `packages/zapd_models`, `packages/zapd_ui`, `packages/zapd_services`.
+- Notes: The merchant app includes a reference implementation for stall, product, order management and uses NIP-44 encryption for private payloads. The NIP-XX spec is intended to guide further development across these apps and packages.
+
+Please review `NIP-XX-FOOD-DELIVERY.md` for details and link the spec to any PRs that implement the described behaviors.

@@ -122,10 +122,8 @@ class LNURLService {
     // In production: generate proper LNURL-pay endpoint
     // Format: LNURL1... (bech32 encoded https URL)
     
-    final callbackUrl = 'https://zapd.app/api/lnurl/pay/$merchantPubkey';
-    
-    // Mock LNURL encoding
-    return 'LNURL1MOCK${merchantPubkey.substring(0, 20)}';
+  // Mock LNURL encoding
+  return 'LNURL1MOCK${merchantPubkey.substring(0, 20)}';
   }
 
   /// Handle LNURL-pay callback

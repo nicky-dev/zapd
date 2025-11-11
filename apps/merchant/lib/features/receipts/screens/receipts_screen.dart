@@ -61,7 +61,7 @@ class ReceiptsScreen extends ConsumerWidget {
                           ],
                         ),
                         const SizedBox(height: 8),
-                        Text('${l10n.receiptsAmountPrefix} $amount'),
+                        Text(AppLocalizations.of(context)!.labelWithValue(l10n.receiptsAmountPrefix, amount)),
                         const SizedBox(height: 8),
                         Row(
                           children: [
@@ -100,13 +100,13 @@ class ReceiptsScreen extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('${l10n.receiptLabelTitle}: ${r.stallName ?? ''}'),
+            Text(l10n.labelWithValue(l10n.receiptLabelTitle, r.stallName ?? '')),
             const SizedBox(height: 8),
-            Text('${l10n.receiptLabelDate}: ${r.createdAt.toIso8601String().split('T').first}'),
+            Text(l10n.labelWithValue(l10n.receiptLabelDate, r.createdAt.toIso8601String().split('T').first)),
             const SizedBox(height: 8),
-            Text('${l10n.receiptLabelAmount}: ${r.details?.total ?? l10n.notAvailable}'),
+            Text(l10n.labelWithValue(l10n.receiptLabelAmount, (r.details?.total ?? l10n.notAvailable).toString())),
             const SizedBox(height: 8),
-            Text('${l10n.receiptLabelItems}: ${(r.details?.items.map((i) => i.productName ?? i.productId).join(', ')) ?? l10n.notAvailable}'),
+            Text(l10n.labelWithValue(l10n.receiptLabelItems, (r.details?.items.map((i) => i.productName ?? i.productId).join(', ')) ?? l10n.notAvailable)),
           ],
         ),
         actions: [

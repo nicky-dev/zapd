@@ -62,6 +62,9 @@ dependencies:
   intl: ^0.20.2
   uuid: ^4.5.1
   bech32: ^0.2.2
+  # Needed by NIP-96 and utility encodings
+  crypto: ^3.0.2
+  convert: ^3.1.1
   web_socket_channel: ^3.0.1
   http: ^1.2.2
   image_picker: ^1.1.2

@@ -61,11 +61,11 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
       context.go('/dashboard');
     } catch (e) {
       if (!mounted) return;
-      final l10n = AppLocalizations.of(context);
+      final l10n = AppLocalizations.of(context)!;
       
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('${l10n?.errorSavingKey ?? "Error saving key"}: $e'),
+          content: Text(l10n.errorWithMessage(e.toString())),
           backgroundColor: Colors.red,
         ),
       );
@@ -127,7 +127,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                 Text(
                   l10n?.generateKeyDescription ?? 'Your Nostr key is your identity on the decentralized network.',
                   style: theme.textTheme.bodyLarge?.copyWith(
-                    color: theme.colorScheme.onSurface.withOpacity(0.7),
+                    color: theme.colorScheme.onSurface.withAlpha((0.7 * 255).round()),
                   ),
                   textAlign: TextAlign.center,
                 ),

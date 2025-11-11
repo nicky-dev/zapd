@@ -1,5 +1,5 @@
 import 'package:ndk/ndk.dart' as ndk;
-import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/foundation.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:html' as html show window;
 import '../storage/nip46_session_storage.dart';
@@ -30,7 +30,7 @@ class Nip46Service {
   /// - Web: Open in popup window
   /// - Mobile: Try to open as deep link (nostrconnect://)
   static void _openAuthUrl(String authUrl) {
-    print('[NIP-46] Opening auth URL: $authUrl');
+  debugPrint('[NIP-46] Opening auth URL: $authUrl');
     
     if (kIsWeb) {
       // Web: Open in popup
@@ -44,7 +44,7 @@ class Nip46Service {
         'NIP-46 Authorization',
         'width=$width,height=$height,left=$left,top=$top,menubar=no,toolbar=no,location=no',
       );
-      print('[NIP-46] Opened popup window');
+      debugPrint('[NIP-46] Opened popup window');
     } else {
       // Mobile: Open as deep link or in browser
       launchUrl(
@@ -52,12 +52,12 @@ class Nip46Service {
         mode: LaunchMode.externalApplication,
       ).then((success) {
         if (success) {
-          print('[NIP-46] Opened URL in external app');
+          debugPrint('[NIP-46] Opened URL in external app');
         } else {
-          print('[NIP-46] Failed to open URL');
+          debugPrint('[NIP-46] Failed to open URL');
         }
       }).catchError((e) {
-        print('[NIP-46] Error opening URL: $e');
+        debugPrint('[NIP-46] Error opening URL: $e');
       });
     }
   }
@@ -77,22 +77,22 @@ class Nip46Service {
     final relays = uri.queryParametersAll['relay'] ?? [];
     final hasSecret = uri.queryParameters['secret']?.isNotEmpty ?? false;
 
-    print('[NIP-46] Connecting with NDK...');
-    print('  Bunker URL: $bunkerUrl');
-    print('  Remote Pubkey: $remotePubkey');
-    print('  Relays: ${relays.join(", ")}');
-    print('  Has Secret: $hasSecret');
-    print('  If no response: Check https://nsec.app for approval!');
-    print('');
+  debugPrint('[NIP-46] Connecting with NDK...');
+  debugPrint('  Bunker URL: $bunkerUrl');
+  debugPrint('  Remote Pubkey: $remotePubkey');
+  debugPrint('  Relays: ${relays.join(", ")}');
+  debugPrint('  Has Secret: $hasSecret');
+  debugPrint('  If no response: Check https://nsec.app for approval!');
+  debugPrint('');
 
     try {
       // Connect using NDK's Bunkers
       // NDK extracts relay URL from bunker:// URL automatically
-      print('[NIP-46] Sending connect request...');
+  debugPrint('[NIP-46] Sending connect request...');
       final connection = await _ndk!.bunkers.connectWithBunkerUrl(
         bunkerUrl,
         authCallback: (authUrl) {
-          print('[NIP-46] AUTH REQUIRED: $authUrl');
+          debugPrint('[NIP-46] AUTH REQUIRED: $authUrl');
           
           // Open auth URL based on platform
           _openAuthUrl(authUrl);
@@ -107,8 +107,8 @@ class Nip46Service {
         throw Exception('Failed to connect to bunker - connection returned null');
       }
 
-      print('[NIP-46] Connected successfully!');
-      print('  Remote pubkey: ${connection.remotePubkey}');
+  debugPrint('[NIP-46] Connected successfully!');
+  debugPrint('  Remote pubkey: ${connection.remotePubkey}');
 
       // Create signer
       _signer = _ndk!.bunkers.createSigner(
@@ -124,8 +124,8 @@ class Nip46Service {
       
       return connection;
     } catch (e, stackTrace) {
-      print('[NIP-46] Connection failed: $e');
-      print('Stack trace: $stackTrace');
+  debugPrint('[NIP-46] Connection failed: $e');
+  debugPrint('Stack trace: $stackTrace');
       rethrow;
     }
   }
@@ -143,13 +143,13 @@ class Nip46Service {
       // Session restoration with NIP-46 requires full reconnection flow
       // because ephemeral keys and connection state are not easily serializable
       // User needs to scan QR code or paste bunker URL again
-      print('[NIP-46] Previous session found but requires reconnection');
+      debugPrint('[NIP-46] Previous session found but requires reconnection');
       if (session.remotePublicKey != null) {
-        print('[NIP-46] Last connected to: ${session.remotePublicKey}');
+        debugPrint('[NIP-46] Last connected to: ${session.remotePublicKey}');
       }
       return false;
     } catch (e) {
-      print('[NIP-46] Session check failed: $e');
+      debugPrint('[NIP-46] Session check failed: $e');
       return false;
     }
   }

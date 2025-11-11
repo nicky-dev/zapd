@@ -47,7 +47,7 @@ class WelcomePage extends ConsumerWidget {
                               ? theme.colorScheme.primaryContainer
                               : null,
                         ),
-                        child: const Text('EN'),
+                        child: Text(l10n?.english ?? 'EN'),
                       ),
                       const SizedBox(width: 4),
                       TextButton(
@@ -57,7 +57,7 @@ class WelcomePage extends ConsumerWidget {
                               ? theme.colorScheme.primaryContainer
                               : null,
                         ),
-                        child: const Text('TH'),
+                        child: Text(l10n?.thai ?? 'TH'),
                       ),
                     ],
                   ),
@@ -86,7 +86,7 @@ class WelcomePage extends ConsumerWidget {
                             shape: BoxShape.circle,
                             boxShadow: [
                               BoxShadow(
-                                color: theme.colorScheme.primary.withOpacity(0.3),
+                                color: theme.colorScheme.primary.withAlpha((0.3 * 255).round()),
                                 blurRadius: 30,
                                 spreadRadius: 10,
                               ),
@@ -116,7 +116,7 @@ class WelcomePage extends ConsumerWidget {
                       Text(
                         l10n?.welcomeSubtitle ?? 'Decentralized Food Delivery',
                         style: theme.textTheme.titleMedium?.copyWith(
-                          color: theme.colorScheme.onSurface.withOpacity(0.7),
+                          color: theme.colorScheme.onSurface.withAlpha((0.7 * 255).round()),
                         ),
                         textAlign: TextAlign.center,
                       ),
@@ -154,7 +154,7 @@ class WelcomePage extends ConsumerWidget {
                                     'No passwords, no central servers.',
                                 style: theme.textTheme.bodySmall?.copyWith(
                                   color: theme.colorScheme.onTertiaryContainer
-                                      .withOpacity(0.8),
+                                      .withAlpha((0.8 * 255).round()),
                                 ),
                                 textAlign: TextAlign.center,
                               ),
@@ -195,7 +195,7 @@ class WelcomePage extends ConsumerWidget {
                             child: Text(
                               l10n?.or ?? 'OR',
                               style: theme.textTheme.bodyMedium?.copyWith(
-                                color: theme.colorScheme.onSurface.withOpacity(0.5),
+                                color: theme.colorScheme.onSurface.withAlpha((0.5 * 255).round()),
                               ),
                             ),
                           ),
@@ -231,7 +231,7 @@ class WelcomePage extends ConsumerWidget {
                         l10n?.termsAgreement ?? 
                             'By continuing, you agree to our Terms of Service',
                         style: theme.textTheme.bodySmall?.copyWith(
-                          color: theme.colorScheme.onSurface.withOpacity(0.5),
+                          color: theme.colorScheme.onSurface.withAlpha((0.5 * 255).round()),
                         ),
                         textAlign: TextAlign.center,
                       ),

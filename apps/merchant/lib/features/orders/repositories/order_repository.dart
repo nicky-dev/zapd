@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:nostr_core/nostr_core.dart';
 import '../models/order.dart';
 import '../models/order_status.dart';
@@ -66,7 +67,7 @@ class OrderRepository {
         // Details will be decrypted separately
       );
     } catch (e) {
-      print('Error parsing order from DM: $e');
+      debugPrint('Error parsing order from DM: $e');
       return null;
     }
   }
@@ -87,13 +88,13 @@ class OrderRepository {
 
       // Check if it's Type 0 (customer order)
       if (detailsJson['type'] != 0) {
-        print('Not a customer order message, type: ${detailsJson['type']}');
+        debugPrint('Not a customer order message, type: ${detailsJson['type']}');
         return null;
       }
 
       return OrderDetails.fromJson(detailsJson);
     } catch (e) {
-      print('Error decrypting order details: $e');
+      debugPrint('Error decrypting order details: $e');
       return null;
     }
   }
@@ -130,7 +131,7 @@ class OrderRepository {
           break;
         }
       } catch (e) {
-        print('Error fetching order details: $e');
+        debugPrint('Error fetching order details: $e');
       }
     }
 
@@ -179,7 +180,7 @@ class OrderRepository {
     final signedEvent = _signEvent(unsignedEvent, privateKey);
     await nostrClient.publish(signedEvent);
 
-    print('Payment request sent for order $orderId');
+  debugPrint('Payment request sent for order $orderId');
   }
 
   /// Send Order Status Update (Type 2) to customer
@@ -225,7 +226,7 @@ class OrderRepository {
     final signedEvent = _signEvent(unsignedEvent, privateKey);
     await nostrClient.publish(signedEvent);
 
-    print('Order status update sent: paid=$paid, shipped=$shipped');
+  debugPrint('Order status update sent: paid=$paid, shipped=$shipped');
   }
 
   /// Update internal order status (for merchant tracking)
@@ -402,7 +403,7 @@ class OrderRepository {
     final signedEvent = _signEvent(unsignedEvent, privateKey);
     await nostrClient.publish(signedEvent);
 
-    print('Rider assigned to order ${order.id}');
+  debugPrint('Rider assigned to order ${order.id}');
   }
 
   /// Send encrypted notice to customer

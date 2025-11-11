@@ -26,8 +26,8 @@ class KeyPair {
     ));
 
     final keyPair = keyGen.generateKeyPair();
-    final privateKey = keyPair.privateKey as ECPrivateKey;
-    final publicKey = keyPair.publicKey as ECPublicKey;
+  final privateKey = keyPair.privateKey;
+  final publicKey = keyPair.publicKey;
 
     var privateKeyBigInt = privateKey.d!;
     var publicKeyPoint = publicKey.Q!;

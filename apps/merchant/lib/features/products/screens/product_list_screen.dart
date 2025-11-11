@@ -17,14 +17,14 @@ class ProductListScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context)!;
+  final l10n = AppLocalizations.of(context)!;
     final productsAsync = ref.watch(productNotifierProvider(stall.id));
     final width = MediaQuery.of(context).size.width;
     final horizontalPadding = width < 600 ? 16.0 : 48.0;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('${stall.name} - ${l10n.products}'),
+        title: Text(l10n.stallProductsTitle(stall.name, l10n.products)),
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
@@ -163,20 +163,21 @@ class ProductListScreen extends ConsumerWidget {
   }
 
   Future<void> _deleteProduct(BuildContext context, WidgetRef ref, product) async {
+    final l10n = AppLocalizations.of(context)!;
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Delete Product'),
-        content: Text('Are you sure you want to delete "${product.name}"?'),
+        title: Text(l10n.deleteProduct),
+        content: Text(l10n.deleteProductConfirm(product.name)),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: Text(l10n.cancel),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
             style: TextButton.styleFrom(foregroundColor: Colors.red),
-            child: const Text('Delete'),
+            child: Text(l10n.delete),
           ),
         ],
       ),
@@ -190,7 +191,7 @@ class ProductListScreen extends ConsumerWidget {
       if (privateKey == null) {
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Authentication required')),
+            SnackBar(content: Text(l10n.authenticationRequired)),
           );
         }
         return;
@@ -203,13 +204,13 @@ class ProductListScreen extends ConsumerWidget {
 
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Product deleted successfully')),
+            SnackBar(content: Text(l10n.productDeletedSuccessfully)),
           );
         }
       } catch (e) {
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Failed to delete product: $e')),
+            SnackBar(content: Text(l10n.failedToDeleteProduct(e.toString()))),
           );
         }
       }

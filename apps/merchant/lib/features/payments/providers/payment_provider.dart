@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/foundation.dart';
 import '../models/payment.dart';
 import '../services/lightning_service.dart';
 import '../repositories/payment_repository.dart';
@@ -110,7 +111,7 @@ class PaymentNotifier extends StateNotifier<PaymentState> {
       }
     } catch (e) {
       // Silently fail status checks
-      print('Error checking payment status: $e');
+      debugPrint('Error checking payment status: $e');
     }
   }
 

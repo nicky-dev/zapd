@@ -1,5 +1,5 @@
 import 'lib/src/crypto/key_pair.dart';
-import 'lib/src/crypto/schnorr.dart';
+// removed unused import
 import 'package:pointycastle/export.dart';
 
 void main() {

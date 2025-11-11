@@ -5,6 +5,7 @@ import '../models/product.dart';
 import '../providers/product_provider.dart';
 import '../../../core/providers/nostr_provider.dart';
 import '../../../core/providers/image_upload_provider.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../auth/presentation/providers/auth_provider.dart';
 
 class ProductFormScreen extends ConsumerStatefulWidget {
@@ -47,7 +48,7 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
 
     _nameController = TextEditingController(text: widget.product?.name ?? '');
     _descriptionController = TextEditingController(text: widget.product?.description ?? '');
-    _priceController = TextEditingController(text: widget.product?.price.toString() ?? '0');
+  _priceController = TextEditingController(text: widget.product != null ? widget.product!.price.toString() : '0');
     _currencyController = TextEditingController(text: widget.product?.currency ?? 'THB');
     _quantityController = TextEditingController(
       text: widget.product?.quantity?.toString() ?? '',
@@ -83,6 +84,7 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
   }
 
   Future<void> _saveProduct() async {
+    final l10n = AppLocalizations.of(context)!;
     if (!_formKey.currentState!.validate()) return;
 
     setState(() => _isLoading = true);
@@ -122,14 +124,14 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Product ${widget.product == null ? "created" : "updated"} successfully')),
+          SnackBar(content: Text(widget.product == null ? l10n.productCreated : l10n.productUpdated)),
         );
         Navigator.pop(context);
       }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: $e')),
+          SnackBar(content: Text(l10n.errorWithMessage(e.toString()))),
         );
       }
     } finally {
@@ -206,24 +208,25 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
   }
 
   void _addCategory() {
+    final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
       builder: (context) {
         final controller = TextEditingController();
         return AlertDialog(
-          title: const Text('Add Category'),
-          content: TextField(
+          title: Text(l10n.addCategory),
+            content: TextField(
             controller: controller,
-            decoration: const InputDecoration(
-              labelText: 'Category Name',
-              hintText: 'e.g., Main Course, Dessert',
+            decoration: InputDecoration(
+              labelText: l10n.categoryName,
+              hintText: l10n.categoryHint,
             ),
             autofocus: true,
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text('Cancel'),
+              child: Text(l10n.cancel),
             ),
             FilledButton(
               onPressed: () {
@@ -234,7 +237,7 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
                   Navigator.pop(context);
                 }
               },
-              child: const Text('Add'),
+              child: Text(l10n.add),
             ),
           ],
         );
@@ -243,6 +246,7 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
   }
 
   Future<void> _pickAndUploadImage() async {
+    final l10n = AppLocalizations.of(context)!;
     try {
       // Pick image
       final XFile? pickedFile = await _imagePicker.pickImage(
@@ -289,7 +293,7 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Image uploaded successfully')),
+          SnackBar(content: Text(l10n.imageUploadedSuccessfully)),
         );
       }
     } catch (e) {
@@ -298,7 +302,7 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Failed to upload image: $e'),
+            content: Text(l10n.failedToUploadImage(e.toString())),
             backgroundColor: Colors.red,
           ),
         );
@@ -314,9 +318,11 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.product == null ? 'Create Product' : 'Edit Product'),
+        title: Text(widget.product == null ? l10n.createProduct : l10n.editProduct),
         actions: [
           if (_isLoading)
             const Center(
@@ -333,7 +339,7 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
             IconButton(
               icon: const Icon(Icons.save),
               onPressed: _saveProduct,
-              tooltip: 'Save',
+              tooltip: l10n.save,
             ),
         ],
       ),
@@ -343,19 +349,19 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
           padding: const EdgeInsets.all(16),
           children: [
             // Basic Info
-            _buildSectionHeader('Basic Information'),
+            _buildSectionHeader(l10n.basicInformation),
             const SizedBox(height: 12),
 
             TextFormField(
               controller: _nameController,
-              decoration: const InputDecoration(
-                labelText: 'Product Name *',
-                hintText: 'e.g., Pad Thai',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: l10n.productNameLabel,
+                hintText: l10n.productNameHint,
+                border: const OutlineInputBorder(),
               ),
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
-                  return 'Please enter product name';
+                  return l10n.pleaseEnterProductName;
                 }
                 return null;
               },
@@ -364,20 +370,20 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
 
             TextFormField(
               controller: _descriptionController,
-              decoration: const InputDecoration(
-                labelText: 'Description',
-                hintText: 'Describe the product...',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: l10n.descriptionLabel,
+                hintText: l10n.descriptionHint,
+                border: const OutlineInputBorder(),
               ),
               maxLines: 3,
             ),
             const SizedBox(height: 24),
 
             // Images Section
-            _buildSectionHeader('Product Images'),
+            _buildSectionHeader(l10n.productImages),
             const SizedBox(height: 8),
             Text(
-              'Upload images to showcase your product',
+              l10n.uploadImagesDescription,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 color: Colors.grey[600],
               ),
@@ -385,15 +391,15 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
             const SizedBox(height: 12),
 
             if (_images.isEmpty)
-              const Card(
+              Card(
                 child: Padding(
-                  padding: EdgeInsets.all(24),
+                  padding: const EdgeInsets.all(24),
                   child: Center(
                     child: Column(
                       children: [
-                        Icon(Icons.image, size: 48, color: Colors.grey),
-                        SizedBox(height: 8),
-                        Text('No images added'),
+                        const Icon(Icons.image, size: 48, color: Colors.grey),
+                        const SizedBox(height: 8),
+                        Text(l10n.noImagesAdded),
                       ],
                     ),
                   ),
@@ -456,7 +462,7 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
                       child: CircularProgressIndicator(strokeWidth: 2),
                     )
                   : const Icon(Icons.add_photo_alternate),
-              label: Text(_isUploadingImage ? 'Uploading...' : 'Add Image'),
+              label: Text(_isUploadingImage ? l10n.uploading : l10n.addImage),
             ),
             const SizedBox(height: 16),
 
@@ -466,17 +472,17 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
                   flex: 2,
                   child: TextFormField(
                     controller: _priceController,
-                    decoration: const InputDecoration(
-                      labelText: 'Price *',
-                      border: OutlineInputBorder(),
-                    ),
+                    decoration: InputDecoration(
+                        labelText: l10n.priceLabel,
+                        border: const OutlineInputBorder(),
+                      ),
                     keyboardType: TextInputType.number,
                     validator: (value) {
                       if (value == null || value.trim().isEmpty) {
-                        return 'Required';
+                          return l10n.requiredLabel;
                       }
                       if (double.tryParse(value) == null) {
-                        return 'Invalid';
+                          return l10n.invalidLabel;
                       }
                       return null;
                     },
@@ -486,13 +492,13 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
                 Expanded(
                   child: TextFormField(
                     controller: _currencyController,
-                    decoration: const InputDecoration(
-                      labelText: 'Currency *',
-                      border: OutlineInputBorder(),
+                    decoration: InputDecoration(
+                      labelText: l10n.currencyLabel,
+                      border: const OutlineInputBorder(),
                     ),
                     validator: (value) {
                       if (value == null || value.trim().isEmpty) {
-                        return 'Required';
+                        return l10n.requiredLabel;
                       }
                       return null;
                     },
@@ -504,17 +510,17 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
 
             TextFormField(
               controller: _quantityController,
-              decoration: const InputDecoration(
-                labelText: 'Quantity',
-                hintText: 'Leave empty for unlimited',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: l10n.quantityLabel,
+                hintText: l10n.quantityHint,
+                border: const OutlineInputBorder(),
               ),
               keyboardType: TextInputType.number,
             ),
             const SizedBox(height: 24),
 
             // Food-specific
-            _buildSectionHeader('Food Details'),
+            _buildSectionHeader(l10n.foodDetailsLabel),
             const SizedBox(height: 12),
 
             Row(
@@ -522,9 +528,9 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
                 Expanded(
                   child: TextFormField(
                     controller: _spicyLevelController,
-                    decoration: const InputDecoration(
-                      labelText: 'Spicy Level (0-5)',
-                      border: OutlineInputBorder(),
+                    decoration: InputDecoration(
+                      labelText: l10n.spicyLevelLabel,
+                      border: const OutlineInputBorder(),
                     ),
                     keyboardType: TextInputType.number,
                   ),
@@ -533,9 +539,9 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
                 Expanded(
                   child: TextFormField(
                     controller: _preparationTimeController,
-                    decoration: const InputDecoration(
-                      labelText: 'Prep Time (min)',
-                      border: OutlineInputBorder(),
+                    decoration: InputDecoration(
+                      labelText: l10n.prepTimeLabel,
+                      border: const OutlineInputBorder(),
                     ),
                     keyboardType: TextInputType.number,
                   ),
@@ -546,25 +552,24 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
 
             TextFormField(
               controller: _dailyLimitController,
-              decoration: const InputDecoration(
-                labelText: 'Daily Limit',
-                hintText: 'Max orders per day',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: l10n.dailyLimitLabel,
+                hintText: l10n.dailyLimitHint,
+                border: const OutlineInputBorder(),
               ),
               keyboardType: TextInputType.number,
             ),
             const SizedBox(height: 24),
 
             // Categories
-            _buildSectionHeader('Categories'),
+            _buildSectionHeader(l10n.categories),
             const SizedBox(height: 12),
-
             if (_categories.isEmpty)
-              const Card(
+              Card(
                 child: Padding(
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   child: Center(
-                    child: Text('No categories added'),
+                    child: Text(l10n.noCategoriesAdded),
                   ),
                 ),
               )
@@ -589,20 +594,20 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
             OutlinedButton.icon(
               onPressed: _addCategory,
               icon: const Icon(Icons.add),
-              label: const Text('Add Category'),
+              label: Text(l10n.addCategory),
             ),
             const SizedBox(height: 24),
 
             // Product Specs (NIP-15)
-            _buildSectionHeader('Product Specifications (NIP-15)'),
+            _buildSectionHeader(l10n.productSpecificationsHeader),
             const SizedBox(height: 12),
 
             if (_specs.isEmpty)
-              const Card(
+              Card(
                 child: Padding(
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   child: Center(
-                    child: Text('No specs added'),
+                    child: Text(l10n.noSpecsAdded),
                   ),
                 ),
               )
@@ -631,21 +636,21 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
                     ),
                   ),
                 );
-              }).toList(),
+              }),
 
             const SizedBox(height: 8),
             OutlinedButton.icon(
               onPressed: _addSpec,
               icon: const Icon(Icons.add),
-              label: const Text('Add Specification'),
+              label: Text(l10n.addSpecification),
             ),
             const SizedBox(height: 24),
 
             // Shipping (NIP-15)
-            _buildSectionHeader('Shipping Costs (NIP-15)'),
+            _buildSectionHeader(l10n.shippingCostsHeader),
             const SizedBox(height: 8),
             Text(
-              'Extra shipping costs per zone',
+              l10n.extraShippingCostsDescription,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 color: Colors.grey[600],
               ),
@@ -653,11 +658,11 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
             const SizedBox(height: 12),
 
             if (_shipping.isEmpty)
-              const Card(
+              Card(
                 child: Padding(
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   child: Center(
-                    child: Text('No shipping overrides'),
+                    child: Text(l10n.noShippingOverrides),
                   ),
                 ),
               )
@@ -669,8 +674,8 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
                   margin: const EdgeInsets.only(bottom: 8),
                   child: ListTile(
                     leading: const Icon(Icons.local_shipping),
-                    title: Text('Zone: ${ship.id}'),
-                    subtitle: Text('Extra cost: ${ship.cost}'),
+                    title: Text(l10n.zoneLabel(ship.id)),
+                    subtitle: Text(l10n.extraCostLabel(ship.cost.toString())),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -687,23 +692,22 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
                     ),
                   ),
                 );
-              }).toList(),
+              }),
 
             const SizedBox(height: 8),
             OutlinedButton.icon(
               onPressed: _addShipping,
               icon: const Icon(Icons.add),
-              label: const Text('Add Shipping Override'),
+              label: Text(l10n.addShippingOverride),
             ),
             const SizedBox(height: 24),
 
             // Availability
-            _buildSectionHeader('Availability'),
+            _buildSectionHeader(l10n.availability),
             const SizedBox(height: 12),
-
             SwitchListTile(
-              title: const Text('Available for Order'),
-              subtitle: const Text('Customers can order this product'),
+              title: Text(l10n.availableForOrder),
+              subtitle: Text(l10n.availableForOrderSubtitle),
               value: _available,
               onChanged: (value) {
                 setState(() {
@@ -717,7 +721,7 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
             FilledButton.icon(
               onPressed: _isLoading ? null : _saveProduct,
               icon: const Icon(Icons.save),
-              label: Text(widget.product == null ? 'Create Product' : 'Update Product'),
+              label: Text(widget.product == null ? l10n.createProduct : l10n.editProduct),
               style: FilledButton.styleFrom(
                 padding: const EdgeInsets.all(16),
               ),
@@ -787,26 +791,28 @@ class _SpecDialogState extends State<_SpecDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return AlertDialog(
-      title: Text(widget.spec == null ? 'Add Specification' : 'Edit Specification'),
+          title: Text(widget.spec == null ? l10n.addSpecification : l10n.editSpecification),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           TextField(
             controller: _keyController,
-            decoration: const InputDecoration(
-              labelText: 'Key *',
-              hintText: 'e.g., Size, Weight, Material',
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: l10n.specKeyLabel,
+              hintText: l10n.specKeyHint,
+              border: const OutlineInputBorder(),
             ),
           ),
           const SizedBox(height: 12),
           TextField(
             controller: _valueController,
-            decoration: const InputDecoration(
-              labelText: 'Value *',
-              hintText: 'e.g., Large, 500g, Cotton',
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: l10n.specValueLabel,
+              hintText: l10n.specValueHint,
+              border: const OutlineInputBorder(),
             ),
           ),
         ],
@@ -814,11 +820,11 @@ class _SpecDialogState extends State<_SpecDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: const Text('Cancel'),
+          child: Text(l10n.cancel),
         ),
         FilledButton(
           onPressed: _save,
-          child: const Text('Save'),
+          child: Text(l10n.save),
         ),
       ],
     );
@@ -871,26 +877,28 @@ class _ShippingDialogState extends State<_ShippingDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return AlertDialog(
-      title: Text(widget.shipping == null ? 'Add Shipping Override' : 'Edit Shipping Override'),
+      title: Text(widget.shipping == null ? l10n.addShippingOverride : l10n.editShippingOverride),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           TextField(
             controller: _idController,
-            decoration: const InputDecoration(
-              labelText: 'Zone ID *',
-              hintText: 'Must match stall shipping zone',
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: l10n.zoneIdLabel,
+              hintText: l10n.zoneIdHint,
+              border: const OutlineInputBorder(),
             ),
           ),
           const SizedBox(height: 12),
           TextField(
             controller: _costController,
-            decoration: const InputDecoration(
-              labelText: 'Extra Cost *',
-              hintText: 'Additional shipping cost',
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: l10n.shippingCostLabel,
+              hintText: l10n.shippingCostHint,
+              border: const OutlineInputBorder(),
             ),
             keyboardType: TextInputType.number,
           ),
@@ -899,11 +907,11 @@ class _ShippingDialogState extends State<_ShippingDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: const Text('Cancel'),
+          child: Text(l10n.cancel),
         ),
         FilledButton(
           onPressed: _save,
-          child: const Text('Save'),
+          child: Text(l10n.save),
         ),
       ],
     );

@@ -1,6 +1,6 @@
 import 'lib/src/crypto/schnorr.dart';
 import 'lib/src/events/event.dart';
-import 'dart:convert';
+// removed unused import
 
 void main() {
   print('Verifying real rejected event...\n');

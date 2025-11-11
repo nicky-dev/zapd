@@ -152,7 +152,7 @@ class _NotificationTile extends ConsumerWidget {
         leading: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: _getTypeColor(notification.type).withOpacity(0.1),
+              color: _getTypeColor(notification.type).withAlpha((0.1 * 255).round()),
             shape: BoxShape.circle,
           ),
           child: Icon(
@@ -190,7 +190,7 @@ class _NotificationTile extends ConsumerWidget {
                   shape: BoxShape.circle,
                 ),
               ),
-        tileColor: notification.isRead ? null : Colors.blue.withOpacity(0.05),
+    tileColor: notification.isRead ? null : Colors.blue.withAlpha((0.05 * 255).round()),
         onTap: () {
           if (!notification.isRead) {
             ref.read(notificationProvider.notifier).markAsRead(notification.id);

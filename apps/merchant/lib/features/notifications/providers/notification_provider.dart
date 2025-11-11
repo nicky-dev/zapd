@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/foundation.dart';
 import 'package:uuid/uuid.dart';
 import '../models/notification.dart';
 import '../services/notification_service.dart';
@@ -51,7 +52,7 @@ class NotificationNotifier extends StateNotifier<NotificationState> {
         isLoading: false,
       );
     } catch (e) {
-      print('Error loading notifications: $e');
+      debugPrint('Error loading notifications: $e');
       state = state.copyWith(isLoading: false);
     }
   }

@@ -535,6 +535,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mediaServer => 'Media Server';
 
   @override
+  String get nip96Tag => 'NIP-96';
+
+  @override
+  String get legacyTag => 'Legacy';
+
+  @override
   String get about => 'About';
 
   @override
@@ -695,7 +701,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get descriptionOptional => 'Description (optional)';
 
   @override
-  String get pleaseEnterStallName => 'Please enter a stall name';
+  String get pleaseEnterStallName => 'Please enter stall name';
 
   @override
   String get stallCreatedSuccessfully => 'Stall created successfully';
@@ -924,4 +930,353 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get receiptCopied => 'Receipt id copied to clipboard';
+
+  @override
+  String get waitingForApproval => '⏳ Waiting for Approval';
+
+  @override
+  String get waitingForApprovalContent =>
+      'Please approve this connection on your nsecBunker or Amber app.';
+
+  @override
+  String get stepsLabel => 'Steps:';
+
+  @override
+  String get step1 => '1. Open your nsecBunker/Amber app';
+
+  @override
+  String get step2 => '2. You should see a connection request';
+
+  @override
+  String get step3 => '3. Approve the request';
+
+  @override
+  String deleteProductConfirm(Object productName) {
+    return 'Are you sure you want to delete \"$productName\"?';
+  }
+
+  @override
+  String get productDeletedSuccessfully => 'Product deleted successfully';
+
+  @override
+  String failedToDeleteProduct(Object error) {
+    return 'Failed to delete product: $error';
+  }
+
+  @override
+  String get productCreated => 'Product created successfully';
+
+  @override
+  String get productUpdated => 'Product updated successfully';
+
+  @override
+  String get imageUploadedSuccessfully => 'Image uploaded successfully';
+
+  @override
+  String failedToUploadImage(Object error) {
+    return 'Failed to upload image: $error';
+  }
+
+  @override
+  String get noImagesAdded => 'No images added';
+
+  @override
+  String get uploading => 'Uploading...';
+
+  @override
+  String get addCategory => 'Add Category';
+
+  @override
+  String get addSpecification => 'Add Specification';
+
+  @override
+  String get noCategoriesAdded => 'No categories added';
+
+  @override
+  String get noSpecsAdded => 'No specs added';
+
+  @override
+  String get addShippingOverride => 'Add Shipping Override';
+
+  @override
+  String get noShippingOverrides => 'No shipping overrides';
+
+  @override
+  String get imageUploadServerTitle => 'Image Upload Server';
+
+  @override
+  String get mediaServerSettingsTitle => 'Media Server Settings';
+
+  @override
+  String get selectMediaServerDescription =>
+      'Select a media server for uploading product images:';
+
+  @override
+  String mediaServerChangedTo(Object name) {
+    return 'Media server changed to $name';
+  }
+
+  @override
+  String get customServerTitle => 'Custom Server';
+
+  @override
+  String get copyNsec => 'Copy nsec';
+
+  @override
+  String get pleaseFillAllFields => 'Please fill in all fields';
+
+  @override
+  String get invalidUrlFormat => 'Invalid URL format';
+
+  @override
+  String get logoutConfirm => 'Are you sure you want to logout?';
+
+  @override
+  String get debugRunnerLabel => 'Debug runner - minimal app';
+
+  @override
+  String zoneLabel(Object id) {
+    return 'Zone: $id';
+  }
+
+  @override
+  String get descriptionLabel => 'Description';
+
+  @override
+  String get descriptionHint => 'Describe your stall, menu, or policies';
+
+  @override
+  String get stallTypeLabel => 'Stall Type';
+
+  @override
+  String get currencyLabel => 'Currency';
+
+  @override
+  String get currencyHint => 'e.g., THB';
+
+  @override
+  String get prepTimeLabel => 'Preparation Time (mins)';
+
+  @override
+  String get foodDetailsLabel => 'Food Details';
+
+  @override
+  String get cuisineTypeLabel => 'Cuisine';
+
+  @override
+  String get cuisineHint => 'e.g., Thai, Italian';
+
+  @override
+  String get operatingHoursLabel => 'Operating Hours';
+
+  @override
+  String get operatingHoursHint => 'e.g., 09:00-22:00';
+
+  @override
+  String get shippingZonesLabel => 'Shipping Zones';
+
+  @override
+  String get shippingZonesDescription => 'Define delivery zones and costs';
+
+  @override
+  String get costLabel => 'Cost';
+
+  @override
+  String get regionsLabel => 'Regions';
+
+  @override
+  String get allRegions => 'All regions';
+
+  @override
+  String get updateStall => 'Update Stall';
+
+  @override
+  String extraCostLabel(Object cost) {
+    return 'Extra cost: $cost';
+  }
+
+  @override
+  String get availableForOrder => 'Available for Order';
+
+  @override
+  String get availableForOrderSubtitle => 'Customers can order this product';
+
+  @override
+  String get createProduct => 'Create Product';
+
+  @override
+  String get productImages => 'Product Images';
+
+  @override
+  String get uploadImagesDescription =>
+      'Upload images to showcase your product';
+
+  @override
+  String get categories => 'Categories';
+
+  @override
+  String get availability => 'Availability';
+
+  @override
+  String get editSpecification => 'Edit Specification';
+
+  @override
+  String get editShippingOverride => 'Edit Shipping Override';
+
+  @override
+  String get add => 'Add';
+
+  @override
+  String get categoryName => 'Category Name';
+
+  @override
+  String get categoryHint => 'e.g., Main Course, Dessert';
+
+  @override
+  String get privateKeyHexLabel => 'Private Key (hex)';
+
+  @override
+  String get privateKeyHexHint => 'Enter your 64-character private key';
+
+  @override
+  String get serverNameLabel => 'Server Name';
+
+  @override
+  String get serverNameHint => 'e.g., My Server';
+
+  @override
+  String get uploadUrlLabel => 'Upload URL';
+
+  @override
+  String get uploadUrlHint => 'https://example.com/upload';
+
+  @override
+  String get editShippingZone => 'Edit Shipping Zone';
+
+  @override
+  String get zoneIdLabel => 'Zone ID *';
+
+  @override
+  String get zoneIdHint => 'zone_1';
+
+  @override
+  String get zoneNameLabel => 'Zone Name';
+
+  @override
+  String get zoneNameHint => 'e.g., Local Delivery, Express';
+
+  @override
+  String get shippingCostLabel => 'Shipping Cost *';
+
+  @override
+  String get shippingCostHint => '30.00';
+
+  @override
+  String get regionsHint => 'region1, region2, region3';
+
+  @override
+  String get regionsHelper => 'Comma-separated list (optional)';
+
+  @override
+  String get noShippingZonesAdded => 'No shipping zones added';
+
+  @override
+  String get requiredLabel => 'Required';
+
+  @override
+  String get nostrInfoDescription =>
+      'ZapD uses Nostr protocol for secure, decentralized authentication. Your private key is your identity - keep it safe!';
+
+  @override
+  String get neverSharePrivateKeyWarning =>
+      'Never share your private key. Store it securely. Loss of private key means loss of access!';
+
+  @override
+  String get productNameLabel => 'Product Name *';
+
+  @override
+  String get productNameHint => 'e.g., Pad Thai';
+
+  @override
+  String get pleaseEnterProductName => 'Please enter product name';
+
+  @override
+  String get priceLabel => 'Price *';
+
+  @override
+  String get invalidLabel => 'Invalid';
+
+  @override
+  String get quantityHint => 'Leave empty for unlimited';
+
+  @override
+  String get spicyLevelLabel => 'Spicy Level (0-5)';
+
+  @override
+  String get dailyLimitLabel => 'Daily Limit';
+
+  @override
+  String get dailyLimitHint => 'Max orders per day';
+
+  @override
+  String get productSpecificationsHeader => 'Product Specifications (NIP-15)';
+
+  @override
+  String get specKeyLabel => 'Key *';
+
+  @override
+  String get specKeyHint => 'e.g., Size, Weight, Material';
+
+  @override
+  String get specValueLabel => 'Value *';
+
+  @override
+  String get specValueHint => 'e.g., Large, 500g, Cotton';
+
+  @override
+  String get shippingCostsHeader => 'Shipping Costs (NIP-15)';
+
+  @override
+  String get extraShippingCostsDescription => 'Extra shipping costs per zone';
+
+  @override
+  String get quantityLabel => 'Quantity';
+
+  @override
+  String stallProductsTitle(Object stallName, Object products) {
+    return '$stallName - $products';
+  }
+
+  @override
+  String serverNameWithTag(Object name, Object tag) {
+    return '$name ($tag)';
+  }
+
+  @override
+  String get changeServer => 'Change server';
+
+  @override
+  String errorWithMessage(Object message) {
+    return 'Error: $message';
+  }
+
+  @override
+  String orderDetailsWithId(Object label, Object id) {
+    return '$label #$id';
+  }
+
+  @override
+  String confirmWithStatus(Object confirm, Object status) {
+    return '$confirm? $status';
+  }
+
+  @override
+  String labelWithValue(Object label, Object value) {
+    return '$label: $value';
+  }
+
+  @override
+  String nostrConnectConnectedWithKey(Object message, Object pubkey) {
+    return '$message\nPublic key: $pubkey';
+  }
 }

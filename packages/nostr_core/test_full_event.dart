@@ -48,18 +48,8 @@ void main() async {
     print('\nRelay will reject this event.');
   }
   
-  // 7. Show full event JSON
-  final eventJson = {
-    'id': id,
-    'pubkey': kp.publicKey,
-    'created_at': createdAt,
-    'kind': 24133,
-    'tags': tags,
-    'content': encryptedContent,
-    'sig': signature,
-  };
-  
-  print('\nFull event JSON:');
+  // 7. Print brief summary of the full event
+  print('\nFull event summary:');
   print('  id:      $id');
   print('  pubkey:  ${kp.publicKey}');
   print('  sig:     $signature');

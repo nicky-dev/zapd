@@ -143,7 +143,7 @@ class AnalyticsScreen extends ConsumerWidget {
                     horizontalInterval: 1,
                     getDrawingHorizontalLine: (value) {
                       return FlLine(
-                        color: Colors.grey.withOpacity(0.2),
+                        color: Colors.grey.withAlpha((0.2 * 255).round()),
                         strokeWidth: 1,
                       );
                     },
@@ -192,8 +192,8 @@ class AnalyticsScreen extends ConsumerWidget {
                   borderData: FlBorderData(
                     show: true,
                     border: Border(
-                      left: BorderSide(color: Colors.grey.withOpacity(0.2)),
-                      bottom: BorderSide(color: Colors.grey.withOpacity(0.2)),
+                      left: BorderSide(color: Colors.grey.withAlpha((0.2 * 255).round())),
+                      bottom: BorderSide(color: Colors.grey.withAlpha((0.2 * 255).round())),
                     ),
                   ),
                   minX: 0,
@@ -215,7 +215,7 @@ class AnalyticsScreen extends ConsumerWidget {
                       dotData: const FlDotData(show: true),
                       belowBarData: BarAreaData(
                         show: true,
-                        color: Colors.green.withOpacity(0.1),
+                        color: Colors.green.withAlpha((0.1 * 255).round()),
                       ),
                     ),
                   ],
@@ -453,7 +453,7 @@ class _SummaryCard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: color.withOpacity(0.1),
+                color: color.withAlpha((0.1 * 255).round()),
                 shape: BoxShape.circle,
               ),
               child: Icon(icon, color: color, size: 32),

@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import '../models/notification.dart';
@@ -24,7 +25,7 @@ class NotificationService {
           .toList()
         ..sort((a, b) => b.timestamp.compareTo(a.timestamp));
     } catch (e) {
-      print('Error loading notifications: $e');
+      debugPrint('Error loading notifications: $e');
       return [];
     }
   }
@@ -42,7 +43,7 @@ class NotificationService {
 
       await _saveNotifications(notifications);
     } catch (e) {
-      print('Error adding notification: $e');
+      debugPrint('Error adding notification: $e');
     }
   }
 
@@ -57,7 +58,7 @@ class NotificationService {
         await _saveNotifications(notifications);
       }
     } catch (e) {
-      print('Error marking notification as read: $e');
+      debugPrint('Error marking notification as read: $e');
     }
   }
 
@@ -68,7 +69,7 @@ class NotificationService {
       final updated = notifications.map((n) => n.copyWith(isRead: true)).toList();
       await _saveNotifications(updated);
     } catch (e) {
-      print('Error marking all notifications as read: $e');
+      debugPrint('Error marking all notifications as read: $e');
     }
   }
 
@@ -79,7 +80,7 @@ class NotificationService {
       notifications.removeWhere((n) => n.id == notificationId);
       await _saveNotifications(notifications);
     } catch (e) {
-      print('Error deleting notification: $e');
+      debugPrint('Error deleting notification: $e');
     }
   }
 
@@ -88,7 +89,7 @@ class NotificationService {
     try {
       await _prefs.remove(_keyNotifications);
     } catch (e) {
-      print('Error clearing notifications: $e');
+      debugPrint('Error clearing notifications: $e');
     }
   }
 
@@ -98,7 +99,7 @@ class NotificationService {
       final notifications = await getNotifications();
       return notifications.where((n) => !n.isRead).length;
     } catch (e) {
-      print('Error getting unread count: $e');
+      debugPrint('Error getting unread count: $e');
       return 0;
     }
   }
@@ -110,7 +111,7 @@ class NotificationService {
       final data = jsonEncode(jsonList);
       await _prefs.setString(_keyNotifications, data);
     } catch (e) {
-      print('Error saving notifications: $e');
+      debugPrint('Error saving notifications: $e');
     }
   }
 }

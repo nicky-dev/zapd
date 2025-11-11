@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,7 +22,9 @@ class MerchantApp extends ConsumerWidget {
     const zapdLightOrange = Color(0xFFFFB84D); // Lighter orange
     const zapdCream = Color(0xFFFFF8F0); // Light cream background
 
-    print('🌍 Building app with locale: ${locale.languageCode}'); // Debug
+    if (kDebugMode) {
+      debugPrint('🌍 Building app with locale: ${locale.languageCode}');
+    }
 
     return MaterialApp.router(
       key: ValueKey('${locale.languageCode}_${locale.toString()}'),

@@ -250,21 +250,22 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   }
 
   Widget _buildMediaServerSettings() {
+    final l10n = AppLocalizations.of(context)!;
     final mediaServer = ref.watch(mediaServerProvider);
 
     return Column(
       children: [
         ListTile(
           leading: const Icon(Icons.cloud_upload),
-          title: const Text('Image Upload Server'),
+          title: Text(l10n.imageUploadServerTitle),
           subtitle: Text(
-            '${mediaServer.name} ${mediaServer.isNIP96 ? '(NIP-96)' : '(Legacy)'}\n${mediaServer.serverUrl}',
+            "${mediaServer.isNIP96 ? l10n.serverNameWithTag(mediaServer.name, l10n.nip96Tag) : l10n.serverNameWithTag(mediaServer.name, l10n.legacyTag)}\n${mediaServer.serverUrl}",
             style: const TextStyle(fontSize: 12),
           ),
           trailing: IconButton(
             icon: const Icon(Icons.settings),
             onPressed: _showMediaServerDialog,
-            tooltip: 'Change server',
+            tooltip: l10n.changeServer,
           ),
         ),
       ],
@@ -272,18 +273,19 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   }
 
   void _showMediaServerDialog() {
+    final l10n = AppLocalizations.of(context)!;
     final currentServer = ref.read(mediaServerProvider);
 
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Media Server Settings'),
+        builder: (context) => AlertDialog(
+        title: Text(l10n.mediaServerSettingsTitle),
         content: SizedBox(
           width: double.maxFinite,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text('Select a media server for uploading product images:'),
+              Text(l10n.selectMediaServerDescription),
               const SizedBox(height: 16),
               
               // Predefined servers
@@ -293,7 +295,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                   dense: true,
                   value: server.serverUrl,
                   groupValue: currentServer.serverUrl,
-                  title: Text('${server.name} ${server.isNIP96 ? '(NIP-96)' : ''}'),
+          title: server.isNIP96
+            ? Text(l10n.serverNameWithTag(server.name, l10n.nip96Tag))
+            : Text(server.name),
                   subtitle: Text(
                     server.serverUrl,
                     style: const TextStyle(fontSize: 11),
@@ -303,7 +307,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                     ref.read(mediaServerProvider.notifier).setMediaServer(server);
                     Navigator.pop(context);
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Media server changed to ${server.name}')),
+                      SnackBar(content: Text(l10n.mediaServerChangedTo(server.name))),
                     );
                   },
                 );
@@ -315,7 +319,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               ListTile(
                 dense: true,
                 leading: const Icon(Icons.add),
-                title: const Text('Custom Server'),
+                title: Text(l10n.customServerTitle),
                 onTap: () {
                   Navigator.pop(context);
                   _showCustomServerDialog();
@@ -327,7 +331,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Close'),
+            child: Text(l10n.close),
           ),
         ],
       ),
@@ -335,31 +339,32 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   }
 
   void _showCustomServerDialog() {
+    final l10n = AppLocalizations.of(context)!;
     final nameController = TextEditingController();
     final urlController = TextEditingController();
 
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Custom Media Server'),
+        builder: (context) => AlertDialog(
+        title: Text(l10n.customServerTitle),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             TextField(
               controller: nameController,
-              decoration: const InputDecoration(
-                labelText: 'Server Name',
-                hintText: 'e.g., My Server',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: l10n.serverNameLabel,
+                hintText: l10n.serverNameHint,
+                border: const OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 16),
             TextField(
               controller: urlController,
-              decoration: const InputDecoration(
-                labelText: 'Upload URL',
-                hintText: 'https://example.com/upload',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: l10n.uploadUrlLabel,
+                hintText: l10n.uploadUrlHint,
+                border: const OutlineInputBorder(),
               ),
             ),
           ],
@@ -367,7 +372,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
+            child: Text(l10n.cancel),
           ),
           FilledButton(
             onPressed: () {
@@ -376,14 +381,14 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               
               if (name.isEmpty || url.isEmpty) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Please fill in all fields')),
+                  SnackBar(content: Text(l10n.pleaseFillAllFields)),
                 );
                 return;
               }
               
               if (!url.startsWith('http://') && !url.startsWith('https://')) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Invalid URL format')),
+                  SnackBar(content: Text(l10n.invalidUrlFormat)),
                 );
                 return;
               }
@@ -391,10 +396,10 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               ref.read(mediaServerProvider.notifier).setCustomMediaServer(url, name);
               Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Media server changed to $name')),
+                SnackBar(content: Text(l10n.mediaServerChangedTo(name))),
               );
             },
-            child: const Text('Save'),
+            child: Text(l10n.save),
           ),
         ],
       ),
@@ -436,9 +441,10 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   }
 
   void _exportPrivateKey(String? privateKey) {
+    final l10n = AppLocalizations.of(context)!;
     if (privateKey == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Private key not available')),
+        SnackBar(content: Text(l10n.privateKeyNotAvailable)),
       );
       return;
     }
@@ -447,12 +453,12 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
 
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Row(
+        builder: (context) => AlertDialog(
+        title: Row(
           children: [
             Icon(Icons.warning, color: Colors.orange),
-            SizedBox(width: 8),
-            Text('Export Private Key'),
+            const SizedBox(width: 8),
+            Text(l10n.exportPrivateKey),
           ],
         ),
         content: Column(
@@ -510,15 +516,15 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Close'),
+            child: Text(l10n.close),
           ),
           ElevatedButton.icon(
             onPressed: () {
-              _copyToClipboard(nsec, 'Private key (nsec)');
+              _copyToClipboard(nsec, l10n.privateKey);
               Navigator.pop(context);
             },
             icon: const Icon(Icons.copy),
-            label: const Text('Copy nsec'),
+            label: Text(l10n.copyNsec),
           ),
         ],
       ),
@@ -526,15 +532,16 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   }
 
   void _confirmLogout() {
+    final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Logout'),
-        content: const Text('Are you sure you want to logout?'),
+        title: Text(l10n.logout),
+        content: Text(l10n.logoutConfirm),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
+            child: Text(l10n.cancel),
           ),
           ElevatedButton(
             onPressed: () async {
@@ -545,7 +552,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               }
             },
             style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-            child: const Text('Logout'),
+            child: Text(l10n.logout),
           ),
         ],
       ),

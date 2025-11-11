@@ -534,6 +534,12 @@ class AppLocalizationsTh extends AppLocalizations {
   String get mediaServer => 'เซิร์ฟเวอร์สื่อ';
 
   @override
+  String get nip96Tag => 'NIP-96';
+
+  @override
+  String get legacyTag => 'รุ่นเก่า';
+
+  @override
   String get about => 'เกี่ยวกับ';
 
   @override
@@ -694,7 +700,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get descriptionOptional => 'คำอธิบาย (ไม่จำเป็น)';
 
   @override
-  String get pleaseEnterStallName => 'กรุณากรอกชื่อร้านค้า';
+  String get pleaseEnterStallName => 'กรุณากรอกชื่อแผง';
 
   @override
   String get stallCreatedSuccessfully => 'สร้างร้านค้าสำเร็จ';
@@ -924,4 +930,353 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get receiptCopied => 'คัดลอกรหัสใบเสร็จแล้ว';
+
+  @override
+  String get waitingForApproval => '⏳ กำลังรอการอนุมัติ';
+
+  @override
+  String get waitingForApprovalContent =>
+      'กรุณาอนุมัติการเชื่อมต่อในแอป nsecBunker หรือ Amber ของคุณ';
+
+  @override
+  String get stepsLabel => 'ขั้นตอน:';
+
+  @override
+  String get step1 => '1. เปิดแอป nsecBunker/Amber ของคุณ';
+
+  @override
+  String get step2 => '2. ควรจะเห็นคำขอเชื่อมต่อ';
+
+  @override
+  String get step3 => '3. ยืนยันคำขอ';
+
+  @override
+  String deleteProductConfirm(Object productName) {
+    return 'คุณแน่ใจหรือไม่ว่าต้องการลบ \"$productName\"?';
+  }
+
+  @override
+  String get productDeletedSuccessfully => 'ลบสินค้าสำเร็จ';
+
+  @override
+  String failedToDeleteProduct(Object error) {
+    return 'ไม่สามารถลบสินค้าได้: $error';
+  }
+
+  @override
+  String get productCreated => 'สร้างสินค้าสำเร็จ';
+
+  @override
+  String get productUpdated => 'อัปเดตสินค้าสำเร็จ';
+
+  @override
+  String get imageUploadedSuccessfully => 'อัปโหลดรูปภาพสำเร็จ';
+
+  @override
+  String failedToUploadImage(Object error) {
+    return 'อัปโหลดรูปภาพไม่สำเร็จ: $error';
+  }
+
+  @override
+  String get noImagesAdded => 'ยังไม่มีรูปภาพ';
+
+  @override
+  String get uploading => 'กำลังอัปโหลด...';
+
+  @override
+  String get addCategory => 'เพิ่มหมวดหมู่';
+
+  @override
+  String get addSpecification => 'เพิ่มสเปค';
+
+  @override
+  String get noCategoriesAdded => 'ยังไม่มีหมวดหมู่';
+
+  @override
+  String get noSpecsAdded => 'ยังไม่มีสเปค';
+
+  @override
+  String get addShippingOverride => 'เพิ่มการปรับค่าส่ง';
+
+  @override
+  String get noShippingOverrides => 'ยังไม่มีการปรับค่าส่ง';
+
+  @override
+  String get imageUploadServerTitle => 'เซิร์ฟเวอร์อัปโหลดรูป';
+
+  @override
+  String get mediaServerSettingsTitle => 'การตั้งค่าเซิร์ฟเวอร์สื่อ';
+
+  @override
+  String get selectMediaServerDescription =>
+      'เลือกเซิร์ฟเวอร์สื่อสำหรับการอัปโหลดรูปภาพสินค้า:';
+
+  @override
+  String mediaServerChangedTo(Object name) {
+    return 'เปลี่ยนเซิร์ฟเวอร์สื่อเป็น $name';
+  }
+
+  @override
+  String get customServerTitle => 'เซิร์ฟเวอร์กำหนดเอง';
+
+  @override
+  String get copyNsec => 'คัดลอก nsec';
+
+  @override
+  String get pleaseFillAllFields => 'กรุณากรอกข้อมูลให้ครบ';
+
+  @override
+  String get invalidUrlFormat => 'รูปแบบ URL ไม่ถูกต้อง';
+
+  @override
+  String get logoutConfirm => 'คุณแน่ใจว่าต้องการออกจากระบบหรือไม่?';
+
+  @override
+  String get debugRunnerLabel => 'โหมดดีบัก - แอปอย่างง่าย';
+
+  @override
+  String zoneLabel(Object id) {
+    return 'โซน: $id';
+  }
+
+  @override
+  String get descriptionLabel => 'คำอธิบาย';
+
+  @override
+  String get descriptionHint => 'อธิบายแผง, เมนู หรือ นโยบายของคุณ';
+
+  @override
+  String get stallTypeLabel => 'ประเภทแผง';
+
+  @override
+  String get currencyLabel => 'สกุลเงิน';
+
+  @override
+  String get currencyHint => 'เช่น THB';
+
+  @override
+  String get prepTimeLabel => 'เวลาการเตรียม (นาที)';
+
+  @override
+  String get foodDetailsLabel => 'รายละเอียดอาหาร';
+
+  @override
+  String get cuisineTypeLabel => 'ประเภทอาหาร';
+
+  @override
+  String get cuisineHint => 'เช่น ไทย, อิตาเลียน';
+
+  @override
+  String get operatingHoursLabel => 'เวลาทำการ';
+
+  @override
+  String get operatingHoursHint => 'เช่น 09:00-22:00';
+
+  @override
+  String get shippingZonesLabel => 'โซนการจัดส่ง';
+
+  @override
+  String get shippingZonesDescription => 'กำหนดโซนการจัดส่งและค่าจัดส่ง';
+
+  @override
+  String get costLabel => 'ค่าใช้จ่าย';
+
+  @override
+  String get regionsLabel => 'ภูมิภาค';
+
+  @override
+  String get allRegions => 'ทุกภูมิภาค';
+
+  @override
+  String get updateStall => 'อัปเดตแผง';
+
+  @override
+  String extraCostLabel(Object cost) {
+    return 'ค่าเพิ่ม: $cost';
+  }
+
+  @override
+  String get availableForOrder => 'พร้อมให้สั่งซื้อ';
+
+  @override
+  String get availableForOrderSubtitle => 'ลูกค้าสามารถสั่งสินค้านี้ได้';
+
+  @override
+  String get createProduct => 'สร้างสินค้า';
+
+  @override
+  String get productImages => 'รูปภาพสินค้า';
+
+  @override
+  String get uploadImagesDescription => 'อัปโหลดรูปภาพเพื่อแสดงสินค้า';
+
+  @override
+  String get categories => 'หมวดหมู่';
+
+  @override
+  String get availability => 'ความพร้อมขาย';
+
+  @override
+  String get editSpecification => 'แก้ไขสเปค';
+
+  @override
+  String get editShippingOverride => 'แก้ไขการปรับค่าส่ง';
+
+  @override
+  String get add => 'เพิ่ม';
+
+  @override
+  String get categoryName => 'ชื่อหมวดหมู่';
+
+  @override
+  String get categoryHint => 'เช่น เมนูหลัก, ของหวาน';
+
+  @override
+  String get privateKeyHexLabel => 'Private Key (hex)';
+
+  @override
+  String get privateKeyHexHint => 'กรอกคีย์ส่วนตัว 64 ตัวอักษร';
+
+  @override
+  String get serverNameLabel => 'ชื่อเซิร์ฟเวอร์';
+
+  @override
+  String get serverNameHint => 'เช่น My Server';
+
+  @override
+  String get uploadUrlLabel => 'URL อัปโหลด';
+
+  @override
+  String get uploadUrlHint => 'https://example.com/upload';
+
+  @override
+  String get editShippingZone => 'แก้ไขโซนการจัดส่ง';
+
+  @override
+  String get zoneIdLabel => 'รหัสโซน *';
+
+  @override
+  String get zoneIdHint => 'zone_1';
+
+  @override
+  String get zoneNameLabel => 'ชื่อโซน';
+
+  @override
+  String get zoneNameHint => 'เช่น Local Delivery, Express';
+
+  @override
+  String get shippingCostLabel => 'ค่าจัดส่ง *';
+
+  @override
+  String get shippingCostHint => '30.00';
+
+  @override
+  String get regionsHint => 'region1, region2, region3';
+
+  @override
+  String get regionsHelper => 'คั่นด้วยคอมม่า (ไม่บังคับ)';
+
+  @override
+  String get noShippingZonesAdded => 'ยังไม่มีโซนการจัดส่ง';
+
+  @override
+  String get requiredLabel => 'จำเป็น';
+
+  @override
+  String get nostrInfoDescription =>
+      'ZapD ใช้โปรโตคอล Nostr สำหรับการยืนยันตัวตนที่ปลอดภัยและกระจายศูนย์ คีย์ส่วนตัวของคุณคือตัวตนของคุณ - เก็บให้ปลอดภัย!';
+
+  @override
+  String get neverSharePrivateKeyWarning =>
+      'ห้ามแชร์คีย์ส่วนตัวของคุณ เก็บไว้ในที่ปลอดภัย การสูญหายของคีย์หมายถึงการสูญเสียการเข้าถึง!';
+
+  @override
+  String get productNameLabel => 'ชื่อสินค้า *';
+
+  @override
+  String get productNameHint => 'เช่น ผัดไทย';
+
+  @override
+  String get pleaseEnterProductName => 'กรุณากรอกชื่อสินค้า';
+
+  @override
+  String get priceLabel => 'ราคา *';
+
+  @override
+  String get invalidLabel => 'ไม่ถูกต้อง';
+
+  @override
+  String get quantityHint => 'ปล่อยว่างสำหรับไม่จำกัด';
+
+  @override
+  String get spicyLevelLabel => 'ระดับความเผ็ด (0-5)';
+
+  @override
+  String get dailyLimitLabel => 'จำกัดต่อวัน';
+
+  @override
+  String get dailyLimitHint => 'จำนวนสั่งสูงสุดต่อวัน';
+
+  @override
+  String get productSpecificationsHeader => 'สเปคสินค้า (NIP-15)';
+
+  @override
+  String get specKeyLabel => 'คีย์ *';
+
+  @override
+  String get specKeyHint => 'เช่น ขนาด, น้ำหนัก, วัสดุ';
+
+  @override
+  String get specValueLabel => 'ค่า *';
+
+  @override
+  String get specValueHint => 'เช่น ใหญ่, 500g, ผ้า';
+
+  @override
+  String get shippingCostsHeader => 'ค่าจัดส่ง (NIP-15)';
+
+  @override
+  String get extraShippingCostsDescription =>
+      'ค่าใช้จ่ายการจัดส่งเพิ่มเติมต่อโซน';
+
+  @override
+  String get quantityLabel => 'จำนวน';
+
+  @override
+  String stallProductsTitle(Object stallName, Object products) {
+    return '$stallName - $products';
+  }
+
+  @override
+  String serverNameWithTag(Object name, Object tag) {
+    return '$name ($tag)';
+  }
+
+  @override
+  String get changeServer => 'เปลี่ยนเซิร์ฟเวอร์';
+
+  @override
+  String errorWithMessage(Object message) {
+    return 'ข้อผิดพลาด: $message';
+  }
+
+  @override
+  String orderDetailsWithId(Object label, Object id) {
+    return '$label #$id';
+  }
+
+  @override
+  String confirmWithStatus(Object confirm, Object status) {
+    return '$confirm? $status';
+  }
+
+  @override
+  String labelWithValue(Object label, Object value) {
+    return '$label: $value';
+  }
+
+  @override
+  String nostrConnectConnectedWithKey(Object message, Object pubkey) {
+    return '$message\nคีย์สาธารณะ: $pubkey';
+  }
 }

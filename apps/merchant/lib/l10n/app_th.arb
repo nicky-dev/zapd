@@ -174,6 +174,11 @@
   "relayList": "รายการ Relay",
   "relaysConfigured": "ตั้งค่า {count} relays แล้ว",
   "mediaServer": "เซิร์ฟเวอร์สื่อ",
+  "nip96Tag": "NIP-96",
+  "@nip96Tag": { "description": "Short tag for NIP-96 media servers (Thai)" },
+
+  "legacyTag": "รุ่นเก่า",
+  "@legacyTag": { "description": "Short tag for legacy media servers (Thai)" },
   "about": "เกี่ยวกับ",
   "version": "เวอร์ชัน",
   "protocol": "โปรโตคอล",
@@ -483,4 +488,350 @@
 
   "receiptCopied": "คัดลอกรหัสใบเสร็จแล้ว",
   "@receiptCopied": { "description": "Snackbar message when receipt id copied (Thai)" }
+,
+  "waitingForApproval": "⏳ กำลังรอการอนุมัติ",
+  "@waitingForApproval": { "description": "Dialog title while waiting for remote approval (Thai)" },
+
+  "waitingForApprovalContent": "กรุณาอนุมัติการเชื่อมต่อในแอป nsecBunker หรือ Amber ของคุณ",
+  "@waitingForApprovalContent": { "description": "Dialog content instructing the user to approve the connection (Thai)" },
+
+  "stepsLabel": "ขั้นตอน:",
+  "@stepsLabel": { "description": "Label for a short steps list (Thai)" },
+
+  "step1": "1. เปิดแอป nsecBunker/Amber ของคุณ",
+  "@step1": { "description": "Step 1 text for Nostr Connect approval (Thai)" },
+
+  "step2": "2. ควรจะเห็นคำขอเชื่อมต่อ",
+  "@step2": { "description": "Step 2 text for Nostr Connect approval (Thai)" },
+
+  "step3": "3. ยืนยันคำขอ",
+  "@step3": { "description": "Step 3 text for Nostr Connect approval (Thai)" },
+
+  "deleteProductConfirm": "คุณแน่ใจหรือไม่ว่าต้องการลบ \"{productName}\"?",
+  "@deleteProductConfirm": {
+    "description": "Confirmation when deleting a product (Thai)",
+    "placeholders": { "productName": {} }
+  },
+
+  "productDeletedSuccessfully": "ลบสินค้าสำเร็จ",
+  "@productDeletedSuccessfully": { "description": "Snackbar after product deletion (Thai)" },
+
+  "failedToDeleteProduct": "ไม่สามารถลบสินค้าได้: {error}",
+  "@failedToDeleteProduct": { "description": "Error shown when product deletion fails (Thai)", "placeholders": { "error": {} } },
+
+  "productCreated": "สร้างสินค้าสำเร็จ",
+  "@productCreated": { "description": "Snackbar shown after creating a product (Thai)" },
+
+  "productUpdated": "อัปเดตสินค้าสำเร็จ",
+  "@productUpdated": { "description": "Snackbar shown after updating a product (Thai)" },
+
+  "imageUploadedSuccessfully": "อัปโหลดรูปภาพสำเร็จ",
+  "@imageUploadedSuccessfully": { "description": "Snackbar after successful image upload (Thai)" },
+
+  "failedToUploadImage": "อัปโหลดรูปภาพไม่สำเร็จ: {error}",
+  "@failedToUploadImage": { "description": "Image upload error (Thai)", "placeholders": { "error": {} } },
+
+  "noImagesAdded": "ยังไม่มีรูปภาพ",
+  "@noImagesAdded": { "description": "Shown when no images have been added (Thai)" },
+
+  "addImage": "เพิ่มรูปภาพ",
+  "@addImage": { "description": "Add image button label (Thai)" },
+
+  "uploading": "กำลังอัปโหลด...",
+  "@uploading": { "description": "Uploading state label (Thai)" },
+
+  "addCategory": "เพิ่มหมวดหมู่",
+  "@addCategory": { "description": "Dialog title / button for adding a category (Thai)" },
+
+  "addSpecification": "เพิ่มสเปค",
+  "@addSpecification": { "description": "Button title for adding a product specification (Thai)" },
+
+  "noCategoriesAdded": "ยังไม่มีหมวดหมู่",
+  "@noCategoriesAdded": { "description": "Shown when there are no categories (Thai)" },
+
+  "noSpecsAdded": "ยังไม่มีสเปค",
+  "@noSpecsAdded": { "description": "Shown when there are no specs (Thai)" },
+
+  "addShippingOverride": "เพิ่มการปรับค่าส่ง",
+  "@addShippingOverride": { "description": "Button to add shipping override (Thai)" },
+
+  "noShippingOverrides": "ยังไม่มีการปรับค่าส่ง",
+  "@noShippingOverrides": { "description": "Shown when there are no shipping overrides (Thai)" },
+
+  "imageUploadServerTitle": "เซิร์ฟเวอร์อัปโหลดรูป",
+  "@imageUploadServerTitle": { "description": "Settings title for image upload server (Thai)" },
+
+  "mediaServerSettingsTitle": "การตั้งค่าเซิร์ฟเวอร์สื่อ",
+  "@mediaServerSettingsTitle": { "description": "Media server settings title (Thai)" },
+
+  "selectMediaServerDescription": "เลือกเซิร์ฟเวอร์สื่อสำหรับการอัปโหลดรูปภาพสินค้า:",
+  "@selectMediaServerDescription": { "description": "Description text about selecting media server (Thai)" },
+
+  "mediaServerChangedTo": "เปลี่ยนเซิร์ฟเวอร์สื่อเป็น {name}",
+  "@mediaServerChangedTo": { "description": "Snackbar after media server change (Thai)", "placeholders": { "name": {} } },
+
+  "customServerTitle": "เซิร์ฟเวอร์กำหนดเอง",
+  "@customServerTitle": { "description": "Title for custom server dialog (Thai)" },
+
+  "copyNsec": "คัดลอก nsec",
+  "@copyNsec": { "description": "Label for copying nsec/private key (Thai)" }
+  ,
+  "pleaseFillAllFields": "กรุณากรอกข้อมูลให้ครบ",
+  "@pleaseFillAllFields": { "description": "Validation message for empty fields (Thai)" },
+
+  "invalidUrlFormat": "รูปแบบ URL ไม่ถูกต้อง",
+  "@invalidUrlFormat": { "description": "Invalid URL format message (Thai)" },
+
+  "logoutConfirm": "คุณแน่ใจว่าต้องการออกจากระบบหรือไม่?",
+  "@logoutConfirm": { "description": "Logout confirmation dialog text (Thai)" }
+,
+  "debugRunnerLabel": "โหมดดีบัก - แอปอย่างง่าย",
+  "@debugRunnerLabel": { "description": "Label shown in the debug runner app (Thai)" }
+,
+  "noCategoriesAdded": "ยังไม่มีหมวดหมู่",
+  "@noCategoriesAdded": { "description": "Shown when there are no categories (Thai)" },
+
+  "noSpecsAdded": "ยังไม่มีสเปค",
+  "@noSpecsAdded": { "description": "Shown when there are no specs (Thai)" },
+
+  "noShippingOverrides": "ยังไม่มีการปรับค่าส่ง",
+  "@noShippingOverrides": { "description": "Shown when there are no shipping overrides (Thai)" },
+
+  "zoneLabel": "โซน: {id}",
+  "@zoneLabel": { "description": "Label for shipping zone (Thai)", "placeholders": { "id": {} } },
+
+  "descriptionLabel": "คำอธิบาย",
+  "@descriptionLabel": { "description": "Label for description input (Thai)" },
+
+  "descriptionHint": "อธิบายแผง, เมนู หรือ นโยบายของคุณ",
+  "@descriptionHint": { "description": "Hint for the description input (Thai)" },
+
+  "stallTypeLabel": "ประเภทแผง",
+  "@stallTypeLabel": { "description": "Label for stall type selector (Thai)" },
+
+  "currencyLabel": "สกุลเงิน",
+  "@currencyLabel": { "description": "Label for currency input (Thai)" },
+
+  "currencyHint": "เช่น THB",
+  "@currencyHint": { "description": "Hint for currency input (Thai)" },
+
+  "prepTimeLabel": "เวลาการเตรียม (นาที)",
+  "@prepTimeLabel": { "description": "Label for preparation time input (Thai)" },
+
+  "foodDetailsLabel": "รายละเอียดอาหาร",
+  "@foodDetailsLabel": { "description": "Section header for food-specific fields (Thai)" },
+
+  "cuisineTypeLabel": "ประเภทอาหาร",
+  "@cuisineTypeLabel": { "description": "Label for cuisine input (Thai)" },
+
+  "cuisineHint": "เช่น ไทย, อิตาเลียน",
+  "@cuisineHint": { "description": "Hint for cuisine input (Thai)" },
+
+  "operatingHoursLabel": "เวลาทำการ",
+  "@operatingHoursLabel": { "description": "Label for operating hours input (Thai)" },
+
+  "operatingHoursHint": "เช่น 09:00-22:00",
+  "@operatingHoursHint": { "description": "Hint for operating hours input (Thai)" },
+
+  "shippingZonesLabel": "โซนการจัดส่ง",
+  "@shippingZonesLabel": { "description": "Section header for shipping zones (Thai)" },
+
+  "shippingZonesDescription": "กำหนดโซนการจัดส่งและค่าจัดส่ง",
+  "@shippingZonesDescription": { "description": "Short description shown above shipping zones (Thai)" },
+
+  "costLabel": "ค่าใช้จ่าย",
+  "@costLabel": { "description": "Label for cost in shipping zone (Thai)" },
+
+  "regionsLabel": "ภูมิภาค",
+  "@regionsLabel": { "description": "Label for regions list in a shipping zone (Thai)" },
+
+  "allRegions": "ทุกภูมิภาค",
+  "@allRegions": { "description": "Label shown when a zone covers all regions (Thai)" },
+
+  "updateStall": "อัปเดตแผง",
+  "@updateStall": { "description": "Label for update stall action (Thai)" },
+
+  "extraCostLabel": "ค่าเพิ่ม: {cost}",
+  "@extraCostLabel": { "description": "Label for shipping extra cost (Thai)", "placeholders": { "cost": {} } },
+
+  "availableForOrder": "พร้อมให้สั่งซื้อ",
+  "@availableForOrder": { "description": "Switch title when product is available (Thai)" },
+
+  "availableForOrderSubtitle": "ลูกค้าสามารถสั่งสินค้านี้ได้",
+  "@availableForOrderSubtitle": { "description": "Switch subtitle when product is available (Thai)" }
+,
+  "createProduct": "สร้างสินค้า",
+  "@createProduct": { "description": "Title / label for creating a product (Thai)" },
+
+  "productImages": "รูปภาพสินค้า",
+  "@productImages": { "description": "Section header for product images (Thai)" },
+
+  "uploadImagesDescription": "อัปโหลดรูปภาพเพื่อแสดงสินค้า",
+  "@uploadImagesDescription": { "description": "Short description shown above product images (Thai)" },
+
+  "categories": "หมวดหมู่",
+  "@categories": { "description": "Categories section header (Thai)" },
+
+  "availability": "ความพร้อมขาย",
+  "@availability": { "description": "Availability section header (Thai)" },
+
+  "editSpecification": "แก้ไขสเปค",
+  "@editSpecification": { "description": "Dialog title for editing a spec (Thai)" },
+
+  "editShippingOverride": "แก้ไขการปรับค่าส่ง",
+  "@editShippingOverride": { "description": "Dialog title for editing a shipping override (Thai)" }
+,
+  "add": "เพิ่ม",
+  "@add": { "description": "Generic Add button text (Thai)" },
+
+  "categoryName": "ชื่อหมวดหมู่",
+  "@categoryName": { "description": "Label for category name input (Thai)" },
+
+  "categoryHint": "เช่น เมนูหลัก, ของหวาน",
+  "@categoryHint": { "description": "Hint for category name input (Thai)" }
+
+  ,
+  "privateKeyHexLabel": "Private Key (hex)",
+  "@privateKeyHexLabel": { "description": "Label for private key input (hex) (Thai)" },
+
+  "privateKeyHexHint": "กรอกคีย์ส่วนตัว 64 ตัวอักษร",
+  "@privateKeyHexHint": { "description": "Hint for private key hex input (Thai)" },
+
+  "serverNameLabel": "ชื่อเซิร์ฟเวอร์",
+  "@serverNameLabel": { "description": "Label for server name input (Thai)" },
+
+  "serverNameHint": "เช่น My Server",
+  "@serverNameHint": { "description": "Hint for server name input (Thai)" },
+
+  "uploadUrlLabel": "URL อัปโหลด",
+  "@uploadUrlLabel": { "description": "Label for upload URL input (Thai)" },
+
+  "uploadUrlHint": "https://example.com/upload",
+  "@uploadUrlHint": { "description": "Hint for upload url input (Thai)" },
+
+  "editShippingZone": "แก้ไขโซนการจัดส่ง",
+  "@editShippingZone": { "description": "Dialog title for editing a shipping zone (Thai)" },
+
+  "zoneIdLabel": "รหัสโซน *",
+  "@zoneIdLabel": { "description": "Label for zone id input (Thai)" },
+
+  "zoneIdHint": "zone_1",
+  "@zoneIdHint": { "description": "Hint for zone id input (Thai)" },
+
+  "zoneNameLabel": "ชื่อโซน",
+  "@zoneNameLabel": { "description": "Label for zone name input (Thai)" },
+
+  "zoneNameHint": "เช่น Local Delivery, Express",
+  "@zoneNameHint": { "description": "Hint for zone name input (Thai)" },
+
+  "shippingCostLabel": "ค่าจัดส่ง *",
+  "@shippingCostLabel": { "description": "Label for shipping cost input (Thai)" },
+
+  "shippingCostHint": "30.00",
+  "@shippingCostHint": { "description": "Hint for shipping cost input (Thai)" },
+
+  "regionsHint": "region1, region2, region3",
+  "@regionsHint": { "description": "Hint for regions input (Thai)" },
+
+  "regionsHelper": "คั่นด้วยคอมม่า (ไม่บังคับ)",
+  "@regionsHelper": { "description": "Helper text for regions list input (Thai)" },
+
+  "noShippingZonesAdded": "ยังไม่มีโซนการจัดส่ง",
+  "@noShippingZonesAdded": { "description": "Shown when no shipping zones exist (Thai)" },
+
+  "pleaseEnterStallName": "กรุณากรอกชื่อแผง",
+  "@pleaseEnterStallName": { "description": "Validation message when stall name is empty (Thai)" },
+
+  "requiredLabel": "จำเป็น",
+  "@requiredLabel": { "description": "Generic required label (Thai)" }
+
+  ,
+  "nostrInfoDescription": "ZapD ใช้โปรโตคอล Nostr สำหรับการยืนยันตัวตนที่ปลอดภัยและกระจายศูนย์ คีย์ส่วนตัวของคุณคือตัวตนของคุณ - เก็บให้ปลอดภัย!",
+  "@nostrInfoDescription": { "description": "Info card text about Nostr authentication (Thai)" },
+
+  "neverSharePrivateKeyWarning": "ห้ามแชร์คีย์ส่วนตัวของคุณ เก็บไว้ในที่ปลอดภัย การสูญหายของคีย์หมายถึงการสูญเสียการเข้าถึง!",
+  "@neverSharePrivateKeyWarning": { "description": "Warning shown about private key safety (Thai)" }
+
+  ,
+  "productNameLabel": "ชื่อสินค้า *",
+  "@productNameLabel": { "description": "Label for product name input (Thai)" },
+
+  "productNameHint": "เช่น ผัดไทย",
+  "@productNameHint": { "description": "Hint for product name input (Thai)" },
+
+  "pleaseEnterProductName": "กรุณากรอกชื่อสินค้า",
+  "@pleaseEnterProductName": { "description": "Validation message when product name is empty (Thai)" },
+
+  "priceLabel": "ราคา *",
+  "@priceLabel": { "description": "Label for price input (Thai)" },
+
+  "invalidLabel": "ไม่ถูกต้อง",
+  "@invalidLabel": { "description": "Generic invalid input label (Thai)" },
+
+  "quantityHint": "ปล่อยว่างสำหรับไม่จำกัด",
+  "@quantityHint": { "description": "Hint for quantity input (Thai)" },
+
+  "spicyLevelLabel": "ระดับความเผ็ด (0-5)",
+  "@spicyLevelLabel": { "description": "Label for spicy level input (Thai)" },
+
+  "dailyLimitLabel": "จำกัดต่อวัน",
+  "@dailyLimitLabel": { "description": "Label for daily limit input (Thai)" },
+
+  "dailyLimitHint": "จำนวนสั่งสูงสุดต่อวัน",
+  "@dailyLimitHint": { "description": "Hint for daily limit input (Thai)" },
+
+  "productSpecificationsHeader": "สเปคสินค้า (NIP-15)",
+  "@productSpecificationsHeader": { "description": "Header for product specifications section (Thai)" },
+
+  "specKeyLabel": "คีย์ *",
+  "@specKeyLabel": { "description": "Label for specification key input (Thai)" },
+
+  "specKeyHint": "เช่น ขนาด, น้ำหนัก, วัสดุ",
+  "@specKeyHint": { "description": "Hint for specification key input (Thai)" },
+
+  "specValueLabel": "ค่า *",
+  "@specValueLabel": { "description": "Label for specification value input (Thai)" },
+
+  "specValueHint": "เช่น ใหญ่, 500g, ผ้า",
+  "@specValueHint": { "description": "Hint for specification value input (Thai)" },
+
+  "shippingCostsHeader": "ค่าจัดส่ง (NIP-15)",
+  "@shippingCostsHeader": { "description": "Header for shipping costs section (Thai)" },
+
+  "extraShippingCostsDescription": "ค่าใช้จ่ายการจัดส่งเพิ่มเติมต่อโซน",
+  "@extraShippingCostsDescription": { "description": "Short description shown above product shipping overrides (Thai)" }
+
+  ,
+  "quantityLabel": "จำนวน",
+  "@quantityLabel": { "description": "Label for quantity input (Thai)" }
+
+  ,
+  "stallProductsTitle": "{stallName} - {products}",
+  "@stallProductsTitle": { "description": "Title showing stall name and products label", "placeholders": { "stallName": {}, "products": {} } },
+
+  "serverNameWithTag": "{name} ({tag})",
+  "@serverNameWithTag": { "description": "Server name with tag suffix (e.g., name (NIP-96))", "placeholders": { "name": {}, "tag": {} } }
+
+  ,
+  "changeServer": "เปลี่ยนเซิร์ฟเวอร์",
+  "@changeServer": { "description": "Tooltip text for changing media server (Thai)" }
+
+  ,
+  "errorWithMessage": "ข้อผิดพลาด: {message}",
+  "@errorWithMessage": { "description": "Error label followed by message (Thai)", "placeholders": { "message": {} } }
+
+  ,
+  "orderDetailsWithId": "{label} #{id}",
+  "@orderDetailsWithId": { "description": "Order details title with truncated id (Thai)", "placeholders": { "label": {}, "id": {} } },
+
+  "confirmWithStatus": "{confirm}? {status}",
+  "@confirmWithStatus": { "description": "Confirmation question with status label (Thai)", "placeholders": { "confirm": {}, "status": {} } },
+
+  "labelWithValue": "{label}: {value}",
+  "@labelWithValue": { "description": "Generic label with value formatting (Thai)", "placeholders": { "label": {}, "value": {} } }
+
+  ,
+  "nostrConnectConnectedWithKey": "{message}\nคีย์สาธารณะ: {pubkey}",
+  "@nostrConnectConnectedWithKey": { "description": "Nostr Connect success with public key (Thai)", "placeholders": { "message": {}, "pubkey": {} } }
+
 }

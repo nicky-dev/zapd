@@ -71,7 +71,7 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
       });
     } catch (e) {
       setState(() {
-        _errorMessage = '${l10n.failedToDecryptOrderDetails}: $e';
+          _errorMessage = AppLocalizations.of(context)!.errorWithMessage(e.toString());
         _isLoadingDetails = false;
       });
     }
@@ -86,7 +86,7 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('${l10n.orderDetails} #${widget.order.id.substring(0, 8)}'),
+          title: Text(l10n.orderDetailsWithId(l10n.orderDetails, widget.order.id.substring(0, 8))),
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
@@ -161,7 +161,7 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: widget.order.status.color.withOpacity(0.1),
+                    color: widget.order.status.color.withAlpha((0.1 * 255).round()),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Icon(
@@ -282,7 +282,7 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  l10n.customerInformation ?? l10n.customer,
+                  l10n.customerInformation,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -290,7 +290,7 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
                 const Divider(height: 16),
                 if (details.name != null)
                   _buildInfoRow(l10n.nameLabel, details.name!),
-                _buildInfoRow(l10n.nostrPubkeyLabel, details.contact.nostr.substring(0, 16) + '...'),
+                _buildInfoRow(l10n.nostrPubkeyLabel, '${details.contact.nostr.substring(0, 16)}...'),
                 if (details.contact.phone != null)
                   _buildInfoRow(l10n.phoneLabel, details.contact.phone!),
                 if (details.contact.email != null)
@@ -379,9 +379,9 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
                   ),
                   const Divider(height: 16),
                   if (details.paymentHash != null)
-                    _buildInfoRow(l10n.paymentHashLabel, details.paymentHash!.substring(0, 16) + '...'),
+                    _buildInfoRow(l10n.paymentHashLabel, '${details.paymentHash!.substring(0, 16)}...'),
                   if (details.paymentPreimage != null)
-                    _buildInfoRow(l10n.paymentProofLabel, details.paymentPreimage!.substring(0, 16) + '...'),
+                    _buildInfoRow(l10n.paymentProofLabel, '${details.paymentPreimage!.substring(0, 16)}...'),
                 ],
               ),
             ),
@@ -491,7 +491,7 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
                   label: Text(status.displayName),
                   avatar: Icon(status.iconData, size: 18),
                   onPressed: isCurrentStatus ? null : () => _updateOrderStatus(status),
-                  backgroundColor: isCurrentStatus ? status.color.withOpacity(0.2) : null,
+                  backgroundColor: isCurrentStatus ? status.color.withAlpha((0.2 * 255).round()) : null,
                   side: isCurrentStatus
                       ? BorderSide(color: status.color, width: 2)
                       : null,
@@ -542,7 +542,7 @@ class _OrderDetailScreenState extends ConsumerState<OrderDetailScreen> {
       context: context,
       builder: (context) => AlertDialog(
         title: Text(l10n.updateOrderStatus),
-        content: Text('${l10n.confirm}? ${newStatus.displayName}'),
+          content: Text(l10n.confirmWithStatus(l10n.confirm, newStatus.displayName)),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
