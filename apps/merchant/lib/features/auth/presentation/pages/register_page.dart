@@ -7,6 +7,7 @@ import 'package:nostr_core/nostr_core.dart';
 import '../providers/auth_provider.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../core/utils/nip19.dart';
+import '../../../../core/widgets/language_switcher.dart';
 
 class RegisterPage extends ConsumerStatefulWidget {
   const RegisterPage({super.key});
@@ -95,6 +96,9 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => context.go('/auth'),
         ),
+        actions: const [
+          LanguageSwitcher(),
+        ],
       ),
       body: Center(
         child: SingleChildScrollView(

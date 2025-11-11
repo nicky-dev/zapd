@@ -9,6 +9,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../core/utils/nip19.dart';
 import '../../../../core/services/nip07_service.dart';
 import '../../../../core/services/nip46_service.dart';
+import '../../../../core/widgets/language_switcher.dart';
 
 enum LoginMethod {
   privateKey,
@@ -285,6 +286,9 @@ Next: Add native cryptography library
           icon: const Icon(Icons.arrow_back),
           onPressed: () => context.go('/auth'),
         ),
+        actions: const [
+          LanguageSwitcher(),
+        ],
       ),
       body: Center(
         child: SingleChildScrollView(

@@ -13,25 +13,6 @@ class LanguageSwitcher extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
 
     return PopupMenuButton<Locale>(
-      child: Semantics(
-        button: true,
-        label: l10n?.changeLanguage ?? 'Change language',
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Icon(Icons.language, size: 20),
-            const SizedBox(width: 6),
-            Text(
-              currentLocale.languageCode.toUpperCase(),
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 12,
-              ),
-            ),
-            const SizedBox(width: 4),
-          ],
-        ),
-      ),
       tooltip: l10n?.changeLanguage ?? 'Change language',
       onSelected: (locale) {
         ref.read(localeProvider.notifier).setLocale(locale);
@@ -78,6 +59,20 @@ class LanguageSwitcher extends ConsumerWidget {
           ),
         ),
       ],
+      // Compact icon-only UI so the control matches AppBar IconButton spacing.
+      icon: Semantics(
+        button: true,
+        label: l10n?.changeLanguage ?? 'Change language',
+        child: Builder(builder: (context) {
+          // Use the surrounding IconTheme if available (e.g., AppBar actions)
+          final iconColor = IconTheme.of(context).color ?? Theme.of(context).colorScheme.onSurface;
+          return Icon(
+            Icons.language,
+            size: 20,
+            color: iconColor,
+          );
+        }),
+      ),
     );
   }
 }

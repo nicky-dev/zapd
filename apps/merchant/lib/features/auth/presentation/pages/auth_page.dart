@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nostr_core/nostr_core.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../core/widgets/language_switcher.dart';
 
 import '../providers/auth_provider.dart';
 
@@ -76,6 +77,19 @@ class _AuthPageState extends ConsumerState<AuthPage> {
     final theme = Theme.of(context);
     
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        // Ensure AppBar action icons use the theme's onSurface color when
+        // the AppBar itself is transparent so icons remain visible and
+        // consistent across screens.
+        actionsIconTheme: IconThemeData(color: theme.colorScheme.onSurface),
+        foregroundColor: theme.colorScheme.onSurface,
+        actions: const [
+          LanguageSwitcher(),
+        ],
+      ),
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),
