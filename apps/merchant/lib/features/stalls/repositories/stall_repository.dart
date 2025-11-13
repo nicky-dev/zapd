@@ -61,7 +61,41 @@ class StallRepository {
 
     final tags = <List<String>>[
       ['d', stall.id], // NIP-15 required: unique identifier
+      // Add canonical 'a' composite tag referencing this stall: kind:pubkey:id
+      ['a', '30017:$merchantPubkey:${stall.id}'],
     ];
+
+    // Compute 'o' open/closed tag. Smart rule: stall is 'open' when
+    // acceptsOrders == true AND current time is within operatingHours (if provided).
+  bool isNowWithinOperatingHours(String? operatingHours) {
+      if (operatingHours == null || operatingHours.isEmpty) return true;
+      try {
+        final parts = operatingHours.split('-');
+        if (parts.length != 2) return true;
+        Duration parse(String hhmm) {
+          final seg = hhmm.split(':');
+          final hh = int.parse(seg[0]);
+          final mm = int.parse(seg[1]);
+          return Duration(hours: hh, minutes: mm);
+        }
+        final start = parse(parts[0]);
+        final end = parse(parts[1]);
+        final now = DateTime.now();
+        final nowDuration = Duration(hours: now.hour, minutes: now.minute);
+        if (start <= end) {
+          return nowDuration >= start && nowDuration <= end;
+        } else {
+          // overnight window e.g. 20:00-03:00
+          return nowDuration >= start || nowDuration <= end;
+        }
+      } catch (_) {
+        return true;
+      }
+    }
+
+  final isOpenByHours = isNowWithinOperatingHours(stall.operatingHours);
+    final isOpen = stall.acceptsOrders && isOpenByHours;
+    tags.add(['o', isOpen ? 'open' : 'closed']);
 
     // Food delivery extensions
     if (stall.stallType != null) {
@@ -82,6 +116,21 @@ class StallRepository {
 
     if (stall.locationEncrypted != null && stall.locationEncrypted!.isNotEmpty) {
       tags.add(['location_encrypted', stall.locationEncrypted!]);
+    }
+
+    // If precise coordinates are available, compute a high-precision
+    // geohash and add it as a short 'g' tag so relays/clients can index
+    // and filter by exact location. We use precision 12 (approx 3.7cm)
+    // which is suitable for precise merchant location indexing.
+    if (stall.latitude != null && stall.longitude != null) {
+      try {
+        final gh = _encodeGeohash(stall.latitude!, stall.longitude!, 12);
+        if (gh.isNotEmpty) {
+          tags.add(['g', gh]);
+        }
+      } catch (_) {
+        // ignore geohash failures and continue
+      }
     }
 
     tags.add(['accepts_orders', stall.acceptsOrders.toString()]);
@@ -267,6 +316,54 @@ class StallRepository {
       debugPrint('Error parsing stall event: $e');
       return null;
     }
+  }
+
+  /// Encode a geohash string for the given latitude and longitude.
+  /// Precision is the number of base32 characters (default 12).
+  /// Implementation follows the standard geohash interleaving algorithm.
+  String _encodeGeohash(double latitude, double longitude, [int precision = 12]) {
+    const base32 = '0123456789bcdefghjkmnpqrstuvwxyz';
+  var isEven = true;
+  List<double> latRange = [-90.0, 90.0];
+  List<double> lonRange = [-180.0, 180.0];
+
+    final buffer = StringBuffer();
+    int bit = 0;
+    int ch = 0;
+
+    while (buffer.length < precision) {
+      double mid;
+      if (isEven) {
+        mid = (lonRange[0] + lonRange[1]) / 2;
+        if (longitude > mid) {
+          ch = (ch << 1) + 1;
+          lonRange[0] = mid;
+        } else {
+          ch = (ch << 1) + 0;
+          lonRange[1] = mid;
+        }
+      } else {
+        mid = (latRange[0] + latRange[1]) / 2;
+        if (latitude > mid) {
+          ch = (ch << 1) + 1;
+          latRange[0] = mid;
+        } else {
+          ch = (ch << 1) + 0;
+          latRange[1] = mid;
+        }
+      }
+
+      isEven = !isEven;
+      bit++;
+
+      if (bit == 5) {
+        buffer.write(base32[ch]);
+        bit = 0;
+        ch = 0;
+      }
+    }
+
+    return buffer.toString();
   }
 
   /// Generate a unique stall ID

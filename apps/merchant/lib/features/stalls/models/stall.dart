@@ -23,6 +23,9 @@ class Stall with _$Stall {
     int? preparationTime, // average preparation time in minutes
     String? operatingHours, // "09:00-22:00"
     String? locationEncrypted, // NIP-44 encrypted address for merchant
+  double? latitude,
+  double? longitude,
+  String? locationName,
     
     // Metadata (not in event content, derived from event)
     String? eventId,

@@ -93,6 +93,10 @@ content: NIP44.encrypt(orderDetails, conversationKey)
 - Lightning Network for instant payments
 - Focus on privacy using NIP-44 encryption
 
+### Contributor rules (Copilot / automation guidance)
+- Always design features starting from the relevant NIP(s). If a required behaviour isn't covered by an existing NIP, base the design on NIP semantics and propose a new NIP-style extension (document it as a new NIP). In other words: NIP-first, then extension-as-new-NIP when needed.
+- The apps fully support Localization. Any new UI or visible text must be designed with localization in mind (add ARB keys, use generated `AppLocalizations`, and include translations where appropriate).
+
 ## NIP-XX: Food Delivery Extension (added)
 
 The repository now includes a specification draft for NIP-XX, a Food Delivery extension built on top of NIP-15 (Marketplace).

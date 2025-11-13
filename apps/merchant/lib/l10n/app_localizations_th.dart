@@ -299,6 +299,24 @@ class AppLocalizationsTh extends AppLocalizations {
   String get amount => 'จำนวนเงิน';
 
   @override
+  String get searchPlace => 'ค้นหาสถานที่';
+
+  @override
+  String get useCurrentLocation => 'ใช้ตำแหน่งปัจจุบัน';
+
+  @override
+  String get noLocationSelected => 'ยังไม่ได้เลือกตำแหน่ง';
+
+  @override
+  String get pickLocation => 'เลือกตำแหน่ง';
+
+  @override
+  String get select => 'เลือก';
+
+  @override
+  String get currentLocation => 'ตำแหน่งปัจจุบัน';
+
+  @override
   String get estimatedSats => 'ประมาณ';
 
   @override

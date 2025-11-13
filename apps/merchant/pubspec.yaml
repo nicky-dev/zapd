@@ -70,6 +70,10 @@ dependencies:
   image_picker: ^1.1.2
   qr_flutter: ^4.1.0
   fl_chart: ^0.69.0
+  # Map & location
+  flutter_map: ^8.2.2
+  latlong2: ^0.9.1
+  geolocator: ^10.0.0
 
   # Icons
   cupertino_icons: ^1.0.8

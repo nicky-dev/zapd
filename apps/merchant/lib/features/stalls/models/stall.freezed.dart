@@ -44,7 +44,10 @@ mixin _$Stall {
       throw _privateConstructorUsedError; // "09:00-22:00"
   String? get locationEncrypted =>
       throw _privateConstructorUsedError; // NIP-44 encrypted address for merchant
-  // Metadata (not in event content, derived from event)
+  double? get latitude => throw _privateConstructorUsedError;
+  double? get longitude => throw _privateConstructorUsedError;
+  String? get locationName =>
+      throw _privateConstructorUsedError; // Metadata (not in event content, derived from event)
   String? get eventId => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
@@ -75,6 +78,9 @@ abstract class $StallCopyWith<$Res> {
     int? preparationTime,
     String? operatingHours,
     String? locationEncrypted,
+    double? latitude,
+    double? longitude,
+    String? locationName,
     String? eventId,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -107,6 +113,9 @@ class _$StallCopyWithImpl<$Res, $Val extends Stall>
     Object? preparationTime = freezed,
     Object? operatingHours = freezed,
     Object? locationEncrypted = freezed,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+    Object? locationName = freezed,
     Object? eventId = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
@@ -157,6 +166,18 @@ class _$StallCopyWithImpl<$Res, $Val extends Stall>
                 ? _value.locationEncrypted
                 : locationEncrypted // ignore: cast_nullable_to_non_nullable
                       as String?,
+            latitude: freezed == latitude
+                ? _value.latitude
+                : latitude // ignore: cast_nullable_to_non_nullable
+                      as double?,
+            longitude: freezed == longitude
+                ? _value.longitude
+                : longitude // ignore: cast_nullable_to_non_nullable
+                      as double?,
+            locationName: freezed == locationName
+                ? _value.locationName
+                : locationName // ignore: cast_nullable_to_non_nullable
+                      as String?,
             eventId: freezed == eventId
                 ? _value.eventId
                 : eventId // ignore: cast_nullable_to_non_nullable
@@ -195,6 +216,9 @@ abstract class _$$StallImplCopyWith<$Res> implements $StallCopyWith<$Res> {
     int? preparationTime,
     String? operatingHours,
     String? locationEncrypted,
+    double? latitude,
+    double? longitude,
+    String? locationName,
     String? eventId,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -226,6 +250,9 @@ class __$$StallImplCopyWithImpl<$Res>
     Object? preparationTime = freezed,
     Object? operatingHours = freezed,
     Object? locationEncrypted = freezed,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+    Object? locationName = freezed,
     Object? eventId = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
@@ -276,6 +303,18 @@ class __$$StallImplCopyWithImpl<$Res>
             ? _value.locationEncrypted
             : locationEncrypted // ignore: cast_nullable_to_non_nullable
                   as String?,
+        latitude: freezed == latitude
+            ? _value.latitude
+            : latitude // ignore: cast_nullable_to_non_nullable
+                  as double?,
+        longitude: freezed == longitude
+            ? _value.longitude
+            : longitude // ignore: cast_nullable_to_non_nullable
+                  as double?,
+        locationName: freezed == locationName
+            ? _value.locationName
+            : locationName // ignore: cast_nullable_to_non_nullable
+                  as String?,
         eventId: freezed == eventId
             ? _value.eventId
             : eventId // ignore: cast_nullable_to_non_nullable
@@ -308,6 +347,9 @@ class _$StallImpl implements _Stall {
     this.preparationTime,
     this.operatingHours,
     this.locationEncrypted,
+    this.latitude,
+    this.longitude,
+    this.locationName,
     this.eventId,
     this.createdAt,
     this.updatedAt,
@@ -360,6 +402,12 @@ class _$StallImpl implements _Stall {
   @override
   final String? locationEncrypted;
   // NIP-44 encrypted address for merchant
+  @override
+  final double? latitude;
+  @override
+  final double? longitude;
+  @override
+  final String? locationName;
   // Metadata (not in event content, derived from event)
   @override
   final String? eventId;
@@ -370,7 +418,7 @@ class _$StallImpl implements _Stall {
 
   @override
   String toString() {
-    return 'Stall(id: $id, name: $name, description: $description, currency: $currency, shipping: $shipping, stallType: $stallType, cuisine: $cuisine, acceptsOrders: $acceptsOrders, preparationTime: $preparationTime, operatingHours: $operatingHours, locationEncrypted: $locationEncrypted, eventId: $eventId, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Stall(id: $id, name: $name, description: $description, currency: $currency, shipping: $shipping, stallType: $stallType, cuisine: $cuisine, acceptsOrders: $acceptsOrders, preparationTime: $preparationTime, operatingHours: $operatingHours, locationEncrypted: $locationEncrypted, latitude: $latitude, longitude: $longitude, locationName: $locationName, eventId: $eventId, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -396,6 +444,12 @@ class _$StallImpl implements _Stall {
                 other.operatingHours == operatingHours) &&
             (identical(other.locationEncrypted, locationEncrypted) ||
                 other.locationEncrypted == locationEncrypted) &&
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude) &&
+            (identical(other.locationName, locationName) ||
+                other.locationName == locationName) &&
             (identical(other.eventId, eventId) || other.eventId == eventId) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
@@ -418,6 +472,9 @@ class _$StallImpl implements _Stall {
     preparationTime,
     operatingHours,
     locationEncrypted,
+    latitude,
+    longitude,
+    locationName,
     eventId,
     createdAt,
     updatedAt,
@@ -450,6 +507,9 @@ abstract class _Stall implements Stall {
     final int? preparationTime,
     final String? operatingHours,
     final String? locationEncrypted,
+    final double? latitude,
+    final double? longitude,
+    final String? locationName,
     final String? eventId,
     final DateTime? createdAt,
     final DateTime? updatedAt,
@@ -481,7 +541,12 @@ abstract class _Stall implements Stall {
   String? get operatingHours; // "09:00-22:00"
   @override
   String? get locationEncrypted; // NIP-44 encrypted address for merchant
-  // Metadata (not in event content, derived from event)
+  @override
+  double? get latitude;
+  @override
+  double? get longitude;
+  @override
+  String? get locationName; // Metadata (not in event content, derived from event)
   @override
   String? get eventId;
   @override

@@ -13,10 +13,7 @@ class OrderRepository {
   final NostrClient nostrClient;
   final String merchantPubkey;
 
-  OrderRepository({
-    required this.nostrClient,
-    required this.merchantPubkey,
-  });
+  OrderRepository({required this.nostrClient, required this.merchantPubkey});
 
   /// Sign an unsigned event with private key
   NostrEvent _signEvent(NostrEvent unsignedEvent, String privateKey) {
@@ -38,15 +35,18 @@ class OrderRepository {
     final filter = NostrFilter(
       kinds: const [4], // NIP-04 encrypted DM (or kind 14 for NIP-44)
       tags: {
-        'p': [merchantPubkey]
+        'p': [merchantPubkey],
       }, // Orders sent to merchant
     );
 
     final subscription = nostrClient.subscribe([filter]);
 
-    return subscription.stream.asyncMap((event) async {
-      return await _parseOrderFromDM(event);
-    }).where((order) => order != null).cast<Order>();
+    return subscription.stream
+        .asyncMap((event) async {
+          return await _parseOrderFromDM(event);
+        })
+        .where((order) => order != null)
+        .cast<Order>();
   }
 
   /// Parse Order from encrypted DM event
@@ -56,7 +56,7 @@ class OrderRepository {
       // For NIP-04/NIP-44, we need merchant's private key to decrypt
       // This should be passed from the calling context
       // For now, we'll return a placeholder that needs decryption
-      
+
       return Order(
         id: event.id, // Use event ID as order ID temporarily
         customerPubkey: event.pubkey,
@@ -83,12 +83,17 @@ class OrderRepository {
         privateKey,
         event.pubkey, // customer's pubkey
       );
-      final decryptedContent = await NIP44.decrypt(event.content, conversationKey);
+      final decryptedContent = await NIP44.decrypt(
+        event.content,
+        conversationKey,
+      );
       final detailsJson = jsonDecode(decryptedContent) as Map<String, dynamic>;
 
       // Check if it's Type 0 (customer order)
       if (detailsJson['type'] != 0) {
-        debugPrint('Not a customer order message, type: ${detailsJson['type']}');
+        debugPrint(
+          'Not a customer order message, type: ${detailsJson['type']}',
+        );
         return null;
       }
 
@@ -125,7 +130,7 @@ class OrderRepository {
           event: event,
           privateKey: privateKey,
         );
-        
+
         if (details != null && details.id == orderId) {
           result = details;
           break;
@@ -180,7 +185,7 @@ class OrderRepository {
     final signedEvent = _signEvent(unsignedEvent, privateKey);
     await nostrClient.publish(signedEvent);
 
-  debugPrint('Payment request sent for order $orderId');
+    debugPrint('Payment request sent for order $orderId');
   }
 
   /// Send Order Status Update (Type 2) to customer
@@ -226,7 +231,7 @@ class OrderRepository {
     final signedEvent = _signEvent(unsignedEvent, privateKey);
     await nostrClient.publish(signedEvent);
 
-  debugPrint('Order status update sent: paid=$paid, shipped=$shipped');
+    debugPrint('Order status update sent: paid=$paid, shipped=$shipped');
   }
 
   /// Update internal order status (for merchant tracking)
@@ -248,14 +253,19 @@ class OrderRepository {
       ['updated_at', DateTime.now().millisecondsSinceEpoch.toString()],
     ];
 
+    // Short single-letter status tag for relay indexing and fast filtering.
+    // Use '#s' in filters to match status (e.g. {"#s": ["preparing"]}).
+    tags.add(['s', newStatus.name]);
+
     if (stallId != null) {
-      tags.add(['stall_id', stallId]);
+      // Reference the stall with canonical 'a' composite tag (kind:pubkey:id)
+      tags.add(['a', '30017:$merchantPubkey:$stallId']);
     }
 
     if (estimatedReady != null) {
       tags.add([
         'estimated_ready',
-        (estimatedReady.millisecondsSinceEpoch ~/ 1000).toString()
+        (estimatedReady.millisecondsSinceEpoch ~/ 1000).toString(),
       ]);
     }
 
@@ -374,10 +384,14 @@ class OrderRepository {
         'nostr': orderDetails.contact.nostr,
         'phone': orderDetails.contact.phone,
       },
-      'items_summary': orderDetails.items.map((item) => {
-        'name': item.productName ?? 'Unknown product',
-        'quantity': item.quantity,
-      }).toList(),
+      'items_summary': orderDetails.items
+          .map(
+            (item) => {
+              'name': item.productName ?? 'Unknown product',
+              'quantity': item.quantity,
+            },
+          )
+          .toList(),
       'total': orderDetails.total ?? 0,
     };
 
@@ -403,7 +417,7 @@ class OrderRepository {
     final signedEvent = _signEvent(unsignedEvent, privateKey);
     await nostrClient.publish(signedEvent);
 
-  debugPrint('Rider assigned to order ${order.id}');
+    debugPrint('Rider assigned to order ${order.id}');
   }
 
   /// Send encrypted notice to customer

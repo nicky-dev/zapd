@@ -78,6 +78,23 @@
   "errorInvalidBunkerUrl": "รูปแบบ URL bunker ไม่ถูกต้อง\nต้องเป็น: bunker://pubkey?relay=wss://...",
   "nostrConnectConnected": "เชื่อมต่อ Nostr Connect สำเร็จ!",
   "paymentDetails": "รายละเอียดการชำระเงิน",
+  "searchPlace": "ค้นหาสถานที่",
+  "@searchPlace": { "description": "Search input placeholder in place picker (Thai)" },
+
+  "useCurrentLocation": "ใช้ตำแหน่งปัจจุบัน",
+  "@useCurrentLocation": { "description": "Tooltip for using current GPS location (Thai)" },
+
+  "noLocationSelected": "ยังไม่ได้เลือกตำแหน่ง",
+  "@noLocationSelected": { "description": "Displayed when no location has been picked (Thai)" },
+
+  "pickLocation": "เลือกตำแหน่ง",
+  "@pickLocation": { "description": "Button label to open location picker (Thai)" },
+
+  "select": "เลือก",
+  "@select": { "description": "Confirm selection button text (Thai)" },
+
+  "currentLocation": "ตำแหน่งปัจจุบัน",
+  "@currentLocation": { "description": "Human readable label for current GPS location (Thai)" },
   "paymentStatus": "สถานะการชำระเงิน",
   "paymentStatusPending": "รอดำเนินการ",
   "paymentStatusPaid": "ชำระแล้ว",

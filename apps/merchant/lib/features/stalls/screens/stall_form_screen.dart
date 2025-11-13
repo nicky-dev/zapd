@@ -4,6 +4,7 @@ import '../../../l10n/app_localizations.dart';
 import '../models/stall.dart';
 import '../models/stall_type.dart';
 import '../providers/stall_provider.dart';
+import '../widgets/stall_location_picker.dart';
 import '../../../core/providers/nostr_provider.dart';
 
 class StallFormScreen extends ConsumerStatefulWidget {
@@ -23,6 +24,9 @@ class _StallFormScreenState extends ConsumerState<StallFormScreen> {
   late TextEditingController _cuisineController;
   late TextEditingController _preparationTimeController;
   late TextEditingController _operatingHoursController;
+  double? _latitude;
+  double? _longitude;
+  String? _locationName;
 
   StallType _selectedType = StallType.food;
   bool _acceptsOrders = true;
@@ -55,6 +59,9 @@ class _StallFormScreenState extends ConsumerState<StallFormScreen> {
         regions: ['default'],
       ),
     ]);
+    _latitude = widget.stall?.latitude;
+    _longitude = widget.stall?.longitude;
+    _locationName = widget.stall?.locationName;
   }
 
   @override
@@ -98,6 +105,9 @@ class _StallFormScreenState extends ConsumerState<StallFormScreen> {
             ? null 
             : _operatingHoursController.text.trim(),
         acceptsOrders: _acceptsOrders,
+        latitude: _latitude,
+        longitude: _longitude,
+        locationName: _locationName,
       );
 
       if (widget.stall == null) {
@@ -304,6 +314,39 @@ class _StallFormScreenState extends ConsumerState<StallFormScreen> {
                   border: const OutlineInputBorder(),
                 ),
               ),
+              const SizedBox(height: 16),
+
+              // Location picker for food stalls
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(_locationName ?? (_latitude != null ? '${_latitude!.toStringAsFixed(6)}, ${_longitude!.toStringAsFixed(6)}' : 'No location selected')),
+                  ),
+                  const SizedBox(width: 8),
+                  OutlinedButton.icon(
+                    icon: const Icon(Icons.location_on),
+                    label: const Text('Pick location'),
+                    onPressed: () async {
+                      final result = await showModalBottomSheet<Map<String, dynamic>>(
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (context) => FractionallySizedBox(
+                          heightFactor: 0.9,
+                          child: SafeArea(child: StallLocationPicker()),
+                        ),
+                      );
+                      if (result != null) {
+                        setState(() {
+                          _latitude = result['latitude'] as double?;
+                          _longitude = result['longitude'] as double?;
+                          _locationName = result['name'] as String?;
+                        });
+                      }
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(height: 24),
               const SizedBox(height: 24),
             ],
 

@@ -135,20 +135,26 @@ class ProductListScreen extends ConsumerWidget {
     );
   }
 
-  void _navigateToAddProduct(BuildContext context, WidgetRef ref) {
-    Navigator.push(
+  Future<void> _navigateToAddProduct(BuildContext context, WidgetRef ref) async {
+    await Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => ProductFormScreen(stallId: stall.id),
       ),
-    ).then((_) {
-      // Refresh list after returning
+    );
+
+    // Refresh list after returning from the form. Use notifier loadProducts
+    // and also invalidate the provider to ensure a full refresh if needed.
+    try {
       ref.read(productNotifierProvider(stall.id).notifier).loadProducts();
-    });
+    } catch (_) {
+      // Fallback: invalidate the provider (works for Riverpod families)
+      ref.invalidate(productNotifierProvider(stall.id));
+    }
   }
 
-  void _navigateToEditProduct(BuildContext context, WidgetRef ref, product) {
-    Navigator.push(
+  Future<void> _navigateToEditProduct(BuildContext context, WidgetRef ref, product) async {
+    await Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => ProductFormScreen(
@@ -156,10 +162,14 @@ class ProductListScreen extends ConsumerWidget {
           product: product,
         ),
       ),
-    ).then((_) {
-      // Refresh list after returning
+    );
+
+    // Refresh list after returning from the edit form
+    try {
       ref.read(productNotifierProvider(stall.id).notifier).loadProducts();
-    });
+    } catch (_) {
+      ref.invalidate(productNotifierProvider(stall.id));
+    }
   }
 
   Future<void> _deleteProduct(BuildContext context, WidgetRef ref, product) async {

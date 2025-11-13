@@ -63,6 +63,9 @@ class ProductRepository {
 
     final tags = <List<String>>[
       ['d', product.id], // NIP-15 required: unique identifier
+      // Reference the stall using canonical 'a' tag in composite form: kind:pubkey:id
+      // This allows precise relay-side indexing while avoiding reuse of 'e'/'p' tags.
+      ['a', '30017:$merchantPubkey:${product.stallId}'],
     ];
 
     // Extension fields for food delivery
@@ -105,7 +108,8 @@ class ProductRepository {
     final filter = NostrFilter(
       kinds: const [30018],
       authors: [merchantPubkey],
-      tags: {'stall_id': [stallId]},
+      // Use the canonical 'a' composite tag to filter products by stall
+      tags: {'a': ['30017:$merchantPubkey:$stallId']},
     );
 
     final subscription = nostrClient.subscribe([filter]);

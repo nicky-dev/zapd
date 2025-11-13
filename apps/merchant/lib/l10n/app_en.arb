@@ -404,6 +404,24 @@
   "@paymentStatus": {
     "description": "Payment status label"
   },
+
+  "searchPlace": "Search place",
+  "@searchPlace": { "description": "Search input placeholder in place picker" },
+
+  "useCurrentLocation": "Use current location",
+  "@useCurrentLocation": { "description": "Tooltip for using current GPS location" },
+
+  "noLocationSelected": "No location selected",
+  "@noLocationSelected": { "description": "Displayed when no location has been picked" },
+
+  "pickLocation": "Pick location",
+  "@pickLocation": { "description": "Button label to open location picker" },
+
+  "select": "Select",
+  "@select": { "description": "Confirm selection button text" },
+
+  "currentLocation": "Current location",
+  "@currentLocation": { "description": "Human readable label for current GPS location" },
   
   "paymentStatusPending": "Pending",
   "@paymentStatusPending": {

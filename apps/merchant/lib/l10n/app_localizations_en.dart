@@ -299,6 +299,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get amount => 'Amount';
 
   @override
+  String get searchPlace => 'Search place';
+
+  @override
+  String get useCurrentLocation => 'Use current location';
+
+  @override
+  String get noLocationSelected => 'No location selected';
+
+  @override
+  String get pickLocation => 'Pick location';
+
+  @override
+  String get select => 'Select';
+
+  @override
+  String get currentLocation => 'Current location';
+
+  @override
   String get estimatedSats => 'Estimated';
 
   @override

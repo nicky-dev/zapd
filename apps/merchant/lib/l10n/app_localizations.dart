@@ -650,6 +650,42 @@ abstract class AppLocalizations {
   /// **'Amount'**
   String get amount;
 
+  /// Search input placeholder in place picker
+  ///
+  /// In en, this message translates to:
+  /// **'Search place'**
+  String get searchPlace;
+
+  /// Tooltip/label for using current GPS location
+  ///
+  /// In en, this message translates to:
+  /// **'Use current location'**
+  String get useCurrentLocation;
+
+  /// Displayed when no location has been picked
+  ///
+  /// In en, this message translates to:
+  /// **'No location selected'**
+  String get noLocationSelected;
+
+  /// Button label to open location picker
+  ///
+  /// In en, this message translates to:
+  /// **'Pick location'**
+  String get pickLocation;
+
+  /// Confirm selection button text
+  ///
+  /// In en, this message translates to:
+  /// **'Select'**
+  String get select;
+
+  /// Human readable label for current GPS location
+  ///
+  /// In en, this message translates to:
+  /// **'Current location'**
+  String get currentLocation;
+
   /// Estimated sats label
   ///
   /// In en, this message translates to:

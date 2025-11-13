@@ -22,6 +22,9 @@ _$StallImpl _$$StallImplFromJson(Map<String, dynamic> json) => _$StallImpl(
   preparationTime: (json['preparationTime'] as num?)?.toInt(),
   operatingHours: json['operatingHours'] as String?,
   locationEncrypted: json['locationEncrypted'] as String?,
+  latitude: (json['latitude'] as num?)?.toDouble(),
+  longitude: (json['longitude'] as num?)?.toDouble(),
+  locationName: json['locationName'] as String?,
   eventId: json['eventId'] as String?,
   createdAt: json['createdAt'] == null
       ? null
@@ -44,6 +47,9 @@ Map<String, dynamic> _$$StallImplToJson(_$StallImpl instance) =>
       'preparationTime': instance.preparationTime,
       'operatingHours': instance.operatingHours,
       'locationEncrypted': instance.locationEncrypted,
+      'latitude': instance.latitude,
+      'longitude': instance.longitude,
+      'locationName': instance.locationName,
       'eventId': instance.eventId,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
